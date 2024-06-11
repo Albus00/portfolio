@@ -20,12 +20,12 @@
 	>
 		<div class=" pt-[12%] w-3/4">
 			<h1 class="h1-variant mr-3">Hi!</h1>
-			<h1>My name is Albin. I design and build web apps and games.</h1>
+			<h1>My name is Albin.<br /> I design and build web apps<br /> and games.</h1>
 		</div>
-		<div class="flex flex-col w-fit gap-y-4 pl-16 pt-10">
+		<!-- <div class="flex flex-col w-fit gap-y-4 pl-16 pt-10">
 			<Button>Web</Button>
 			<Button>Games</Button>
 			<Button>Contact</Button>
-		</div>
+		</div> -->
 	</div>
 </section>
