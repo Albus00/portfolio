@@ -7,10 +7,16 @@
 	export let onClickFunc = () => {};
 	export let style = '';
 	export let imgId = '';
+	export let targetBlank = false;
 </script>
 
 {#if onClickUrl !== ''}
-	<a class={`bg-transparent cursor-pointer `} href={onClickUrl} {style}>
+	<a
+		class={`bg-transparent cursor-pointer `}
+		href={onClickUrl}
+		{style}
+		target={targetBlank ? '_blank' : '_self'}
+	>
 		<img
 			class={`${size === 'sm' ? 'w-8' : 'w-32'} hover:scale-110 transition-all`}
 			src={icon}

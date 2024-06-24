@@ -16,8 +16,12 @@
 	class="bg-dark-base grid grid-cols-2 gap-20 px-horizontal box-border pt-10 pb-20"
 	id="selection"
 >
-	<CategoryCard title="Category 1" />
-	<CategoryCard title="Category 2" />
+	<CategoryCard title="WEB APPS">
+		<p>Here you can find all my web applications</p>
+	</CategoryCard>
+	<CategoryCard title="GAMES">
+		<p>Here you can find all my games</p>
+	</CategoryCard>
 </section>
 
 <style>

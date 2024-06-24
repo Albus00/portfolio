@@ -1,12 +1,21 @@
 <script lang="ts">
 	export let title: string;
+	export let text: string;
 </script>
 
-<div class="bg-light-dark w-full h-full card rounded-[3rem]">
+<div
+	class="bg-light-dark w-full h-full card rounded-[3rem] flex flex-col items-center py-10 text-white"
+>
 	<h2>{title}</h2>
+	<slot />
 </div>
 
 <style>
+	/* use global to target elements in slot */
+	:global(p) {
+		@apply text-xl;
+	}
+
 	/* shadow ring and multiple soft shadows */
 	.card {
 		box-shadow:

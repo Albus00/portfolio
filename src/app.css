@@ -28,5 +28,7 @@ h1 {
 }
 
 h2{
-  @apply text-6xl inline;
+  font-family: "rotulo-variable",sans-serif;
+  font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
+  @apply  text-6xl inline;
 }

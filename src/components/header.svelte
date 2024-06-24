@@ -17,12 +17,14 @@
 				size="sm"
 				onClickUrl="https://github.com/Albus00"
 				style="filter: invert();"
+				targetBlank={true}
 			/>
 			<IconButton
 				icon={linkedin}
 				size="sm"
 				onClickUrl="https://www.linkedin.com/in/albin-kjellberg-b3367b163/"
 				style="filter: invert();"
+				targetBlank={true}
 			/>
 		</div>
 	</div>
