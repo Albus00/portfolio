@@ -1,7 +1,8 @@
 <script lang="ts">
-	import CategoryCard from '$components/categoryCard.svelte';
-	import getHeaderHeight from '$lib/hooks/getHeaderHeight';
 	import { onMount } from 'svelte';
+	import CategoryCard from '$components/categoryCard.svelte';
+	import Scene from '$components/scene.svelte';
+	import getHeaderHeight from '$lib/hooks/getHeaderHeight';
 
 	// Set default base header height, before the actual header height is calculated
 	let headerHeight = getHeaderHeight(false);
@@ -21,7 +22,7 @@
 		<p>Here you can find all my web applications</p>
 	</CategoryCard>
 	<CategoryCard title="GAMES">
-		<p>Here you can find all my games</p>
+		<Scene elementId="tree-scene" className={'w-full h-1/2'} />
 	</CategoryCard>
 </section>
 

@@ -1,0 +1,196 @@
+{
+  "asset": {
+    "generator": "Khronos glTF Blender I/O v4.0.44",
+    "version": "2.0"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0,
+        1
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "trunk"
+    },
+    {
+      "mesh": 1,
+      "name": "leaves",
+      "rotation": [
+        -0.3940601348876953,
+        0.123716801404953,
+        -0.09128589183092117,
+        0.9061333537101746
+      ],
+      "scale": [
+        0.4412573277950287,
+        0.44125741720199585,
+        0.4412573277950287
+      ],
+      "translation": [
+        0.17028510570526123,
+        4.34130334854126,
+        -0.34746575355529785
+      ]
+    }
+  ],
+  "meshes": [
+    {
+      "name": "tree.001",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3
+        }
+      ]
+    },
+    {
+      "name": "Plane.119",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 4,
+            "NORMAL": 5,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7
+        }
+      ]
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 2072,
+      "max": [
+        1.5498509407043457,
+        6.127784729003906,
+        1.0278873443603516
+      ],
+      "min": [
+        -1.1886154413223267,
+        0,
+        -2.607304096221924
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 2072,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 2072,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5123,
+      "count": 10080,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 15682,
+      "max": [
+        6.401264190673828,
+        5.458225250244141,
+        6.025630950927734
+      ],
+      "min": [
+        -6.567078590393066,
+        -6.001215934753418,
+        -7.1676106452941895
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 5,
+      "componentType": 5126,
+      "count": 15682,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 6,
+      "componentType": 5126,
+      "count": 15682,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 7,
+      "componentType": 5123,
+      "count": 28800,
+      "type": "SCALAR"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 24864,
+      "byteOffset": 0,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 24864,
+      "byteOffset": 24864,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 16576,
+      "byteOffset": 49728,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 20160,
+      "byteOffset": 66304,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 188184,
+      "byteOffset": 86464,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 188184,
+      "byteOffset": 274648,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 125456,
+      "byteOffset": 462832,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 57600,
+      "byteOffset": 588288,
+      "target": 34963
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "tree_data.bin",
+      "byteLength": 645888
+    }
+  ]
+}
