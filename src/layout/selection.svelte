@@ -3,11 +3,12 @@
 	import getHeaderHeight from '$lib/hooks/getHeaderHeight';
 	import { onMount } from 'svelte';
 
-	let headerHeight = 0;
+	// Set default base header height, before the actual header height is calculated
+	let headerHeight = getHeaderHeight(false);
 
 	// Get height of the header
 	onMount(() => {
-		headerHeight = getHeaderHeight();
+		// headerHeight = getHeaderHeight();
 	});
 </script>
 

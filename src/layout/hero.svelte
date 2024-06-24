@@ -52,7 +52,9 @@
 		</div>
 		<div class="flex flex-row w-fit pl-16 pt-24">
 			<IconButton icon={arrow} onClickFunc={scrollToSelection} imgId="heroIconBtn" />
-			<h2 class="font-delve pt-8 cursor-pointer" id="heroTextBtn">See my projects!</h2>
+			<h2 class="font-delve pt-8 cursor-pointer" id="heroTextBtn" on:click={scrollToSelection}>
+				See my projects!
+			</h2>
 		</div>
 	</div>
 	<div class="absolute bottom-0 h-10 w-full bg-dark-base"></div>
