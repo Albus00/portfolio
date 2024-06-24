@@ -1,5 +1,19 @@
-<script>
-	// your script goes here
+<script lang="ts">
+	export let title: string;
 </script>
 
-<div class="w-1/2 h-full bg-light-base"></div>
+<div class="bg-light-dark w-full h-full card rounded-[3rem]">
+	<h2>{title}</h2>
+</div>
+
+<style>
+	/* shadow ring and multiple soft shadows */
+	.card {
+		box-shadow:
+			inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.075),
+			/* shadow ring 👇 */ 0 0 0 1px hsla(0, 0%, 0%, 0.05),
+			/* multiple soft shadows 👇 */ 0 0.3px 0.4px hsla(0, 0%, 0%, 0.02),
+			0 0.9px 1.5px hsla(0, 0%, 0%, 0.045),
+			0 3.5px 6px hsla(0, 0%, 0%, 0.09);
+	}
+</style>

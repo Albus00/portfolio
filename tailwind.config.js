@@ -10,8 +10,12 @@ export default {
       },
       colors: {
         'light-base': '#d7d7d7',
-        'dark-base': '#111111',
+        'dark-base': '#22232a',
+        'light-dark': '#2d2d34',
       },
+      spacing: {
+        'horizontal': '5rem',
+      }
     },
   },
   plugins: [],

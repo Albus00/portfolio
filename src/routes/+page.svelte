@@ -3,7 +3,7 @@
 	import Selection from '$layout/selection.svelte';
 </script>
 
-<main class="h-full">
+<main>
 	<Hero />
 	<Selection />
 </main>

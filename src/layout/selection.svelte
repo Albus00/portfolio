@@ -1,13 +1,27 @@
 <script lang="ts">
-	let selectedOption = '';
+	import CategoryCard from '$components/categoryCard.svelte';
+	import getHeaderHeight from '$lib/hooks/getHeaderHeight';
+	import { onMount } from 'svelte';
 
-	function selectOption(option: string) {
-		selectedOption = option;
-	}
+	let headerHeight = 0;
+
+	// Get height of the header
+	onMount(() => {
+		headerHeight = getHeaderHeight();
+	});
 </script>
 
-<section class="bg-dark-base h-full" id="selection"></section>
+<section
+	style="--header: {headerHeight}"
+	class="bg-dark-base grid grid-cols-2 gap-20 px-horizontal box-border pt-10 pb-20"
+	id="selection"
+>
+	<CategoryCard title="Category 1" />
+	<CategoryCard title="Category 2" />
+</section>
 
-{#if selectedOption}
-	<p>You selected: {selectedOption} projects</p>
-{/if}
+<style>
+	#selection {
+		height: calc(100vh - var(--header) * 1px);
+	}
+</style>

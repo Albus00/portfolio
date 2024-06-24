@@ -4,8 +4,8 @@
 	import linkedin from '$lib/assets/logos/linkedin.svg';
 </script>
 
-<div class="fixed top-0 left-0 w-full pt-8 pb-4 z-50 bg-dark-base text-white">
-	<div class="container mx-auto flex flex-row justify-between">
+<header class="fixed top-0 left-0 w-full pt-8 pb-4 z-50 bg-dark-base text-white px-horizontal">
+	<div class="flex flex-row justify-between">
 		<nav class="flex justify-between items-center">
 			<div class="flex items-center">
 				<a href="/" class="text-4xl font-bold font-rotulo">Albin Kjellberg</a>
@@ -26,4 +26,4 @@
 			/>
 		</div>
 	</div>
-</div>
+</header>

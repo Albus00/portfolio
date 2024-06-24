@@ -6,6 +6,7 @@
 	export let onClickUrl = '';
 	export let onClickFunc = () => {};
 	export let style = '';
+	export let imgId = '';
 </script>
 
 {#if onClickUrl !== ''}
@@ -14,6 +15,7 @@
 			class={`${size === 'sm' ? 'w-8' : 'w-32'} hover:scale-110 transition-all`}
 			src={icon}
 			alt="icon"
+			id={imgId}
 		/>
 	</a>
 {:else}
@@ -22,6 +24,7 @@
 			class={`${size === 'sm' ? 'w-8' : 'w-32'} hover:scale-110 transition-all`}
 			src={icon}
 			alt="icon"
+			id={imgId}
 		/>
 	</button>
 {/if}
