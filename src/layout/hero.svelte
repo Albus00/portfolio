@@ -3,6 +3,28 @@
 	import albinkjellberg from '$lib/assets/albinkjellberg.png';
 	import arrow from '$lib/assets/icons/swirly-arrow.png';
 	import getHeaderHeight from '$lib/hooks/getHeaderHeight';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		// add event listeners to hero text button for scaling the icon button
+		const heroTextBtn = document.getElementById('heroTextBtn');
+		heroTextBtn?.addEventListener(
+			'mouseenter',
+			(event) => {
+				const iconBtn = document.getElementById('heroIconBtn');
+				iconBtn?.classList.add('scale-110');
+			},
+			false
+		);
+		heroTextBtn?.addEventListener(
+			'mouseleave',
+			(event) => {
+				const iconBtn = document.getElementById('heroIconBtn');
+				iconBtn?.classList.remove('scale-110');
+			},
+			false
+		);
+	});
 
 	// scroll to selection section
 	function scrollToSelection() {
@@ -30,17 +52,8 @@
 		</div>
 		<div class="flex flex-row w-fit pl-16 pt-24">
 			<IconButton icon={arrow} onClickFunc={scrollToSelection} imgId="heroIconBtn" />
-			<h2 class="font-delve pt-8" id="heroTextBtn">See my projects!</h2>
+			<h2 class="font-delve pt-8 cursor-pointer" id="heroTextBtn">See my projects!</h2>
 		</div>
 	</div>
 	<div class="absolute bottom-0 h-10 w-full bg-dark-base"></div>
 </section>
-
-<style>
-	#heroTextBtn:hover {
-		cursor: pointer;
-	}
-	body:has(#heroTextBtn:hover) #heroIconBtn {
-		scale: 1.1;
-	}
-</style>
