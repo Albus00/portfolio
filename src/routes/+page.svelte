@@ -1,7 +1,9 @@
 <script>
-	import Hero from './hero.svelte';
+	import Hero from '$layout/hero.svelte';
+	import Selection from '$layout/selection.svelte';
 </script>
 
-<div class="h-screen">
+<main class="h-full">
 	<Hero />
-</div>
+	<Selection />
+</main>

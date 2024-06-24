@@ -7,17 +7,26 @@
   font-weight: 400;
   font-style: normal;
 
-  @apply bg-white;
+  @apply bg-light-base h-full;
+}
+
+body {
+  @apply h-full;
 }
 
 /* https://fonts.adobe.com/fonts/rotulo-variable?vf-font-size=100&vf-font=RotuloVariable-CompressedThin&vf-axes=slnt,0,wght,700,wdth,50 */
 h1 {
     font-family: "rotulo-variable",sans-serif;
     font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
+    text-shadow: 2px 2px 10px rgba(20,20,20,0.3);
     @apply text-8xl inline;
   }
   .h1-variant {
     font-variation-settings: 'wdth' 70, 'wght' 750, 'slnt' -10;
     text-shadow: 2px 2px 2px #303030;
     @apply inline text-[#f2d83e] text-9xl
+}
+
+h2{
+  @apply text-6xl inline;
 }
