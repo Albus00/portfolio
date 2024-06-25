@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { fragmentShader, vertexShader } from './leavesShader';
+import { leavesFragmentShader, leavesVertexShader } from './leavesShader';
+import { trunkFragmentShader, trunkVertexShader } from './trunkShader';
 
 
 export default function treeScene(elementId: string) {
@@ -39,13 +40,6 @@ export default function treeScene(elementId: string) {
 
   // Create materials
   function createMaterials() {
-    // const leavesTexture = new THREE.TextureLoader().load("/textures/tree-leaves.png");
-    // const leavesMat = new THREE.MeshBasicMaterial({
-    //   color: 0x44ee47, reflectivity: 0.5, transparent: true,
-    //   alphaTest: 0.5, alphaMap: leavesTexture
-    // });
-    // return leavesMat;
-
     const leavesMat = new THREE.ShaderMaterial({
       uniforms: {
         colorA: { value: new THREE.Color(0x00ff00) },
@@ -54,11 +48,45 @@ export default function treeScene(elementId: string) {
         alphaMap: { value: new THREE.TextureLoader().load("/textures/tree-leaves.png") },
         time: { value: 0.0 }
       },
-      vertexShader: vertexShader(),
-      fragmentShader: fragmentShader()
+      vertexShader: leavesVertexShader(),
+      fragmentShader: leavesFragmentShader()
     });
 
-    return leavesMat;
+    const trunkMat = new THREE.ShaderMaterial({
+      uniforms: {
+        colorA: { value: new THREE.Color(0xa77e4a) },
+        colorB: { value: new THREE.Color(0xc09054) },
+        lightPosition: { value: mainLightPosition },
+        time: { value: 0.0 }
+      },
+      vertexShader: trunkVertexShader(),
+      fragmentShader: trunkFragmentShader()
+    });
+
+    const baseMat = new THREE.MeshStandardMaterial({ color: 0x5d5d5d });
+    baseMat.onBeforeCompile = (shader) => {
+      shader.vertexShader = shader.vertexShader.replace("void main() {", `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+      `);
+      shader.fragmentShader = shader.fragmentShader.replace("void main() {", `
+        varying vec2 vUv;
+        void main() {
+      `);
+      shader.fragmentShader = shader.fragmentShader.replace(
+        `#include <dithering_fragment>`,
+        `#include <dithering_fragment>
+
+          float d = distance(vUv, vec2(0.5));
+          gl_FragColor.a = (1.0 - d);
+        `,
+      )
+    }
+
+    baseMat.transparent = true;
+
+    return { leavesMat, trunkMat, baseMat };
   }
 
   // Load the tree model
@@ -78,14 +106,13 @@ export default function treeScene(elementId: string) {
               mesh.castShadow = true;
               break;
             case 'trunk':
+              mesh.material = trunkMat;
               mesh.castShadow = true;
               break;
             case 'base':
+              mesh.material = baseMat;
               mesh.receiveShadow = true;
               break;
-            case 'Plane':
-              mesh.material = leavesMat;
-              break
             default:
               break;
           }
@@ -128,6 +155,7 @@ export default function treeScene(elementId: string) {
   function animate() {
     renderer.render(scene, camera);
     leavesMat.uniforms['time'].value = .00025 * (Date.now() - start);
+    trunkMat.uniforms['time'].value = .00025 * (Date.now() - start);
   }
 
   window.addEventListener('resize', onWindowResize, false);
@@ -142,7 +170,7 @@ export default function treeScene(elementId: string) {
   const mainLightPosition = new THREE.Vector3(5, 5, 5);
   const start = Date.now();
   const { scene, camera, renderer } = setupScene();
-  const leavesMat = createMaterials();
+  const { leavesMat, trunkMat, baseMat } = createMaterials();
   loadModel();
   setupLights()
 }
