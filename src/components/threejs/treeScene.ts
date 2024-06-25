@@ -9,14 +9,15 @@ export default function treeScene(elementId: string) {
   function setupScene(): { scene: THREE.Scene, camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer } {
     // Set up the camera
     function setupCamera(): THREE.PerspectiveCamera {
-      const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-      const zoom = 1;
+      const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+      const zoom = 1.8;
       camera.position.set(10 / zoom, 4, 6 / zoom);
       camera.lookAt(0, 3, 0);
       return camera;
     }
 
     const scene = new THREE.Scene();
+    scene.rotateY(1.2 * Math.PI);
     const renderer = new THREE.WebGLRenderer();
 
     // Get the width and height of the element to render the scene
@@ -24,16 +25,19 @@ export default function treeScene(elementId: string) {
       console.error(`Element with id ${elementId} not found`);
       return { scene: scene, camera: new THREE.PerspectiveCamera(), renderer: renderer };
     }
-    const { offsetWidth: width, offsetHeight: height } = renderElement;
+    const { offsetWidth: width } = renderElement;
 
     // Set up the camera and renderer
     const camera = setupCamera();
-    renderer.setSize(width, height);
+    renderer.setSize(width, width);
     renderer.setClearColor(0xffffff, 0);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
     renderer.setAnimationLoop(animate);
     renderElement.appendChild(renderer.domElement);
+
+    // const axesHelper = new THREE.AxesHelper(5);
+    // scene.add(axesHelper);
 
     return { scene, camera, renderer };
   }
@@ -42,7 +46,7 @@ export default function treeScene(elementId: string) {
   function createMaterials() {
     const leavesMat = new THREE.ShaderMaterial({
       uniforms: {
-        colorA: { value: new THREE.Color(0x00ff00) },
+        colorA: { value: new THREE.Color(0x00dd00) },
         colorB: { value: new THREE.Color(0x007700) },
         lightPosition: { value: mainLightPosition },
         alphaMap: { value: new THREE.TextureLoader().load("/textures/tree-leaves.png") },
@@ -63,7 +67,7 @@ export default function treeScene(elementId: string) {
       fragmentShader: trunkFragmentShader()
     });
 
-    const baseMat = new THREE.MeshStandardMaterial({ color: 0x5d5d5d });
+    const baseMat = new THREE.MeshStandardMaterial({ color: 0x7d7d7d });
     baseMat.onBeforeCompile = (shader) => {
       shader.vertexShader = shader.vertexShader.replace("void main() {", `
         varying vec2 vUv;
@@ -93,7 +97,7 @@ export default function treeScene(elementId: string) {
   function loadModel() {
     const loader = new GLTFLoader();
     loader.load('/models/tree.glb', function (gltf) {
-      gltf.scene.rotation.y = Math.PI / 3;
+      gltf.scene.rotation.y = Math.PI / 2;
       const content = gltf.scene.children;
 
       content.forEach((child: THREE.Object3D) => {
@@ -133,10 +137,6 @@ export default function treeScene(elementId: string) {
     directionalLight.castShadow = true; // default false
     scene.add(directionalLight);
 
-    const point = new THREE.PointLight(0xffffff, 1, 100);
-    point.position.set(0, 4, 0);
-    scene.add(point);
-
     // const helper = new THREE.CameraHelper(directionalLight.shadow.camera);
     // scene.add(helper)
   }
@@ -146,10 +146,8 @@ export default function treeScene(elementId: string) {
     if (!renderElement)
       return;
 
-    camera.aspect = renderElement.offsetWidth / renderElement.offsetHeight;
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(renderElement.offsetWidth, renderElement.offsetHeight);
+    // Make sure the aspect ratio is still set to square
+    renderer.setSize(renderElement.offsetWidth, renderElement.offsetWidth);
   }
 
   function animate() {
@@ -160,17 +158,31 @@ export default function treeScene(elementId: string) {
 
   window.addEventListener('resize', onWindowResize, false);
 
+  // Get mouse position
+  const scaleX = 10;
+  const scaleY = 0.5;
+  window.addEventListener('mousemove', (event) => {
+    const x = event.clientX / renderElementCenterX - 1;
+    const y = event.clientY / renderElementCenterY - 1;
+    leavesMat.uniforms['lightPosition'].value = new THREE.Vector3(mainLightPosition.x - x * scaleX * 2, mainLightPosition.y - y * scaleY * 2, mainLightPosition.z);
+    scene.children[0].position.set(mainLightPosition.x - x * scaleX, mainLightPosition.y - y * scaleY, mainLightPosition.z);
+  });
+
   // Get the element to render the scene
   const renderElement = document.getElementById(elementId);
   if (!renderElement) {
     console.error(`Element with id ${elementId} not found`);
     return;
   }
+  const renderElementPosition = renderElement.getBoundingClientRect();
+  const renderElementCenterX = renderElementPosition.left + renderElementPosition.width / 2;
+  const renderElementCenterY = renderElementPosition.top + renderElementPosition.height / 2;
 
-  const mainLightPosition = new THREE.Vector3(5, 5, 5);
+  const mainLightPosition = new THREE.Vector3(8, 10, -20);
   const start = Date.now();
   const { scene, camera, renderer } = setupScene();
   const { leavesMat, trunkMat, baseMat } = createMaterials();
+
   loadModel();
   setupLights()
 }

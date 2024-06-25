@@ -22,7 +22,7 @@
 		<p>Here you can find all my web applications</p>
 	</CategoryCard>
 	<CategoryCard title="GAMES">
-		<Scene elementId="tree-scene" className={'w-full aspect-square'} />
+		<Scene elementId="tree-scene" className={'w-3/4 h-['} />
 	</CategoryCard>
 </section>
 
