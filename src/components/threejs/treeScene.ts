@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { fragmentShader, vertexShader } from './leavesShader';
 
 
 export default function treeScene(elementId: string) {
@@ -8,7 +9,8 @@ export default function treeScene(elementId: string) {
     // Set up the camera
     function setupCamera(): THREE.PerspectiveCamera {
       const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-      camera.position.set(10, 4, 6);
+      const zoom = 1;
+      camera.position.set(10 / zoom, 4, 6 / zoom);
       camera.lookAt(0, 3, 0);
       return camera;
     }
@@ -37,11 +39,25 @@ export default function treeScene(elementId: string) {
 
   // Create materials
   function createMaterials() {
-    const leavesTexture = new THREE.TextureLoader().load("/textures/tree-leaves.png");
-    const leavesMat = new THREE.MeshBasicMaterial({
-      color: 0x44ee47, map: leavesTexture, reflectivity: 0.5, transparent: true,
-      alphaTest: 0.5, alphaMap: leavesTexture
+    // const leavesTexture = new THREE.TextureLoader().load("/textures/tree-leaves.png");
+    // const leavesMat = new THREE.MeshBasicMaterial({
+    //   color: 0x44ee47, reflectivity: 0.5, transparent: true,
+    //   alphaTest: 0.5, alphaMap: leavesTexture
+    // });
+    // return leavesMat;
+
+    const leavesMat = new THREE.ShaderMaterial({
+      uniforms: {
+        colorA: { value: new THREE.Color(0x00ff00) },
+        colorB: { value: new THREE.Color(0x007700) },
+        lightPosition: { value: mainLightPosition },
+        alphaMap: { value: new THREE.TextureLoader().load("/textures/tree-leaves.png") },
+        time: { value: 0.0 }
+      },
+      vertexShader: vertexShader(),
+      fragmentShader: fragmentShader()
     });
+
     return leavesMat;
   }
 
@@ -52,25 +68,29 @@ export default function treeScene(elementId: string) {
       gltf.scene.rotation.y = Math.PI / 3;
       const content = gltf.scene.children;
 
-      let leavesMesh: THREE.Mesh = new THREE.Mesh();
-      content.forEach((element: THREE.Object3D) => {
-        if (element.isObject3D) {
-          if (element.name === 'leaves') {
-            leavesMesh = element as THREE.Mesh;
-            element.castShadow = true;
-          }
-          else if (element.name === 'trunk') {
-            element.castShadow = true;
-          }
-          else if (element.name === 'base') {
-            element.receiveShadow = true;
+      content.forEach((child: THREE.Object3D) => {
+        if (child.isObject3D) {
+          // Set the materials and shadows for the tree parts
+          const mesh = child as THREE.Mesh;
+          switch (mesh.name) {
+            case 'leaves':
+              mesh.material = leavesMat;
+              mesh.castShadow = true;
+              break;
+            case 'trunk':
+              mesh.castShadow = true;
+              break;
+            case 'base':
+              mesh.receiveShadow = true;
+              break;
+            case 'Plane':
+              mesh.material = leavesMat;
+              break
+            default:
+              break;
           }
         }
       });
-
-      if (leavesMesh.name === 'leaves') {
-        leavesMesh.material = leavesMat;
-      }
 
       scene.add(gltf.scene);
     }, undefined, function (error) {
@@ -82,13 +102,12 @@ export default function treeScene(elementId: string) {
   function setupLights() {
     //Create a DirectionalLight and turn on shadows for the light
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(5, 4, 5); //default; light shining from top
+    directionalLight.position.set(mainLightPosition.x, mainLightPosition.y, mainLightPosition.z); //default; light shining from top
     directionalLight.castShadow = true; // default false
     scene.add(directionalLight);
 
     const point = new THREE.PointLight(0xffffff, 1, 100);
     point.position.set(0, 4, 0);
-    point.castShadow = true;
     scene.add(point);
 
     // const helper = new THREE.CameraHelper(directionalLight.shadow.camera);
@@ -108,6 +127,7 @@ export default function treeScene(elementId: string) {
 
   function animate() {
     renderer.render(scene, camera);
+    leavesMat.uniforms['time'].value = .00025 * (Date.now() - start);
   }
 
   window.addEventListener('resize', onWindowResize, false);
@@ -119,6 +139,8 @@ export default function treeScene(elementId: string) {
     return;
   }
 
+  const mainLightPosition = new THREE.Vector3(5, 5, 5);
+  const start = Date.now();
   const { scene, camera, renderer } = setupScene();
   const leavesMat = createMaterials();
   loadModel();
