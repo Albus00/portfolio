@@ -19,10 +19,10 @@
 	id="selection"
 >
 	<CategoryCard title="WEB APPS">
-		<p>Here you can find all my web applications</p>
+		<Scene elementId="laptop-scene" className={'w-3/4 aspect-auto'} />
 	</CategoryCard>
 	<CategoryCard title="GAMES">
-		<Scene elementId="tree-scene" className={'w-3/4 h-['} />
+		<Scene elementId="tree-scene" className={'w-3/4 aspect-auto'} />
 	</CategoryCard>
 </section>
 

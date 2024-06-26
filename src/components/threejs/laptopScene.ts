@@ -1,35 +1,12 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { leavesFragmentShader, leavesVertexShader } from './leavesShader';
-import { trunkFragmentShader, trunkVertexShader } from './trunkShader';
 import { setupScene } from './sceneSetup';
 
 
 export default function treeScene(elementId: string) {
   // Create materials
   function createMaterials() {
-    const leavesMat = new THREE.ShaderMaterial({
-      uniforms: {
-        colorA: { value: new THREE.Color(0x00dd00) },
-        colorB: { value: new THREE.Color(0x007700) },
-        lightPosition: { value: mainLightPosition },
-        alphaMap: { value: new THREE.TextureLoader().load("/textures/tree-leaves.png") },
-        time: { value: 0.0 }
-      },
-      vertexShader: leavesVertexShader(),
-      fragmentShader: leavesFragmentShader()
-    });
-
-    const trunkMat = new THREE.ShaderMaterial({
-      uniforms: {
-        colorA: { value: new THREE.Color(0xa77e4a) },
-        colorB: { value: new THREE.Color(0xc09054) },
-        lightPosition: { value: mainLightPosition },
-        time: { value: 0.0 }
-      },
-      vertexShader: trunkVertexShader(),
-      fragmentShader: trunkFragmentShader()
-    });
+    const chassiMat = new THREE.MeshStandardMaterial({ color: 0x00dd00 });
 
     const baseMat = new THREE.MeshStandardMaterial({ color: 0x7d7d7d });
     baseMat.onBeforeCompile = (shader) => {
@@ -54,13 +31,13 @@ export default function treeScene(elementId: string) {
 
     baseMat.transparent = true;
 
-    return { leavesMat, trunkMat, baseMat };
+    return { chassiMat, baseMat };
   }
 
   // Load the tree model
   function loadModel() {
     const loader = new GLTFLoader();
-    loader.load('/models/tree.glb', function (gltf) {
+    loader.load('/models/laptop.glb', function (gltf) {
       gltf.scene.rotation.y = Math.PI / 2;
       const content = gltf.scene.children;
 
@@ -69,19 +46,13 @@ export default function treeScene(elementId: string) {
           // Set the materials and shadows for the tree parts
           const mesh = child as THREE.Mesh;
           switch (mesh.name) {
-            case 'leaves':
-              mesh.material = leavesMat;
-              mesh.castShadow = true;
-              break;
-            case 'trunk':
-              mesh.material = trunkMat;
-              mesh.castShadow = true;
-              break;
             case 'base':
               mesh.material = baseMat;
               mesh.receiveShadow = true;
               break;
             default:
+              mesh.material = chassiMat;
+              mesh.castShadow = true;
               break;
           }
         }
@@ -104,8 +75,6 @@ export default function treeScene(elementId: string) {
 
   function animate() {
     renderer.render(scene, camera);
-    leavesMat.uniforms['time'].value = .00025 * (Date.now() - start);
-    trunkMat.uniforms['time'].value = .00025 * (Date.now() - start);
   }
 
   // Get the element to render the scene
@@ -119,20 +88,18 @@ export default function treeScene(elementId: string) {
   const renderElementCenterY = renderElementPosition.top + renderElementPosition.height / 2;
 
   // Get mouse position
-  const scaleX = 10;
+  const scaleX = 2;
   const scaleY = 0.5;
   window.addEventListener('mousemove', (event) => {
     const x = event.clientX / renderElementCenterX - 1;
     const y = event.clientY / renderElementCenterY - 1;
-    leavesMat.uniforms['lightPosition'].value = new THREE.Vector3(mainLightPosition.x - x * scaleX * 2, mainLightPosition.y - y * scaleY * 2, mainLightPosition.z);
     scene.children[0].position.set(mainLightPosition.x - x * scaleX, mainLightPosition.y - y * scaleY, mainLightPosition.z);
   });
 
-  const mainLightPosition = new THREE.Vector3(8, 10, -20);
-  const start = Date.now();
+  const mainLightPosition = new THREE.Vector3(-15, 15, 5);
   const { scene, camera, renderer } = setupScene(renderElement, elementId);
   renderer.setAnimationLoop(animate);
-  const { leavesMat, trunkMat, baseMat } = createMaterials();
+  const { chassiMat, baseMat } = createMaterials();
 
   loadModel();
   setupLights()
