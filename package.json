@@ -37,6 +37,7 @@
 	"type": "module",
 	"dependencies": {
 		"@threlte/core": "^7.3.0",
+		"animate.css": "^4.1.1",
 		"three": "^0.165.0"
 	}
 }

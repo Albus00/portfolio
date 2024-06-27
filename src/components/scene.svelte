@@ -7,8 +7,17 @@
 	export let className: string = '';
 
 	onMount(() => {
-		if (elementId === 'laptop-scene') laptopScene(elementId);
-		else if (elementId === 'tree-scene') treeScene(elementId);
+		switch (elementId) {
+			case 'laptop-scene':
+				laptopScene(elementId);
+				break;
+			case 'tree-scene':
+				treeScene(elementId);
+				break;
+			default:
+				laptopScene(elementId);
+				break;
+		}
 	});
 </script>
 

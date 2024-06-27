@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import CategoryCard from '$components/categoryCard.svelte';
-	import Scene from '$components/scene.svelte';
 	import getHeaderHeight from '$lib/hooks/getHeaderHeight';
 
 	// Set default base header height, before the actual header height is calculated
@@ -9,34 +8,29 @@
 
 	// Get height of the header
 	onMount(() => {
-		// headerHeight = getHeaderHeight();
+		headerHeight = getHeaderHeight();
 	});
 </script>
 
 <section
 	style="--header: {headerHeight}"
-	class="bg-dark-base grid grid-cols-2 gap-20 px-horizontal box-border pt-10 pb-20"
+	class="bg-dark-base grid grid-cols-3 gap-20 px-2horizontal box-border pt-28 pb-32"
 	id="selection"
 >
-	<CategoryCard>
-		<div class="flex flex-row items-center justify-evenly">
-			<Scene elementId="laptop-scene" className={'w-1/2'} />
-			<h1 class="text-8xl font-bold mb-5 mr-24">WEB<br /> APPS</h1>
-		</div>
-		<p class="px-24">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-			labore et dolore magna aliqua.
-		</p>
+	<CategoryCard title="WEB APPS" model="laptop">
+		This space is dedicated to my web application projects, where functionality meets aesthetic
+		design. These applications demonstrate my proficiency in web development, covering a range of
+		technologies from front-end frameworks to back-end solutions.
 	</CategoryCard>
-	<CategoryCard>
-		<div class="flex flex-row items-center justify-evenly">
-			<Scene elementId="tree-scene" className={'w-1/2'} />
-			<h1 class="text-8xl font-bold mb-5 mr-24">GAMES</h1>
-		</div>
-		<p class="px-24">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-			labore et dolore magna aliqua.
-		</p>
+	<CategoryCard title="GAMES" model="tree">
+		Here, you'll find a collection of my interactive and engaging game projects. Each game showcases
+		my skills in game design, programming, and user experience. Dive in and explore the worlds I've
+		built!
+	</CategoryCard>
+	<CategoryCard title="OTHER PROJECTS" model="other">
+		Over here's a variety of creative and technical endeavors that showcase my versatility and
+		curiosity. From experimental applications and innovative software solutions to personal passion
+		projects,
 	</CategoryCard>
 </section>
 

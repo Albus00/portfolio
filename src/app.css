@@ -14,6 +14,10 @@ body {
   @apply h-full;
 }
 
+p {
+  @apply text-base;
+}
+
 /* https://fonts.adobe.com/fonts/rotulo-variable?vf-font-size=100&vf-font=RotuloVariable-CompressedThin&vf-axes=slnt,0,wght,700,wdth,50 */
 h1 {
     font-family: "rotulo-variable",sans-serif;

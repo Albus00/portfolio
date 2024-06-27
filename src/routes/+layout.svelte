@@ -1,7 +1,8 @@
 <script>
+	import '../app.css';
+	import 'animate.css';
 	import Footer from '$components/footer.svelte';
 	import Navbar from '$components/header.svelte';
-	import '../app.css';
 </script>
 
 <Navbar />

@@ -41,7 +41,7 @@
 	}
 </script>
 
-<section class="h-screen pt-24">
+<section class="h-screen">
 	<div
 		class="bg-no-repeat bg-right-top h-full px-horizontal"
 		style="background-image: url({albinkjellberg});"
@@ -50,11 +50,11 @@
 			<h1 class="h1-variant mr-3">Hi!</h1>
 			<h1>My name is Albin.<br /> I create web apps and games.</h1>
 		</div>
-		<div class="flex flex-row w-fit pl-16 pt-24">
+		<div class="flex flex-row w-fit pl-horizontal pt-24">
 			<IconButton icon={arrow} onClickFunc={scrollToSelection} imgId="heroIconBtn" />
-			<h2 class="font-delve pt-8 cursor-pointer" id="heroTextBtn" on:click={scrollToSelection}>
+			<button class="font-delve text-6xl pt-8" id="heroTextBtn" on:click={scrollToSelection}>
 				See my projects!
-			</h2>
+			</button>
 		</div>
 	</div>
 	<div class="absolute bottom-0 h-10 w-full bg-dark-base"></div>

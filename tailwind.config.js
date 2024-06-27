@@ -15,6 +15,7 @@ export default {
       },
       spacing: {
         'horizontal': '5rem',
+        '2horizontal': '10rem',
       }
     },
   },

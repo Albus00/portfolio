@@ -11,13 +11,16 @@ export function setupScene(renderElement: HTMLElement, elementId: string, cam: {
   }
 
   // Resize the scene when the window is resized
-  window.addEventListener('resize', onWindowResize, false);
+  new ResizeObserver(onWindowResize).observe(renderElement);
   function onWindowResize() {
+    console.log('resize');
+
     if (!renderElement)
       return;
 
     // Make sure the aspect ratio is still set to square
     renderer.setSize(renderElement.offsetWidth, renderElement.offsetWidth);
+    renderer.render(scene, camera); // Update the scene immediately to avoid flickering
   }
 
   const scene = new THREE.Scene();
