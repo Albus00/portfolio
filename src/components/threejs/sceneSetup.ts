@@ -1,13 +1,12 @@
 import * as THREE from 'three';
 
 // Set up the scene
-export function setupScene(renderElement: HTMLElement, elementId: string): { scene: THREE.Scene, camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer } {
+export function setupScene(renderElement: HTMLElement, elementId: string, cam: { height: number, lookAtZ: number, zoom: number }): { scene: THREE.Scene, camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer } {
   // Set up the camera
   function setupCamera(): THREE.PerspectiveCamera {
     const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-    const zoom = 1.7;
-    camera.position.set(10 / zoom, 4, 6 / zoom);
-    camera.lookAt(0, 3, 0);
+    camera.position.set(10 / cam.zoom, cam.height, 6 / cam.zoom);
+    camera.lookAt(0, cam.lookAtZ, 0);
     return camera;
   }
 
@@ -23,7 +22,7 @@ export function setupScene(renderElement: HTMLElement, elementId: string): { sce
 
   const scene = new THREE.Scene();
   scene.rotateY(1.2 * Math.PI);
-  const renderer = new THREE.WebGLRenderer();
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
 
   // Get the width and height of the element to render the scene
   if (!renderElement) {

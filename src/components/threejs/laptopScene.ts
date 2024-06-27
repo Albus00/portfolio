@@ -1,12 +1,41 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { setupScene } from './sceneSetup';
+import { screenFragmentShader, screenVertexShader } from './screenShader';
 
 
 export default function treeScene(elementId: string) {
   // Create materials
   function createMaterials() {
-    const chassiMat = new THREE.MeshStandardMaterial({ color: 0x00dd00 });
+    function plasticMat(mat: THREE.MeshStandardMaterial) {
+      mat.metalness = 0.0;
+      mat.roughness = 0.3;
+      return mat;
+    }
+
+    const tex = new THREE.TextureLoader().load("/textures/skurkeriet.png");
+
+    const screenMat = new THREE.ShaderMaterial({
+      // load the texture
+      uniforms: {
+        textureMap: { value: tex },
+        scrollY: { value: 0 }
+      },
+      vertexShader: screenVertexShader(),
+      fragmentShader: screenFragmentShader()
+    });
+
+    const bodyChassiMat = new THREE.MeshStandardMaterial({ color: 0x2e3139 });
+    bodyChassiMat.emissive = new THREE.Color(0x2e3139);
+    bodyChassiMat.emissiveIntensity = 0.1;
+
+    const keyboardMat = new THREE.MeshStandardMaterial({ color: 0x000000 });
+    plasticMat(keyboardMat)
+
+    const escMat = new THREE.MeshStandardMaterial({ color: 0xf2d83e });
+    plasticMat(escMat)
+    escMat.emissive = new THREE.Color(0xf2d83e);
+    escMat.emissiveIntensity = 0.5;
 
     const baseMat = new THREE.MeshStandardMaterial({ color: 0x7d7d7d });
     baseMat.onBeforeCompile = (shader) => {
@@ -31,14 +60,13 @@ export default function treeScene(elementId: string) {
 
     baseMat.transparent = true;
 
-    return { chassiMat, baseMat };
+    return { screenMat, bodyChassiMat, baseMat, keyboardMat, escMat };
   }
 
   // Load the tree model
   function loadModel() {
     const loader = new GLTFLoader();
     loader.load('/models/laptop.glb', function (gltf) {
-      gltf.scene.rotation.y = Math.PI / 2;
       const content = gltf.scene.children;
 
       content.forEach((child: THREE.Object3D) => {
@@ -46,19 +74,40 @@ export default function treeScene(elementId: string) {
           // Set the materials and shadows for the tree parts
           const mesh = child as THREE.Mesh;
           switch (mesh.name) {
+            case 'keyboard':
+              mesh.material = keyboardMat;
+              mesh.castShadow = true;
+              break;
+            case 'esc':
+              mesh.material = escMat;
+              mesh.castShadow = true;
+              break;
+            case 'screen':
+              mesh.material = screenMat;
+              break;
             case 'base':
               mesh.material = baseMat;
               mesh.receiveShadow = true;
               break;
             default:
-              mesh.material = chassiMat;
+              mesh.material = bodyChassiMat;
               mesh.castShadow = true;
+              mesh.receiveShadow = true;
               break;
           }
         }
       });
 
-      scene.add(gltf.scene);
+      // Add everything except the base to a group, so that we can animate the laptop
+      const laptop = new THREE.Group();
+      laptop.add(...content.filter((child: THREE.Object3D) => child.name !== 'base'));
+      laptop.rotation.y = Math.PI / 2;
+
+      const base = content.find((child: THREE.Object3D) => child.name === 'base')!;
+
+      // Add the laptop and the base to the scene
+      scene.add(laptop);
+      scene.add(base);
     }, undefined, function (error) {
       console.error(error);
     });
@@ -74,7 +123,13 @@ export default function treeScene(elementId: string) {
   }
 
   function animate() {
+    // rotate the laptop
+    const bobbingSpeed = 0.001;
+    const bobbingAmount = 0.003;
+    scene.children[1].position.y += Math.sin(Date.now() * bobbingSpeed) * bobbingAmount;
+
     renderer.render(scene, camera);
+    screenMat.uniforms['scrollY'].value = scrollY / window.innerHeight;
   }
 
   // Get the element to render the scene
@@ -96,10 +151,17 @@ export default function treeScene(elementId: string) {
     scene.children[0].position.set(mainLightPosition.x - x * scaleX, mainLightPosition.y - y * scaleY, mainLightPosition.z);
   });
 
-  const mainLightPosition = new THREE.Vector3(-15, 15, 5);
-  const { scene, camera, renderer } = setupScene(renderElement, elementId);
+  // Get mouse scroll
+  let scrollY = 0;
+  window.addEventListener('scroll', () => {
+    scrollY = window.scrollY;
+  });
+
+  const mainLightPosition = new THREE.Vector3(-5, 5, 5);
+  const { scene, camera, renderer } = setupScene(renderElement, elementId, { height: 2, lookAtZ: 1, zoom: 3.0 });
   renderer.setAnimationLoop(animate);
-  const { chassiMat, baseMat } = createMaterials();
+  const { screenMat, bodyChassiMat, baseMat, keyboardMat, escMat } = createMaterials();
+
 
   loadModel();
   setupLights()

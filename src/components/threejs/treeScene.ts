@@ -130,7 +130,7 @@ export default function treeScene(elementId: string) {
 
   const mainLightPosition = new THREE.Vector3(8, 10, -20);
   const start = Date.now();
-  const { scene, camera, renderer } = setupScene(renderElement, elementId);
+  const { scene, camera, renderer } = setupScene(renderElement, elementId, { height: 4, lookAtZ: 3, zoom: 1.7 });
   renderer.setAnimationLoop(animate);
   const { leavesMat, trunkMat, baseMat } = createMaterials();
 
