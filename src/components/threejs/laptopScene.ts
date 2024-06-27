@@ -9,7 +9,7 @@ export default function treeScene(elementId: string) {
   function createMaterials() {
     function plasticMat(mat: THREE.MeshStandardMaterial) {
       mat.metalness = 0.0;
-      mat.roughness = 0.3;
+      mat.roughness = 0.8;
       return mat;
     }
 
@@ -27,7 +27,7 @@ export default function treeScene(elementId: string) {
 
     const bodyChassiMat = new THREE.MeshStandardMaterial({ color: 0x2e3139 });
     bodyChassiMat.emissive = new THREE.Color(0x2e3139);
-    bodyChassiMat.emissiveIntensity = 0.1;
+    bodyChassiMat.emissiveIntensity = 0.2;
 
     const keyboardMat = new THREE.MeshStandardMaterial({ color: 0x000000 });
     plasticMat(keyboardMat)
@@ -35,7 +35,7 @@ export default function treeScene(elementId: string) {
     const escMat = new THREE.MeshStandardMaterial({ color: 0xf2d83e });
     plasticMat(escMat)
     escMat.emissive = new THREE.Color(0xf2d83e);
-    escMat.emissiveIntensity = 0.5;
+    escMat.emissiveIntensity = 0.8;
 
     const baseMat = new THREE.MeshStandardMaterial({ color: 0x7d7d7d });
     baseMat.onBeforeCompile = (shader) => {
@@ -76,11 +76,9 @@ export default function treeScene(elementId: string) {
           switch (mesh.name) {
             case 'keyboard':
               mesh.material = keyboardMat;
-              mesh.castShadow = true;
               break;
             case 'esc':
               mesh.material = escMat;
-              mesh.castShadow = true;
               break;
             case 'screen':
               mesh.material = screenMat;
@@ -91,8 +89,6 @@ export default function treeScene(elementId: string) {
               break;
             default:
               mesh.material = bodyChassiMat;
-              mesh.castShadow = true;
-              mesh.receiveShadow = true;
               break;
           }
         }
@@ -124,8 +120,13 @@ export default function treeScene(elementId: string) {
 
   function animate() {
     // rotate the laptop
+    const bobbingAmount = 0.001;
     const bobbingSpeed = 0.001;
-    const bobbingAmount = 0.003;
+
+    // If the scene is not loaded yet
+    if (scene.children.length < 2)
+      return;
+
     scene.children[1].position.y += Math.sin(Date.now() * bobbingSpeed) * bobbingAmount;
 
     renderer.render(scene, camera);
@@ -146,9 +147,19 @@ export default function treeScene(elementId: string) {
   const scaleX = 2;
   const scaleY = 0.5;
   window.addEventListener('mousemove', (event) => {
+    // If the scene is not loaded yet
+    // If the scene is not loaded yet
+    if (scene.children.length < 2)
+      return;
+
     const x = event.clientX / renderElementCenterX - 1;
     const y = event.clientY / renderElementCenterY - 1;
     scene.children[0].position.set(mainLightPosition.x - x * scaleX, mainLightPosition.y - y * scaleY, mainLightPosition.z);
+
+    // rotate the laptop
+    scene.children[1].rotation.x = -y * 0.005;
+    scene.children[1].rotation.y = x * 0.01 + Math.PI / 2;
+    scene.children[1].rotation.z = -y * 0.005;
   });
 
   // Get mouse scroll
@@ -164,5 +175,5 @@ export default function treeScene(elementId: string) {
 
 
   loadModel();
-  setupLights()
+  setupLights();
 }
