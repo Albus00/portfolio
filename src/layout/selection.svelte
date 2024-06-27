@@ -18,11 +18,25 @@
 	class="bg-dark-base grid grid-cols-2 gap-20 px-horizontal box-border pt-10 pb-20"
 	id="selection"
 >
-	<CategoryCard title="WEB APPS">
-		<Scene elementId="laptop-scene" className={'w-3/4 aspect-auto'} />
+	<CategoryCard>
+		<div class="flex flex-row items-center justify-evenly">
+			<Scene elementId="laptop-scene" className={'w-1/2'} />
+			<h1 class="text-8xl font-bold mb-5 mr-24">WEB<br /> APPS</h1>
+		</div>
+		<p class="px-24">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+			labore et dolore magna aliqua.
+		</p>
 	</CategoryCard>
-	<CategoryCard title="GAMES">
-		<Scene elementId="tree-scene" className={'w-3/4 aspect-auto'} />
+	<CategoryCard>
+		<div class="flex flex-row items-center justify-evenly">
+			<Scene elementId="tree-scene" className={'w-1/2'} />
+			<h1 class="text-8xl font-bold mb-5 mr-24">GAMES</h1>
+		</div>
+		<p class="px-24">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+			labore et dolore magna aliqua.
+		</p>
 	</CategoryCard>
 </section>
 

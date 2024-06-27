@@ -1,11 +1,8 @@
 <script lang="ts">
-	export let title: string;
+	export let className = '';
 </script>
 
-<div
-	class="bg-light-dark w-full h-full card rounded-[3rem] flex flex-col items-center py-10 text-white"
->
-	<h2>{title}</h2>
+<div class={className + ' bg-light-dark card rounded-[3rem] py-10 text-white box-border'}>
 	<slot />
 </div>
 

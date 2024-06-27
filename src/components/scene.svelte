@@ -4,7 +4,7 @@
 	import laptopScene from '$components/threejs/laptopScene';
 
 	export let elementId: string;
-	export let className: string;
+	export let className: string = '';
 
 	onMount(() => {
 		if (elementId === 'laptop-scene') laptopScene(elementId);

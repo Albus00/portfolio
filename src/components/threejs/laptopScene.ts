@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { setupScene } from './sceneSetup';
-import { screenFragmentShader, screenVertexShader } from './screenShader';
+import { screenFragmentShader, screenVertexShader } from './shaders/screenShader';
 
 
 export default function treeScene(elementId: string) {
@@ -169,7 +169,7 @@ export default function treeScene(elementId: string) {
   });
 
   const mainLightPosition = new THREE.Vector3(-5, 5, 5);
-  const { scene, camera, renderer } = setupScene(renderElement, elementId, { height: 2, lookAtZ: 1, zoom: 3.0 });
+  const { scene, camera, renderer } = setupScene(renderElement, elementId, { height: 2, lookAtZ: 0.5, zoom: 3.3 });
   renderer.setAnimationLoop(animate);
   const { screenMat, bodyChassiMat, baseMat, keyboardMat, escMat } = createMaterials();
 

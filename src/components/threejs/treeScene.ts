@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { leavesFragmentShader, leavesVertexShader } from './leavesShader';
-import { trunkFragmentShader, trunkVertexShader } from './trunkShader';
+import { leavesFragmentShader, leavesVertexShader } from './shaders/leavesShader';
+import { trunkFragmentShader, trunkVertexShader } from './shaders/trunkShader';
 import { setupScene } from './sceneSetup';
 
 
