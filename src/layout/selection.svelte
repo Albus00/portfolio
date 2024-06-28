@@ -6,14 +6,20 @@
 	// Set default base header height, before the actual header height is calculated
 	let headerHeight = getHeaderHeight(false);
 	let showCard = { 'web-apps': true, games: true, 'other-projects': true };
+	let isGrid = true;
 
-	const focusCard = (elementId: string) => {
-		console.log(elementId);
-		showCard = {
-			'web-apps': elementId === 'web-apps',
-			games: elementId === 'games',
-			'other-projects': elementId === 'other-projects'
-		};
+	const focusCard = (elementId: string, isFocused: boolean) => {
+		if (!isFocused) {
+			showCard = {
+				'web-apps': elementId === 'web-apps',
+				games: elementId === 'games',
+				'other-projects': elementId === 'other-projects'
+			};
+			isGrid = false;
+		} else {
+			showCard = { 'web-apps': true, games: true, 'other-projects': true };
+			isGrid = true;
+		}
 	};
 
 	// Get height of the header
@@ -24,7 +30,9 @@
 
 <section
 	style="--header: {headerHeight}"
-	class="bg-dark-base relative grid grid-cols-3 gap-20 px-2horizontal box-border pt-28 pb-32"
+	class="bg-dark-base relative {isGrid
+		? 'grid grid-cols-3'
+		: ''} gap-20 px-2horizontal box-border pt-28 pb-32"
 	id="selection"
 >
 	<CategoryCard title="WEB APPS" model="laptop" {focusCard} showCard={showCard['web-apps']}>

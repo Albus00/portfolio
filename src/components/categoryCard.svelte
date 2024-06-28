@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
 	import Scene from '$components/scene.svelte';
 
 	export let title: string;
@@ -14,79 +15,39 @@
 		element.classList.add(add);
 		element.classList.remove(remove);
 	}
+	function getElements() {
+		const modelCanvas = document.getElementById(`${model}-scene`);
+		const text = document.getElementById(`${containerId}-div`);
+		return { modelCanvas, text };
+	}
+	const onMouseEnter = (containerId: string) => {
+		const { modelCanvas, text } = getElements();
+		if (!modelCanvas || !text) return;
+		addAndRemoveClass(modelCanvas, 'w-full', 'w-1/2');
+		text.classList.add('hidden');
+	};
+	const onMouseLeave = (containerId: string) => {
+		if (isFocused) return;
+		const { modelCanvas, text } = getElements();
+		if (!modelCanvas || !text) return;
+		addAndRemoveClass(modelCanvas, 'w-1/2', 'w-full');
+		addAndRemoveClass(text, 'display', 'hidden');
+	};
 
-	// const handleClick = (containerId: string) => {
-	// 	isFocused = !isFocused;
-	// 	const container = document.getElementById(containerId);
-	// 	const parent = container?.parentElement;
-	// 	if (!container || !parent) return;
-	// 	// Get position of first child
-	// 	const firstChild = parent.children[0];
-	// 	const firstChildRect = firstChild.getBoundingClientRect();
-	// 	const containerRect = container.getBoundingClientRect();
-	// 	Array.from(parent.children).forEach((child: Element) => {
-	// 		const childElement = child as HTMLElement;
-	// 		if (childElement !== container) {
-	// 			if (isFocused) {
-	// 				addAndRemoveClass(childElement, 'animate__backOutUp', 'animate__backInDown');
-	// 			} else addAndRemoveClass(childElement, 'animate__backInDown', 'animate__backOutUp');
-	// 		}
-	// 	});
-	// 	// translate the position of the clicked card to the top of the parent smoothly
-	// 	// if (isFocused) {
-	// 	// 	container.style.transform = `translateX(${firstChildRect.x - containerRect.x}px)`;
-	// 	// } else {
-	// 	// 	container.style.transform = `translateX(0px)`;
-	// 	// }
-	// 	if (isFocused) {
-	// 		container.style.width = `${containerRect.width}px`;
-	// 		container.style.transition = 'width 0.5s ease-in-out';
-	// 		container.style.transition = 'position 0.5s ease-in-out';
-	// 		container.style.width = `${parent.getBoundingClientRect().width}px`;
-	// 		container.style.position = 'absolute';
-	// 	}
-	// };
-
-	// add event listeners to hero text button for scaling the icon button
-	onMount(() => {
-		function getElements() {
-			const modelCanvas = document.getElementById(`${model}-scene`);
-			const text = document.getElementById(`${containerId}-div`);
-			return { modelCanvas, text };
-		}
-
-		const container = document.getElementById(containerId);
-		if (!container) return;
-		container.addEventListener(
-			'mouseenter',
-			() => {
-				const { modelCanvas, text } = getElements();
-				if (!modelCanvas || !text) return;
-				addAndRemoveClass(modelCanvas, 'w-full', 'w-1/2');
-				text.classList.add('hidden');
-			},
-			false
-		);
-		container.addEventListener(
-			'mouseleave',
-			() => {
-				if (isFocused) return;
-				const { modelCanvas, text } = getElements();
-				if (!modelCanvas || !text) return;
-				addAndRemoveClass(modelCanvas, 'w-1/2', 'w-full');
-				addAndRemoveClass(text, 'display', 'hidden');
-			},
-			false
-		);
-	});
+	const handleClick = (containerId: string) => {
+		focusCard(containerId, isFocused);
+		isFocused = !isFocused;
+	};
 </script>
 
 {#if showCard}
 	<div
 		class={'relative bg-light-dark overflow-hidden card rounded-[3rem] flex flex-col py-10 text-white box-border max-h-full transition-all cursor-pointer animate__animated animate__faster hover:bg-black hover:shadow-lg'}
 		id={containerId}
-		on:click={() => focusCard(containerId)}
+		on:click={() => handleClick(containerId)}
 		on:keydown={(e) => e.key === 'Enter' && console.log('clicked')}
+		on:mouseenter={() => onMouseEnter(containerId)}
+		on:mouseleave={() => onMouseLeave(containerId)}
 		role="button"
 		tabindex="0"
 	>
