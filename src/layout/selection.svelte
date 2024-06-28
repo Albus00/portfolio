@@ -5,22 +5,6 @@
 
 	// Set default base header height, before the actual header height is calculated
 	let headerHeight = getHeaderHeight(false);
-	let showCard = { 'web-apps': true, games: true, 'other-projects': true };
-	let isGrid = true;
-
-	const focusCard = (elementId: string, isFocused: boolean) => {
-		if (!isFocused) {
-			showCard = {
-				'web-apps': elementId === 'web-apps',
-				games: elementId === 'games',
-				'other-projects': elementId === 'other-projects'
-			};
-			isGrid = false;
-		} else {
-			showCard = { 'web-apps': true, games: true, 'other-projects': true };
-			isGrid = true;
-		}
-	};
 
 	// Get height of the header
 	onMount(() => {
@@ -30,27 +14,20 @@
 
 <section
 	style="--header: {headerHeight}"
-	class="bg-dark-base relative {isGrid
-		? 'grid grid-cols-3'
-		: ''} gap-20 px-2horizontal box-border pt-28 pb-32"
+	class="bg-dark-base relative grid grid-cols-3 gap-20 px-2horizontal box-border pt-28 pb-32"
 	id="selection"
 >
-	<CategoryCard title="WEB APPS" model="laptop" {focusCard} showCard={showCard['web-apps']}>
+	<CategoryCard title="WEB APPS" model="laptop">
 		This space is dedicated to my web application projects, where functionality meets aesthetic
 		design. These applications demonstrate my proficiency in web development, covering a range of
 		technologies from front-end frameworks to back-end solutions.
 	</CategoryCard>
-	<CategoryCard title="GAMES" model="tree" {focusCard} showCard={showCard.games}>
+	<CategoryCard title="GAMES" model="tree">
 		Here, you'll find a collection of my interactive and engaging game projects. Each game showcases
 		my skills in game design, programming, and user experience. Dive in and explore the worlds I've
 		built!
 	</CategoryCard>
-	<CategoryCard
-		title="OTHER PROJECTS"
-		model="other"
-		{focusCard}
-		showCard={showCard['other-projects']}
-	>
+	<CategoryCard title="OTHER PROJECTS" model="other">
 		Over here's a variety of creative and technical endeavors that showcase my versatility and
 		curiosity. From experimental applications and innovative software solutions to personal passion
 		projects,

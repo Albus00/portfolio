@@ -10,10 +10,6 @@
   @apply bg-light-base h-full;
 }
 
-body {
-  @apply h-full;
-}
-
 p {
   @apply text-base;
 }

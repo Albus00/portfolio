@@ -1,15 +1,10 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
 	import Scene from '$components/scene.svelte';
 
 	export let title: string;
 	export let model: string;
-	export let showCard: boolean = true;
-	export let focusCard: Function;
 
 	const containerId = title.toLowerCase().replace(' ', '-');
-	let isFocused = false;
 
 	function addAndRemoveClass(element: HTMLElement, add: string, remove: string) {
 		element.classList.add(add);
@@ -20,51 +15,40 @@
 		const text = document.getElementById(`${containerId}-div`);
 		return { modelCanvas, text };
 	}
-	const onMouseEnter = (containerId: string) => {
+	const onMouseEnter = () => {
 		const { modelCanvas, text } = getElements();
 		if (!modelCanvas || !text) return;
 		addAndRemoveClass(modelCanvas, 'w-full', 'w-1/2');
 		text.classList.add('hidden');
 	};
-	const onMouseLeave = (containerId: string) => {
-		if (isFocused) return;
+	const onMouseLeave = () => {
 		const { modelCanvas, text } = getElements();
 		if (!modelCanvas || !text) return;
 		addAndRemoveClass(modelCanvas, 'w-1/2', 'w-full');
 		addAndRemoveClass(text, 'display', 'hidden');
 	};
-
-	const handleClick = (containerId: string) => {
-		focusCard(containerId, isFocused);
-		isFocused = !isFocused;
-	};
 </script>
 
-{#if showCard}
-	<div
-		class={'relative bg-light-dark overflow-hidden card rounded-[3rem] flex flex-col py-10 text-white box-border max-h-full transition-all cursor-pointer animate__animated animate__faster hover:bg-black hover:shadow-lg'}
-		id={containerId}
-		on:click={() => handleClick(containerId)}
-		on:keydown={(e) => e.key === 'Enter' && console.log('clicked')}
-		on:mouseenter={() => onMouseEnter(containerId)}
-		on:mouseleave={() => onMouseLeave(containerId)}
-		role="button"
-		tabindex="0"
-	>
-		<div class="flex justify-center w-full transition-all">
-			<Scene elementId={`${model}-scene`} className={'w-1/2 transition-all ease-out'} />
-		</div>
-		<div
-			class="flex flex-col justify-start transition-all animate__animated animate__faster animate__fadeIn"
-			id={`${containerId}-div`}
-		>
-			<h1 class="text-6xl text-center font-bold m-auto mb-5">{title}</h1>
-			<p class="px-horizontal">
-				<slot />
-			</p>
-		</div>
+<a
+	class={'bg-light-dark overflow-hidden card rounded-[3rem] flex flex-col py-10 text-white box-border max-h-full transition-all cursor-pointer hover:bg-black'}
+	id={containerId}
+	on:mouseenter={() => onMouseEnter()}
+	on:mouseleave={() => onMouseLeave()}
+	href={`/${containerId}`}
+>
+	<div class="flex justify-center w-full transition-all">
+		<Scene elementId={`${model}-scene`} className={'w-1/2 transition-all ease-out'} />
 	</div>
-{/if}
+	<div
+		class="flex flex-col justify-start transition-all animate__animated animate__faster animate__fadeIn"
+		id={`${containerId}-div`}
+	>
+		<h1 class="text-6xl text-center font-bold m-auto mb-5">{title}</h1>
+		<p class="px-horizontal">
+			<slot />
+		</p>
+	</div>
+</a>
 
 <style>
 	/* shadow ring and multiple soft shadows */
