@@ -4,6 +4,8 @@
 
 	export let title: string;
 	export let model: string;
+	export let showCard: boolean = true;
+	export let focusCard: Function;
 
 	const containerId = title.toLowerCase().replace(' ', '-');
 	let isFocused = false;
@@ -13,37 +15,37 @@
 		element.classList.remove(remove);
 	}
 
-	const handleClick = (containerId: string) => {
-		isFocused = !isFocused;
-		const container = document.getElementById(containerId);
-		const parent = container?.parentElement;
-		if (!container || !parent) return;
-		// Get position of first child
-		const firstChild = parent.children[0];
-		const firstChildRect = firstChild.getBoundingClientRect();
-		const containerRect = container.getBoundingClientRect();
-		Array.from(parent.children).forEach((child: Element) => {
-			const childElement = child as HTMLElement;
-			if (childElement !== container) {
-				if (isFocused) {
-					addAndRemoveClass(childElement, 'animate__backOutUp', 'animate__backInDown');
-				} else addAndRemoveClass(childElement, 'animate__backInDown', 'animate__backOutUp');
-			}
-		});
-		// translate the position of the clicked card to the top of the parent smoothly
-		// if (isFocused) {
-		// 	container.style.transform = `translateX(${firstChildRect.x - containerRect.x}px)`;
-		// } else {
-		// 	container.style.transform = `translateX(0px)`;
-		// }
-		if (isFocused) {
-			container.style.width = `${containerRect.width}px`;
-			container.style.transition = 'width 0.5s ease-in-out';
-			container.style.transition = 'position 0.5s ease-in-out';
-			container.style.width = `${parent.getBoundingClientRect().width}px`;
-			container.style.position = 'absolute';
-		}
-	};
+	// const handleClick = (containerId: string) => {
+	// 	isFocused = !isFocused;
+	// 	const container = document.getElementById(containerId);
+	// 	const parent = container?.parentElement;
+	// 	if (!container || !parent) return;
+	// 	// Get position of first child
+	// 	const firstChild = parent.children[0];
+	// 	const firstChildRect = firstChild.getBoundingClientRect();
+	// 	const containerRect = container.getBoundingClientRect();
+	// 	Array.from(parent.children).forEach((child: Element) => {
+	// 		const childElement = child as HTMLElement;
+	// 		if (childElement !== container) {
+	// 			if (isFocused) {
+	// 				addAndRemoveClass(childElement, 'animate__backOutUp', 'animate__backInDown');
+	// 			} else addAndRemoveClass(childElement, 'animate__backInDown', 'animate__backOutUp');
+	// 		}
+	// 	});
+	// 	// translate the position of the clicked card to the top of the parent smoothly
+	// 	// if (isFocused) {
+	// 	// 	container.style.transform = `translateX(${firstChildRect.x - containerRect.x}px)`;
+	// 	// } else {
+	// 	// 	container.style.transform = `translateX(0px)`;
+	// 	// }
+	// 	if (isFocused) {
+	// 		container.style.width = `${containerRect.width}px`;
+	// 		container.style.transition = 'width 0.5s ease-in-out';
+	// 		container.style.transition = 'position 0.5s ease-in-out';
+	// 		container.style.width = `${parent.getBoundingClientRect().width}px`;
+	// 		container.style.position = 'absolute';
+	// 	}
+	// };
 
 	// add event listeners to hero text button for scaling the icon button
 	onMount(() => {
@@ -79,27 +81,29 @@
 	});
 </script>
 
-<div
-	class={'relative bg-light-dark overflow-hidden card rounded-[3rem] flex flex-col py-10 text-white box-border max-h-full transition-all cursor-pointer animate__animated animate__faster hover:bg-black hover:shadow-lg'}
-	id={containerId}
-	on:click={() => handleClick(containerId)}
-	on:keydown={(e) => e.key === 'Enter' && console.log('clicked')}
-	role="button"
-	tabindex="0"
->
-	<div class="flex justify-center w-full transition-all">
-		<Scene elementId={`${model}-scene`} className={'w-1/2 transition-all ease-out'} />
-	</div>
+{#if showCard}
 	<div
-		class="flex flex-col justify-start transition-all animate__animated animate__faster animate__fadeIn"
-		id={`${containerId}-div`}
+		class={'relative bg-light-dark overflow-hidden card rounded-[3rem] flex flex-col py-10 text-white box-border max-h-full transition-all cursor-pointer animate__animated animate__faster hover:bg-black hover:shadow-lg'}
+		id={containerId}
+		on:click={() => focusCard(containerId)}
+		on:keydown={(e) => e.key === 'Enter' && console.log('clicked')}
+		role="button"
+		tabindex="0"
 	>
-		<h1 class="text-6xl text-center font-bold m-auto mb-5">{title}</h1>
-		<p class="px-horizontal">
-			<slot />
-		</p>
+		<div class="flex justify-center w-full transition-all">
+			<Scene elementId={`${model}-scene`} className={'w-1/2 transition-all ease-out'} />
+		</div>
+		<div
+			class="flex flex-col justify-start transition-all animate__animated animate__faster animate__fadeIn"
+			id={`${containerId}-div`}
+		>
+			<h1 class="text-6xl text-center font-bold m-auto mb-5">{title}</h1>
+			<p class="px-horizontal">
+				<slot />
+			</p>
+		</div>
 	</div>
-</div>
+{/if}
 
 <style>
 	/* shadow ring and multiple soft shadows */
