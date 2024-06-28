@@ -13,8 +13,6 @@ export function setupScene(renderElement: HTMLElement, elementId: string, cam: {
   // Resize the scene when the window is resized
   new ResizeObserver(onWindowResize).observe(renderElement);
   function onWindowResize() {
-    console.log('resize');
-
     if (!renderElement)
       return;
 

@@ -14,6 +14,7 @@ export default function treeScene(elementId: string) {
     }
 
     const tex = new THREE.TextureLoader().load("/textures/skurkeriet.png");
+    tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
 
     const screenMat = new THREE.ShaderMaterial({
       // load the texture

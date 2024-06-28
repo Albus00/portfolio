@@ -10,7 +10,7 @@
 		const heroTextBtn = document.getElementById('heroTextBtn');
 		heroTextBtn?.addEventListener(
 			'mouseenter',
-			(event) => {
+			() => {
 				const iconBtn = document.getElementById('heroIconBtn');
 				iconBtn?.classList.add('scale-110');
 			},
@@ -18,7 +18,7 @@
 		);
 		heroTextBtn?.addEventListener(
 			'mouseleave',
-			(event) => {
+			() => {
 				const iconBtn = document.getElementById('heroIconBtn');
 				iconBtn?.classList.remove('scale-110');
 			},
@@ -41,9 +41,9 @@
 	}
 </script>
 
-<section class="h-screen">
+<section class="h-screen relative z-20 bg-light-base" id="hero">
 	<div
-		class="bg-no-repeat bg-right-top h-full px-horizontal"
+		class="bg-no-repeat bg-[right_top_4rem] h-full px-horizontal"
 		style="background-image: url({albinkjellberg});"
 	>
 		<div class=" pt-[12%] w-3/4">
