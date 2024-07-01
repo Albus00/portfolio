@@ -1,7 +1,6 @@
 <script lang="ts">
 	import IconButton from '$components/iconButton.svelte';
 	import albinkjellberg from '$lib/assets/albinkjellberg.png';
-	import arrow from '$lib/assets/icons/swirly-arrow.png';
 	import getHeaderHeight from '$lib/hooks/getHeaderHeight';
 	import { onMount } from 'svelte';
 
@@ -51,7 +50,7 @@
 			<h1>My name is Albin.<br /> I create web apps and games.</h1>
 		</div>
 		<div class="flex flex-row w-fit pl-horizontal pt-24">
-			<IconButton icon={arrow} onClickFunc={scrollToSelection} imgId="heroIconBtn" />
+			<IconButton icon={'arrow'} onClickFunc={scrollToSelection} imgId="heroIconBtn" />
 			<button class="font-delve text-6xl pt-8" id="heroTextBtn" on:click={scrollToSelection}>
 				See my projects!
 			</button>

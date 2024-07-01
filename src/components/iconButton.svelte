@@ -1,25 +1,29 @@
 <!-- Get logos from https://brandfetch.com/ -->
 
-<script>
-	export let icon;
+<script lang="ts">
+	import getIcon from '$lib/hooks/getIcon';
+
+	export let icon: string;
 	export let size = 'md';
 	export let onClickUrl = '';
 	export let onClickFunc = () => {};
 	export let style = '';
 	export let imgId = '';
 	export let targetBlank = false;
+
+	$: svg = getIcon(icon);
 </script>
 
 {#if onClickUrl !== ''}
 	<a
-		class={`bg-transparent cursor-pointer `}
+		class={`bg-transparent cursor-pointer grid place-items-center`}
 		href={onClickUrl}
 		{style}
 		target={targetBlank ? '_blank' : '_self'}
 	>
 		<img
-			class={`${size === 'sm' ? 'w-8' : 'w-32'} hover:scale-110 transition-all`}
-			src={icon}
+			class={`${size === 'sm' ? 'w-6' : size === 'm' ? 'w-8' : 'w-32'} hover:scale-110 transition-all`}
+			src={svg}
 			alt="icon"
 			id={imgId}
 		/>
@@ -28,7 +32,7 @@
 	<button class={`bg-transparent cursor-pointer`} on:click={onClickFunc} {style}>
 		<img
 			class={`${size === 'sm' ? 'w-8' : 'w-32'} hover:scale-110 transition-all`}
-			src={icon}
+			src={svg}
 			alt="icon"
 			id={imgId}
 		/>

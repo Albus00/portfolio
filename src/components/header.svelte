@@ -1,27 +1,31 @@
 <script lang="ts">
 	import IconButton from './iconButton.svelte';
-	import github from '$lib/assets/logos/github.svg';
-	import linkedin from '$lib/assets/logos/linkedin.svg';
+
+	export let title: string;
+
+	if (!title) {
+		title = 'Albin Kjellberg';
+	}
 </script>
 
-<header class="fixed top-0 left-0 w-full pt-8 pb-4 z-50 bg-dark-base text-white px-horizontal">
+<header class="fixed top-0 left-0 w-full py-4 z-50 bg-dark-base text-white px-horizontal">
 	<div class="flex flex-row justify-between">
 		<nav class="flex justify-between items-center">
 			<div class="flex items-center">
-				<a href="/" class="text-4xl font-bold font-rotulo">Albin Kjellberg</a>
+				<a href="/" class="text-4xl font-bold font-rotulo">{title}</a>
 			</div>
 		</nav>
 		<div class="flex flex-row gap-4">
 			<IconButton
-				icon={github}
-				size="sm"
+				icon={'github'}
+				size="m"
 				onClickUrl="https://github.com/Albus00"
 				style="filter: invert();"
 				targetBlank={true}
 			/>
 			<IconButton
-				icon={linkedin}
-				size="sm"
+				icon={'linkedin'}
+				size="m"
 				onClickUrl="https://www.linkedin.com/in/albin-kjellberg-b3367b163/"
 				style="filter: invert();"
 				targetBlank={true}

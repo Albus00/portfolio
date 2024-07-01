@@ -4,11 +4,11 @@ export function load({ params }) {
 
   switch (category) {
     case "web-apps":
-      return { category: "WEB APPS" };
+      return { category: "Web apps" };
     case "games":
-      return { category: "GAMES" };
+      return { category: "Games" };
     case "other-projects":
-      return { category: "OTHER PROJECTS" };
+      return { category: "Other projects" };
     default:
       return { category: "404" };
   }

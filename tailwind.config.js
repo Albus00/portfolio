@@ -12,6 +12,7 @@ export default {
         'light-base': '#d7d7d7',
         'dark-base': '#22232a',
         'light-dark': '#2d2d34',
+        'dark-light': '#c1c1c1',
       },
       spacing: {
         'horizontal': '5rem',
