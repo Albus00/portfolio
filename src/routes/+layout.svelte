@@ -6,13 +6,15 @@
 
 	import { page } from '$app/stores';
 
-	// Get the category from the page store. Use 'Albin Kjellberg' as default.
-	$: title = $page.data.category || 'Albin Kjellberg';
+	// Get the category or project name from the page store. Use 'Albin Kjellberg' as default.
+	$: title = $page.data.category || $page.data.name || 'Albin Kjellberg';
 </script>
 
 <svelte:head>
 	<title>{title}</title>
 </svelte:head>
-<Header {title} />
+{#if $page.data.url === undefined}
+	<Header {title} />
+{/if}
 <slot />
 <Footer />

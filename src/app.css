@@ -24,18 +24,30 @@ h1 {
   .h1-variant {
     font-variation-settings: 'wdth' 70, 'wght' 750, 'slnt' -10;
     text-shadow: 2px 2px 2px #303030;
-    @apply inline text-[#f2d83e] text-9xl
-}
+    @apply inline text-[#f2d83e] text-9xl;
+  }
+  .h1-project {
+    font-size: 10rem;
+    font-variation-settings: 'wdth' 70, 'wght' 750, 'slnt' 0;
+    text-shadow: none;
+    @apply inline text-white;
+  }
 
 h2 {
   font-family: "rotulo-variable",sans-serif;
   font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
-  @apply  text-6xl inline;
+  @apply  text-6xl;
 }
+  .h2-link {
+    font-family: "rotulo-variable",sans-serif;
+    font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
+    @apply text-gray-400 text-6xl;
+  }
 
 h3 {
   font-family: "rotulo-variable",sans-serif;
   font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
+  line-height: 0.2;
   @apply  text-3xl inline;
 }
 

@@ -1,8 +1,8 @@
 export const libraries = {
-  'next': { name: 'next', url: 'https://nextjs.org/' },
-  'react': { name: 'react', url: 'https://react.dev/' },
-  'tailwind': { name: 'tailwind', url: 'https://tailwindcss.com/' },
-  'svelte': { name: 'svelte', url: 'https://kit.svelte.dev/' },
-  'pocketbase': { name: 'pocketbase', url: 'https://pocketbase.io/' },
-  'unity': { name: 'unity', url: 'https://unity.com/' },
+  'next': { id: 'next', name: 'NextJS', url: 'https://nextjs.org/', },
+  'react': { id: 'react', name: 'React', url: 'https://react.dev/' },
+  'tailwind': { id: 'tailwind', name: 'TailwindCSS', url: 'https://tailwindcss.com/' },
+  'svelte': { id: 'svelte', name: 'SvelteKit', url: 'https://kit.svelte.dev/' },
+  'pocketbase': { id: 'pocketbase', name: 'PocketBase', url: 'https://pocketbase.io/' },
+  'unity': { id: 'unity', name: 'Unity', url: 'https://unity.com/' },
 };

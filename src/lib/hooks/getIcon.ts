@@ -1,4 +1,6 @@
 import arrow from '$lib/assets/icons/swirly-arrow.png';
+import cross from '$lib/assets/icons/cross.png';
+
 import github from '$lib/assets/logos/github.svg';
 import linkedin from '$lib/assets/logos/linkedin.svg';
 import pocketbase from '$lib/assets/logos/pocketbase.svg';
@@ -12,6 +14,8 @@ function getIcon(name: string) {
   switch (name) {
     case 'arrow':
       return arrow;
+    case 'cross':
+      return cross;
     case 'github':
       return github;
     case 'linkedin':

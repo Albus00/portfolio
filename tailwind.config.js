@@ -16,8 +16,11 @@ export default {
       },
       spacing: {
         'horizontal': '5rem',
-        '2horizontal': '10rem',
-      }
+        '2horizontal': '10rem'
+      },
+      borderRadius: {
+        'img': '2rem',
+      },
     },
   },
   plugins: [],
