@@ -38,6 +38,8 @@
 	"dependencies": {
 		"@threlte/core": "^7.3.0",
 		"animate.css": "^4.1.1",
+		"marked": "^13.0.1",
+		"svelte-markdown": "^0.4.1",
 		"three": "^0.165.0"
 	}
 }

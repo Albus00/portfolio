@@ -1,4 +1,5 @@
 import { libraries as lib } from "./libraries";
+import { texts } from "./projectTexts";
 
 const tags = { 'school': 'school', 'personal': 'personal', 'work': 'work', 'studentLife': 'student-life' }
 
@@ -7,78 +8,87 @@ export const projects = {
     {
       id: 'todo-tulip',
       name: 'Todo Tulip',
+      created: 'June 2024',
       tags: [tags.school],
       url: 'https://todo-tulip.vercel.app/',
       github: 'https://github.com/sebastianlindgren00/todo-tulip',
       stack: [lib.svelte, lib.tailwind, lib.pocketbase],
-      description: 'This is a description of Todo Tulip'
+      bgColor: '#492661',
+      description: texts['todo-tulip']
     },
     {
       id: 'skurkeriet',
       name: 'Skurkeriet',
-      description: 'This is a description of Skurkeriet',
+      created: 'August 2023',
       tags: [tags.studentLife],
       url: 'https://skurkeriet2324.vercel.app/',
       github: 'https://github.com/albus00/skurkeriet',
-      stack: [lib.next, lib.tailwind]
+      stack: [lib.next, lib.tailwind],
+      description: texts['skurkeriet']
     },
     {
       id: 'basaret',
       name: 'Basåret',
-      description: 'This is a description of Basåret',
+      created: 'June 2023',
       tags: [tags.studentLife],
       url: 'https://basaret2324.vercel.app/',
       github: 'https://github.com/albus00/basaret',
-      stack: [lib.next, lib.tailwind]
+      stack: [lib.next, lib.tailwind],
+      description: texts['basaret']
     },
     {
       id: 'login-page',
       name: 'Login Page',
-      description: 'This is a description of Login Page',
+      created: 'October 2023',
       tags: [tags.school],
       url: 'https://ak-login-page.vercel.app/',
       github: 'https://github.com/albus00/login-page',
-      stack: [lib.next, lib.tailwind, lib.pocketbase]
+      stack: [lib.next, lib.tailwind, lib.pocketbase],
+      description: texts['login-page']
     }
   ],
   'games': [
     {
-      id: 'tic-tac-toe',
-      name: 'Tic Tac Toe',
-      description: 'This is a description of Tic Tac Toe',
+      id: 'training-in-vr',
+      name: 'Training in VR',
+      created: 'June 2023',
       tags: [tags.school],
-      url: 'https://tic-tac-toe-ak.vercel.app/',
-      github: 'https://github.com/albus00/tic-tac-toe',
-      stack: [lib.unity]
+      url: '[gallery]',
+      github: 'https://github.com/Albus00/Traning-i-VR',
+      stack: [lib.unity, lib.openxr],
+      description: texts['training-in-vr']
+    },
+    {
+      id: 'get-the-beat',
+      name: 'Get The Beat',
+      created: 'Mars 2024',
+      tags: [tags.school],
+      url: '[gallery]',
+      github: 'https://github.com/sebastianlindgren00/GetTheBeatGame',
+      stack: [lib.godot],
+      description: texts['get-the-beat']
     }
   ],
   'otherProjects': [
     {
-      id: 'portfolio',
-      name: 'Portfolio',
-      description: 'This is a description of Portfolio',
+      id: 'couch-hand-controller',
+      name: 'Couch Hand Controller',
+      created: '[ongoing]',
       tags: [tags.school],
-      url: 'https://ak-portfolio.vercel.app/',
+      url: '[gallery]',
       github: 'https://github.com/albus00/portfolio',
-      stack: [lib.svelte, lib.tailwind]
+      stack: [lib.mediapipe],
+      description: texts['couch-hand-controller'],
     },
     {
-      id: 'calculator',
-      name: 'Calculator',
-      description: 'This is a description of Calculator',
-      tags: [tags.school],
-      url: 'https://calculator-ak.vercel.app/',
-      github: 'https://github.com/albus00/calculator',
-      stack: [lib.svelte, lib.tailwind]
-    },
-    {
-      id: 'weather-app',
-      name: 'Weather App',
-      description: 'This is a description of Weather App',
-      tags: [tags.school],
-      url: 'https://weather-app-ak.vercel.app/',
-      github: 'https://github.com/albus00/weather-app',
-      stack: [lib.svelte, lib.tailwind]
+      id: 'custom-numpad',
+      name: 'Custom Numpad',
+      created: '[ongoing]',
+      tags: [tags.personal],
+      url: '[gallery]',
+      github: 'https://github.com/Albus00/AutoHotkey',
+      stack: [lib.autohotkey],
+      description: texts['custom-numpad'],
     }
   ]
 };

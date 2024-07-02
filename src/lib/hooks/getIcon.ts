@@ -9,6 +9,10 @@ import tailwind from '$lib/assets/logos/tailwind.svg';
 import next from '$lib/assets/logos/next.svg';
 import react from '$lib/assets/logos/react.svg';
 import unity from '$lib/assets/logos/unity.svg';
+import godot from '$lib/assets/logos/godot.svg';
+import openxr from '$lib/assets/logos/openxr.svg';
+import mediapipe from '$lib/assets/logos/mediapipe.svg';
+import autohotkey from '$lib/assets/logos/autohotkey.svg';
 
 function getIcon(name: string) {
   switch (name) {
@@ -32,6 +36,14 @@ function getIcon(name: string) {
       return react;
     case 'unity':
       return unity;
+    case 'godot':
+      return godot;
+    case 'openxr':
+      return openxr;
+    case 'mediapipe':
+      return mediapipe;
+    case 'autohotkey':
+      return autohotkey;
     default:
       return null;
   }

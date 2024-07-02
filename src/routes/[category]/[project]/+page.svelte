@@ -1,44 +1,18 @@
 <script lang="ts">
 	import IconButton from '$components/iconButton.svelte';
+	import ProjectText from '$components/projectText.svelte';
 	import Attribute from './attribute.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
 
-	data.description =
-		'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+	console.log(data.description.text);
+
+	// data.description =
+	// 	'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet tortor quis odio consequat sollicitudin tempus vitae quam. Nunc varius nec sapien in dapibus. Mauris elementum orci in augue pellentesque tristique. Donec odio dolor, varius ut euismod id, maximus ac turpis. Integer bibendum, metus in consectetur fermentum, odio magna iaculis libero, finibus molestie tortor libero ac tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Mauris efficitur laoreet tempor. Vivamus tempus cursus mattis. Nam sodales diam nec nulla posuere mollis. Vestibulum eleifend volutpat nibh, id volutpat tortor posuere at. Aliquam varius dolor et purus consequat, sed gravida massa vulputate. Quisque feugiat, tellus ac vulputate tempus, elit ex tempus ex, nec condimentum neque nisi nec nibh. Sed varius vitae sapien id consectetur. Sed volutpat suscipit felis, vel vestibulum urna egestas et. Cras imperdiet felis vitae tellus vehicula porta. \n Nullam tortor lacus, condimentum eget sollicitudin a, iaculis at purus. Duis consequat erat a vehicula accumsan. Nulla euismod hendrerit vehicula. Etiam nec maximus dolor, et condimentum augue. Phasellus rutrum vel leo in scelerisque. Aliquam vitae feugiat tortor. Quisque erat orci, pharetra sed mollis id, rhoncus ac odio. Fusce laoreet, augue sed consequat aliquam, lacus lacus tempor nisi, non scelerisque eros lectus nec nibh. Suspendisse libero sem, dapibus quis nisl nec, cursus malesuada eros. In placerat quis justo non condimentum. Proin vel est nisi. Phasellus rutrum neque sed erat congue, nec ornare sapien mollis. Fusce nec molestie turpis. Praesent purus leo, dictum quis pellentesque id, pretium a ligula. \n Nam orci neque, tincidunt vel interdum eu, ullamcorper ut magna. Maecenas sed ultrices nisi. In orci nulla, elementum sed ipsum quis, laoreet rutrum libero. Aliquam erat volutpat. Aliquam erat volutpat. Ut ultrices risus ut risus semper, non mollis tellus bibendum. Suspendisse sit amet congue neque, eu elementum nunc. Morbi eget lobortis quam. Sed ut enim diam. Aenean risus leo, tincidunt non maximus id, gravida et quam. Cras rhoncus vehicula mollis. In vitae libero a urna pulvinar commodo. Proin iaculis diam quam, vel tincidunt justo vehicula aliquam. Sed lobortis pellentesque neque, id dapibus urna pharetra eu. Donec at placerat nunc. Nulla fermentum dolor vitae ornare tristique.';
 </script>
 
-<!-- <main style="--header: {headerHeight}" class="flex flex-col pt-10 px-horizontal">
-	<div class="grid grid-cols-2">
-		<img
-			class="rounded-img card-shadow"
-			src="/projects/{data.id}.png"
-			alt="albin-kjellberg_{data.id}"
-		/>
-		<div class="flex flex-col justify-between">
-			<h1 class="h1-project text-center pt-10">{data.name}</h1>
-			<div class="flex flex-col gap-7 px-28">
-				<Attribute title="MADE WIDTH">
-					{#each data.stack as { name, url }}
-						<a
-							href={url}
-							class="px-4 py-1 border-gray-500 border-2 rounded-xl text-gray-700 font-bold transition-all hover:text-black hover:border-black"
-							>{name}</a
-						>
-					{/each}
-				</Attribute>
-				<Attribute title="LINKS">
-					<Button text="Github" color={data.color} href={data.github} target="_blank" />
-					<Button text="Visit" color={data.color} href={data.url} target="_blank" />
-				</Attribute>
-			</div>
-		</div>
-	</div>
-	<p class="px-horizontal pt-5">{data.description}</p>
-</main> -->
-
-<main class="min-h-screen bg-black">
+<main class="bg-black">
 	<div
 		style="background-image: url(/projects/{data.id}.png);"
 		class="project-background w-full h-screen absolute top-0"
@@ -53,11 +27,8 @@
 			style="filter: invert();"
 		/>
 	</div>
-	<div class="pt-10 px-horizontal attributes-container flex flex-col gap-7 relative z-20 h-screen">
+	<section class="pt-10 px-horizontal attributes-container flex flex-col gap-7 relative z-20">
 		<h1 class="h1-project">{data.name}</h1>
-		<Attribute title="CREATED">
-			<h2 class="pl-7 text-gray-400 my-element">APRIL 2023</h2>
-		</Attribute>
 		<Attribute title="REPOSITORY">
 			<a href={data.github} class="pl-7 h2-link">{data.github}</a>
 		</Attribute>
@@ -71,21 +42,45 @@
 				{/each}
 			</div>
 		</Attribute>
-	</div>
-	<div class="bg-black py-10">
-		<p class="px-horizontal">{data.description}</p>
-	</div>
+		<Attribute title="CREATED">
+			<h2 class="pl-7 text-gray-400">{data.created}</h2>
+		</Attribute>
+	</section>
+	<section style="--color: {data.bgColor}" class="py-10 bot-section pl-horizontal">
+		<ProjectText text={data.description} />
+	</section>
 </main>
 
 <style>
 	main {
 		color: white;
 	}
+	section {
+		height: 100vh;
+	}
 	h1 {
 		animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
 		animation-duration: 3s;
 		animation-delay: 3s;
 		animation-fill-mode: both; /* Hides the element until after the animation is complete */
+	}
+	a {
+		text-decoration: none;
+		background-image: linear-gradient(#9ca3af, #9ca3af);
+		background-size: 0% 0.1em;
+		background-position-y: 100%;
+		background-position-x: 100%;
+		background-repeat: no-repeat;
+		transition: background-size 0.2s ease-in-out;
+	}
+	a:hover,
+	a:focus,
+	a:active {
+		background-size: 100% 0.1em;
+		background-position-x: 0%;
+	}
+	p {
+		font-size: large;
 	}
 	.project-background {
 		animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
@@ -97,5 +92,8 @@
 		animation-duration: 1s;
 		animation-delay: 5s;
 		animation-fill-mode: both; /* Hides the element until after the animation is complete */
+	}
+	.bot-section {
+		background-color: (var(--color));
 	}
 </style>
