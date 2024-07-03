@@ -7,7 +7,7 @@
   font-weight: 400;
   font-style: normal;
 
-  @apply bg-light-base h-full;
+  @apply bg-black h-full;
 }
 
 p {
@@ -37,6 +37,11 @@ h2 {
   font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
   @apply  text-6xl;
 }
+  .h2-project {
+    font-size: 7rem;
+    font-variation-settings: 'wdth' 70, 'wght' 750, 'slnt' 0;
+    text-shadow: none;
+  }
   .h2-link {
     font-family: "rotulo-variable",sans-serif;
     font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
