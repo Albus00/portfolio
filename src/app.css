@@ -30,12 +30,13 @@ h1 {
     font-size: 10rem;
     font-variation-settings: 'wdth' 70, 'wght' 750, 'slnt' 0;
     text-shadow: none;
+    @apply handheld:text-7xl
   }
 
 h2 {
   font-family: "rotulo-variable",sans-serif;
   font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
-  @apply  text-6xl;
+  @apply text-6xl handheld:text-5xl;
 }
   .h2-project {
     font-size: 7rem;
@@ -55,7 +56,7 @@ h2 {
 		background-repeat: no-repeat;
 		transition: background-size 0.2s ease-in-out;
 
-    @apply text-gray-400 text-6xl w-fit;
+    @apply text-gray-400 text-6xl w-fit handheld:text-4xl;
   }
   .h2-link:hover,
 	.h2-link:focus,
