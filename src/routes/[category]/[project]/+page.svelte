@@ -2,6 +2,7 @@
 	import IconButton from '$components/iconButton.svelte';
 	import ProjectText from '$components/projectText.svelte';
 	import Attribute from './attribute.svelte';
+	import Extra from './extra/extra.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
@@ -27,8 +28,11 @@
 			style="filter: invert();"
 		/>
 	</div>
-	<section class="pt-10 px-horizontal attributes-container flex flex-col gap-7 relative z-20">
+	<section class="pt-16 px-horizontal attributes-container flex flex-col gap-7 relative z-20">
 		<h1 class="h1-project">{data.name}</h1>
+		<Attribute title="CLIENT">
+			<h2 class="pl-7 text-gray-400">{data.client}</h2>
+		</Attribute>
 		<Attribute title="REPOSITORY">
 			<a href={data.github} class="pl-7 h2-link">{data.github}</a>
 		</Attribute>
@@ -36,18 +40,16 @@
 			<a href={data.url} class="pl-7 h2-link">{data.url}</a>
 		</Attribute>
 		<Attribute title="MADE WITH">
-			<div class="flex flex-row gap-x-5 pl-7 h2-link">
+			<div class="flex flex-row gap-x-5 pl-7">
 				{#each data.stack as { name, url }}
-					<a href={url}>{name}</a>
+					<a class="h2-link" href={url}>{name}</a>
 				{/each}
 			</div>
 		</Attribute>
-		<Attribute title="CREATED">
-			<h2 class="pl-7 text-gray-400">{data.created}</h2>
-		</Attribute>
 	</section>
-	<section style="--color: {data.bgColor}" class="py-10 bot-section pl-horizontal">
+	<section class="py-10 bot-section px-horizontal">
 		<ProjectText text={data.description} />
+		<Extra projectName={data.name} />
 	</section>
 </main>
 
@@ -56,28 +58,13 @@
 		color: white;
 	}
 	section {
-		height: 100vh;
+		min-height: 100vh;
 	}
 	h1 {
 		animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
 		animation-duration: 3s;
 		animation-delay: 3s;
 		animation-fill-mode: both; /* Hides the element until after the animation is complete */
-	}
-	a {
-		text-decoration: none;
-		background-image: linear-gradient(#9ca3af, #9ca3af);
-		background-size: 0% 0.1em;
-		background-position-y: 100%;
-		background-position-x: 100%;
-		background-repeat: no-repeat;
-		transition: background-size 0.2s ease-in-out;
-	}
-	a:hover,
-	a:focus,
-	a:active {
-		background-size: 100% 0.1em;
-		background-position-x: 0%;
 	}
 	p {
 		font-size: large;
@@ -94,6 +81,6 @@
 		animation-fill-mode: both; /* Hides the element until after the animation is complete */
 	}
 	.bot-section {
-		background-color: (var(--color));
+		background-color: black;
 	}
 </style>

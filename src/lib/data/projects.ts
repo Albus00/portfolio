@@ -8,7 +8,7 @@ export const projects = {
     {
       id: 'todo-tulip',
       name: 'Todo Tulip',
-      created: 'June 2024',
+      client: 'School project',
       tags: [tags.school],
       url: 'https://todo-tulip.vercel.app/',
       github: 'https://github.com/sebastianlindgren00/todo-tulip',
@@ -19,7 +19,7 @@ export const projects = {
     {
       id: 'skurkeriet',
       name: 'Skurkeriet',
-      created: 'August 2023',
+      client: 'Linköpings University',
       tags: [tags.studentLife],
       url: 'https://skurkeriet2324.vercel.app/',
       github: 'https://github.com/albus00/skurkeriet',
@@ -29,7 +29,7 @@ export const projects = {
     {
       id: 'basaret',
       name: 'Basåret',
-      created: 'June 2023',
+      client: 'Linköpings University',
       tags: [tags.studentLife],
       url: 'https://basaret2324.vercel.app/',
       github: 'https://github.com/albus00/basaret',
@@ -39,7 +39,7 @@ export const projects = {
     {
       id: 'login-page',
       name: 'Login Page',
-      created: 'October 2023',
+      client: 'School project',
       tags: [tags.school],
       url: 'https://ak-login-page.vercel.app/',
       github: 'https://github.com/albus00/login-page',
@@ -51,7 +51,7 @@ export const projects = {
     {
       id: 'training-in-vr',
       name: 'Training in VR',
-      created: 'June 2023',
+      client: "Bachelor's thesis",
       tags: [tags.school],
       url: '[gallery]',
       github: 'https://github.com/Albus00/Traning-i-VR',
@@ -61,7 +61,7 @@ export const projects = {
     {
       id: 'get-the-beat',
       name: 'Get The Beat',
-      created: 'Mars 2024',
+      client: 'School project',
       tags: [tags.school],
       url: '[gallery]',
       github: 'https://github.com/sebastianlindgren00/GetTheBeatGame',
@@ -73,7 +73,7 @@ export const projects = {
     {
       id: 'couch-hand-controller',
       name: 'Couch Hand Controller',
-      created: '[ongoing]',
+      client: '[personal]',
       tags: [tags.school],
       url: '[gallery]',
       github: 'https://github.com/albus00/portfolio',
@@ -83,7 +83,7 @@ export const projects = {
     {
       id: 'custom-numpad',
       name: 'Custom Numpad',
-      created: '[ongoing]',
+      client: '[personal]',
       tags: [tags.personal],
       url: '[gallery]',
       github: 'https://github.com/Albus00/AutoHotkey',

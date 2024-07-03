@@ -30,7 +30,6 @@ h1 {
     font-size: 10rem;
     font-variation-settings: 'wdth' 70, 'wght' 750, 'slnt' 0;
     text-shadow: none;
-    @apply inline text-white;
   }
 
 h2 {
@@ -41,8 +40,23 @@ h2 {
   .h2-link {
     font-family: "rotulo-variable",sans-serif;
     font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
-    @apply text-gray-400 text-6xl;
+
+    text-decoration: none;
+		background-image: linear-gradient(#9ca3af, #9ca3af);
+		background-size: 0% 0.1em;
+		background-position-y: 100%;
+		background-position-x: 100%;
+		background-repeat: no-repeat;
+		transition: background-size 0.2s ease-in-out;
+
+    @apply text-gray-400 text-6xl w-fit;
   }
+  .h2-link:hover,
+	.h2-link:focus,
+	.h2-link:active {
+		background-size: 100% 0.1em;
+		background-position-x: 0%;
+	}
 
 h3 {
   font-family: "rotulo-variable",sans-serif;

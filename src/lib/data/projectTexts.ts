@@ -6,24 +6,45 @@ export const texts = {
     "problems": 'Simplified task tracking and management, enhancing productivity and organization for individual users and small teams.'
   },
   'skurkeriet': {
-    text: 'This is a description of Skurkeriet'
+    "scope": 'Development of an interactive and engaging web application.',
+    "description": 'Skurkeriet is a dynamic web application built with Next.js, TypeScript, and Tailwind CSS. It offers a user-friendly interface for managing content and interacting with various data elements.',
+    "outcome": 'Successfully delivered a responsive and visually appealing application, enhancing user engagement and content management efficiency.',
+    "problems": 'Improved content management and user interaction, providing a streamlined and efficient solution for managing digital assets.'
   },
   'basaret': {
-    text: 'This is a description of Basåret'
+    "scope": 'Development of a...',
+    "description": '...',
+    "outcome": '...',
+    "problems": '...'
   },
   'login-page': {
-    text: 'This is a description of Login Page'
+    "scope": 'Development of a...',
+    "description": '...',
+    "outcome": '...',
+    "problems": '...'
   },
   'training-in-vr': {
-    text: 'This is a description of Training in VR'
+    "scope": 'Development of a...',
+    "description": '...',
+    "outcome": '...',
+    "problems": '...'
   },
   'get-the-beat': {
-    text: 'This is a description of Get The Beat Game'
+    "scope": 'Development of a...',
+    "description": '...',
+    "outcome": '...',
+    "problems": '...'
   },
   'couch-hand-controller': {
-    text: 'This is a description of Couch Hand Controller'
+    "scope": 'Development of a...',
+    "description": '...',
+    "outcome": '...',
+    "problems": '...'
   },
   'custom-numpad': {
-    text: 'This is a description of Custom Numpad'
+    "scope": 'Development of a...',
+    "description": '...',
+    "outcome": '...',
+    "problems": '...'
   },
 };
