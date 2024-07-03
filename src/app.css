@@ -41,6 +41,7 @@ h2 {
     font-size: 7rem;
     font-variation-settings: 'wdth' 70, 'wght' 750, 'slnt' 0;
     text-shadow: none;
+    @apply handheld:text-6xl
   }
   .h2-link {
     font-family: "rotulo-variable",sans-serif;

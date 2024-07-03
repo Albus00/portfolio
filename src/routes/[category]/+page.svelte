@@ -15,7 +15,8 @@
 
 <main
 	style="--header: {headerHeight}"
-	class="px-2horizontal bg-black py-12 justify-center gap-x-horizontal gap-y-12 grid grid-cols-2 grid-rows-2"
+	class={'px-2horizontal bg-black py-12 justify-center gap-x-horizontal gap-y-12 grid grid-cols-2 ' +
+		'handheld:px-handheld-horizontal handheld:grid-cols-1'}
 >
 	{#each data.projects as project}
 		<ProjectCard category={data.category} {project} />
@@ -25,6 +26,6 @@
 <style>
 	main {
 		margin-top: calc(var(--header) * 1px);
-		height: calc(100vh - var(--header) * 1px);
+		min-height: calc(100vh - var(--header) * 1px);
 	}
 </style>

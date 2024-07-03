@@ -34,13 +34,16 @@
 
 <a
 	class={'relative overflow-hidden bg-black card-shadow box-border rounded-[2rem] text-white transition-all cursor-pointer' +
-		'hover:bg-black hover:scale-110'}
+		'hover:bg-black hover:scale-110 handheld:h-56'}
 	id={containerId}
 	on:mouseenter={() => onMouseEnter(containerId)}
 	on:mouseleave={() => onMouseExit(containerId)}
 	href={`/${category}/${containerId}`}
 >
-	<div class="w-full h-full bg-cover" style="background-image: url(/projects/{containerId}.png);">
+	<div
+		class="w-full h-full bg-cover bg-center"
+		style="background-image: url(/projects/{containerId}.png);"
+	>
 		<div
 			class="bg-black relative z-20 opacity-60 w-full h-full grid justify-center items-center transition-all hover:opacity-0"
 		>

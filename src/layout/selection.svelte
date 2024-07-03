@@ -15,7 +15,7 @@
 <section
 	style="--header: {headerHeight}"
 	class={'bg-black relative grid grid-cols-3 gap-x-20 px-horizontal box-border pt-28 pb-32 items-center ' +
-		'handheld:grid-rows-3 handheld:grid-cols-1 handheld:px-8 handheld:py-16 handheld:gap-y-16'}
+		'handheld:grid-rows-3 handheld:grid-cols-1 handheld:px-handheld-horizontal handheld:py-16 handheld:gap-y-16'}
 	id="selection"
 >
 	<CategoryCard title="WEB APPS" model="laptop" />
