@@ -14,7 +14,7 @@
 
 <section
 	style="--header: {headerHeight}"
-	class="bg-dark-base relative grid grid-cols-3 gap-20 px-2horizontal box-border pt-28 pb-32"
+	class="bg-black relative grid grid-cols-3 gap-20 px-2horizontal box-border pt-28 pb-32"
 	id="selection"
 >
 	<CategoryCard title="WEB APPS" model="laptop">

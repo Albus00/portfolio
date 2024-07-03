@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import IconButton from './iconButton.svelte';
-	import { addAndRemoveClass } from '$lib/functions/card';
 
 	export let category: string;
 	export let project;

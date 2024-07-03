@@ -22,7 +22,7 @@
 		target={targetBlank ? '_blank' : '_self'}
 	>
 		<img
-			class={`${size === 'sm' ? 'w-6' : size === 'm' ? 'w-8' : 'w-16'} hover:scale-110 transition-all`}
+			class={`${size === 'sm' ? 'w-6 handheld:w-4' : size === 'm' ? 'w-8 handheld:w-6' : 'w-16'} hover:scale-110 transition-all`}
 			src={svg}
 			alt="icon"
 			id={imgId}

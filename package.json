@@ -40,6 +40,7 @@
 		"animate.css": "^4.1.1",
 		"marked": "^13.0.1",
 		"svelte-markdown": "^0.4.1",
+		"svelte-vertical-timeline": "^1.0.2",
 		"three": "^0.165.0"
 	}
 }

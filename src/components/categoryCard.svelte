@@ -9,7 +9,7 @@
 </script>
 
 <a
-	class={'bg-light-dark overflow-hidden card-shadow rounded-[3rem] flex flex-col py-10 text-white box-border max-h-full transition-all cursor-pointer hover:bg-black'}
+	class={'bg-dark-base overflow-hidden rounded-[3rem] flex flex-col py-10 text-white box-border max-h-full transition-all cursor-pointer hover:bg-black'}
 	id={containerId}
 	on:mouseenter={() => onMouseEnter(model, containerId)}
 	on:mouseleave={() => onMouseLeave(model, containerId)}

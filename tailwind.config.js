@@ -16,10 +16,17 @@ export default {
       },
       spacing: {
         'horizontal': '5rem',
+        'handheld-horizontal': '2rem',
         '2horizontal': '10rem'
       },
       borderRadius: {
         'img': '2rem',
+      },
+      screens: {
+        desktop: { 'min': '1225px' },
+        handheld: { 'max': '1024px' },
+        mobile: { 'max': '750px' },
+        thin: { 'max': '340px' }
       },
     },
   },
