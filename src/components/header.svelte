@@ -9,7 +9,7 @@
 </script>
 
 <header
-	class="fixed top-0 left-0 w-full py-4 z-50 bg-black text-white px-horizontal handheld:px-handheld-horizontal"
+	class="fixed top-0 left-0 w-full py-4 z-50 bg-dark-base text-white px-horizontal handheld:px-handheld-horizontal"
 >
 	<div class="flex flex-row justify-between">
 		<nav class="flex justify-between items-center">

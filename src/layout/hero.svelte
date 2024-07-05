@@ -42,10 +42,10 @@
 
 <section class="h-screen relative z-20 bg-light-base" id="hero">
 	<div
-		class="absolute top-0 left-0 w-full bg-no-repeat bg-[right_top_4rem] h-full px-horizontal handheld:hidden"
+		class="absolute top-0 left-0 w-full bg-no-repeat bg-[right_top_4rem] h-full handheld:hidden"
 		style="background-image: url({albinkjellberg});"
 	></div>
-	<div class="relative pt-[12%] w-3/4 handheld:pt-28 handheld:m-auto z-50">
+	<div class="relative pt-[12%] px-horizontal w-3/4 z-50 handheld:pt-28 handheld:m-auto">
 		<div
 			class="w-full aspect-square bg-no-repeat bg-center bg-contain m-auto rounded-full mb-14 hidden handheld:block"
 			style="background-image: url({albinkjellberg});"
