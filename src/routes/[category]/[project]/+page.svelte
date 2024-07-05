@@ -1,11 +1,15 @@
 <script lang="ts">
 	import IconButton from '$components/iconButton.svelte';
-	import ProjectText from '$components/projectText.svelte';
+	import ProjectText from './projectText.svelte';
 	import Attribute from './attribute.svelte';
 	import Extra from './extra/extra.svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
+
+	// Get shorthand url for displaying in on mobile
+	let mobileUrl = data.url.split('://')[1];
+	mobileUrl = mobileUrl.split('.')[0];
 </script>
 
 <main class="bg-black">
@@ -31,20 +35,22 @@
 			<h2 class="pl-7 text-gray-400 handheld:text-4xl">{data.client}</h2>
 		</Attribute>
 		<Attribute title="REPOSITORY">
-			<a href={data.github} class="pl-7 h2-link">{data.github}</a>
+			<a href={data.github} class="pl-7 h2-link mobile:hidden">{data.github}</a>
+			<a href={data.github} class="pl-7 h2-link hidden mobile:block">github.com</a>
 		</Attribute>
 		<Attribute title="URL">
-			<a href={data.url} class="pl-7 h2-link">{data.url}</a>
+			<a href={data.url} class="pl-7 h2-link mobile:hidden">{data.url}</a>
+			<a href={data.url} class="pl-7 h2-link hidden mobile:block">{mobileUrl}</a>
 		</Attribute>
 		<Attribute title="MADE WITH">
-			<div class="flex flex-row gap-x-5 pl-7">
+			<div class="flex flex-row flex-wrap gap-x-5 pl-7">
 				{#each data.stack as { name, url }}
 					<a class="h2-link" href={url}>{name}</a>
 				{/each}
 			</div>
 		</Attribute>
 	</section>
-	<section class="py-10 bot-section px-horizontal">
+	<section class="py-10 bot-section px-horizontal mobile:px-handheld-horizontal">
 		<ProjectText text={data.description} />
 		<Extra projectName={data.name} />
 	</section>
@@ -60,11 +66,8 @@
 	h1 {
 		animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
 		animation-duration: 3s;
-		animation-delay: 3s;
+		animation-delay: 1s;
 		animation-fill-mode: both; /* Hides the element until after the animation is complete */
-	}
-	p {
-		font-size: large;
 	}
 	.project-background {
 		animation: fadeIn; /* referring directly to the animation's @keyframe declaration */

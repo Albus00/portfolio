@@ -72,10 +72,9 @@ h3 {
   @apply  text-3xl inline;
 }
 
-.rotulo-shadow {
+.rotulo {
   font-family: "rotulo-variable",sans-serif;
   font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
-  text-shadow: 2px 2px 2px #303030;
 }
 
 .card-shadow {

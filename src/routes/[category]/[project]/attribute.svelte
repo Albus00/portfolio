@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let title: string;
 
-	const animationDelay: number = 4.5;
+	const animationDelay: number = 2.5;
 </script>
 
 <div style="--delay: {animationDelay}" class="attribute">
@@ -9,7 +9,7 @@
 	<slot />
 </div>
 
-<!-- <style>
+<style>
 	.attribute {
 		animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
 		animation-duration: 1s;
@@ -27,4 +27,4 @@
 	.attribute:nth-child(5) {
 		animation-delay: calc(0.5s + var(--delay) * 1s);
 	}
-</style> -->
+</style>

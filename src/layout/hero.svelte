@@ -61,11 +61,13 @@
 			See my projects!
 		</button>
 	</div>
-	<button
-		class="rotulo-shadow text-5xl py-3 px-6 font-semibold m-auto text-[#f2d83e] mt-10 hidden handheld:block"
-		on:click={scrollToSelection}
-	>
-		See my projects!
-	</button>
-	<div class="absolute bottom-0 h-10 w-full bg-black handheld:hidden"></div>
+
+	<div class="absolute -bottom-2 h-10 w-full bg-black handheld:h-40">
+		<button
+			class="rotulo text-5xl py-3 px-6 font-semibold m-auto text-[#f2d83e] mt-10 hidden handheld:block"
+			on:click={scrollToSelection}
+		>
+			See my projects!
+		</button>
+	</div>
 </section>
