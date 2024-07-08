@@ -13,6 +13,7 @@ export default {
         'dark-base': '#1d1d1d',
         'light-dark': '#2d2d34',
         'dark-light': '#c1c1c1',
+        'custom-yellow': '#f2d83e',
       },
       spacing: {
         'horizontal': '5rem',

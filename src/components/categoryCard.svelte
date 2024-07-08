@@ -16,11 +16,11 @@
 
 <a
 	class={'bg-dark-base overflow-hidden rounded-[3rem] py-10 text-white box-border max-h-full h-fit transition-transform ' +
-		'hover:bg-black hover:scale-125 hover:translate-y-24'}
+		'hover:bg-black hover:scale-125 hover:translate-y-16'}
 	id={containerId}
 	on:mouseenter={() => hoverToggle(containerId)}
 	on:mouseleave={() => hoverToggle(containerId)}
-	href={`/${containerId}`}
+	href={`/projects/${containerId}`}
 >
 	<div class="w-full transition-all">
 		<Scene elementId={`${model}-scene`} className={'w-full transition-all ease-out'} />

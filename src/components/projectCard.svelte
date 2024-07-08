@@ -38,7 +38,7 @@
 	id={containerId}
 	on:mouseenter={() => onMouseEnter(containerId)}
 	on:mouseleave={() => onMouseExit(containerId)}
-	href={`/${category}/${containerId}`}
+	href={`/projects/${category}/${containerId}`}
 >
 	<div
 		class="w-full h-full bg-cover bg-center"

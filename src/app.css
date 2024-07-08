@@ -24,7 +24,7 @@ h1 {
   .h1-variant {
     font-variation-settings: 'wdth' 70, 'wght' 750, 'slnt' -10;
     text-shadow: 2px 2px 2px #303030;
-    @apply inline text-[#f2d83e] text-9xl handheld:text-8xl;
+    @apply inline text-custom-yellow text-9xl handheld:text-8xl;
   }
   .h1-project {
     font-size: 10rem;
@@ -48,22 +48,8 @@ h2 {
     font-family: "rotulo-variable",sans-serif;
     font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
 
-    text-decoration: none;
-		background-image: linear-gradient(#9ca3af, #9ca3af);
-		background-size: 0% 0.1em;
-		background-position-y: 100%;
-		background-position-x: 100%;
-		background-repeat: no-repeat;
-		transition: background-size 0.2s ease-in-out;
-
-    @apply text-gray-400 text-6xl w-fit handheld:text-4xl;
+    @apply text-gray-400 text-6xl w-fit handheld:text-4xl underline-effect;
   }
-  .h2-link:hover,
-	.h2-link:focus,
-	.h2-link:active {
-		background-size: 100% 0.1em;
-		background-position-x: 0%;
-	}
 
 h3 {
   font-family: "rotulo-variable",sans-serif;
@@ -75,6 +61,22 @@ h3 {
 .rotulo {
   font-family: "rotulo-variable",sans-serif;
   font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
+}
+
+.underline-effect {
+  text-decoration: none;
+		background-image: linear-gradient(#9ca3af, #9ca3af);
+		background-size: 0% 0.1em;
+		background-position-y: 100%;
+		background-position-x: 100%;
+		background-repeat: no-repeat;
+		transition: background-size 0.2s ease-in-out;
+}
+.underline-effect:hover,
+.underline-effect:focus,
+.underline-effect:active {
+  background-size: 100% 0.1em;
+  background-position-x: 0%;
 }
 
 .card-shadow {
