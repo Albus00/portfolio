@@ -2,9 +2,10 @@
 </script>
 
 <footer class="relative text-white bg-transparent px-8 pb-4 z-50 flex flex-row justify-evenly">
-	<div>
+	<div class="footer-container">
 		<p class="footer-title">Contact me</p>
-		<a href="/contact" class="contact-button">GET IN TOUCH</a>
+		<a class="underline-effect" href="/contact">Contact form</a>
+		<a href="mailto:albin.kjellberg2000@gmail.com">albin.kjellberg2000@gmail.com</a>
 	</div>
 	<div class="footer-container">
 		<p class="footer-title">Connect</p>
@@ -14,10 +15,10 @@
 		>
 	</div>
 	<div class="footer-container">
-		<a href="https://www.flaticon.com/free-icons" title="icons"
-			>Icons created by Freepik - Flaticon</a
-		>
-		<p>Designed and developed by Albin Kjellberg</p>
+		<a href="https://www.flaticon.com/free-icons" title="icons">Icons created by Freepik</a>
+		<p>
+			Designed and developed by <span class="font-bold text-custom-yellow">Albin Kjellberg</span>
+		</p>
 	</div>
 </footer>
 
@@ -31,9 +32,5 @@
 	.footer-title {
 		color: #404040;
 		@apply font-bold text-lg pb-1;
-	}
-	.contact-button {
-		color: black;
-		@apply bg-white font-bold px-2 py-1 text-center rounded-full transition-all hover:bg-transparent hover:text-white;
 	}
 </style>
