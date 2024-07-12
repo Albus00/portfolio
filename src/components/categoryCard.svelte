@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Scene from '$components/scene.svelte';
-	import { fade } from 'svelte/transition';
 	import IntersectionObserver from 'svelte-intersection-observer';
 	// import { onMouseEnter, onMouseLeave } from '$lib/functions/card';
 
@@ -16,7 +15,7 @@
 	export const hoverToggle = (containerId: string) => {
 		const title = document.getElementById(`${containerId}-title`);
 		if (!title) return;
-		title.style.transition = 'opacity 0.15s';
+		title.style.transition = 'opacity 0.2s';
 		title.style.opacity = title.style.opacity === '0' ? '1' : '0';
 	};
 
@@ -24,23 +23,15 @@
 		if (intersectOnce) return;
 		intersectOnce = true;
 		setTimeout(() => {
-			node.style.transition = 'opacity 0.5s';
 			node.style.opacity = '1';
 		}, fadeDelay);
 	};
 </script>
 
-<IntersectionObserver once element={node} on:intersect={fadeIn}>
-	<div
-		in:fade={{ delay: fadeDelay, duration: 500 }}
-		out:fade={{ delay: fadeDelay, duration: 500 }}
-		class="w-full"
-		style="opacity: 0;"
-		bind:this={node}
-	>
+<IntersectionObserver once element={node} on:intersect={fadeIn} threshold={0.5}>
+	<div class="transition-all hover:scale-125 container" style="opacity: 0;" bind:this={node}>
 		<a
-			class={'overflow-hidden rounded-[3rem] py-10 text-white box-border max-h-full h-fit transition-all ' +
-				'hover:bg-black hover:scale-110 hover:translate-y-6'}
+			class={'overflow-hidden rounded-[3rem] py-10 text-white box-border max-h-full h-fit'}
 			id={containerId}
 			on:mouseenter={() => hoverToggle(containerId)}
 			on:mouseleave={() => hoverToggle(containerId)}
