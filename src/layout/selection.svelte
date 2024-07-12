@@ -14,13 +14,14 @@
 
 <section
 	style="--header: {headerHeight}"
-	class={'bg-black relative grid grid-cols-3 gap-x-20 px-horizontal box-border pt-28 pb-32 items-center ' +
+	class={'bg-black relative grid grid-cols-3 gap-x-horizontal px-horizontal box-border pt-28 pb-32 items-center ' +
+		'laptop:py-0 ' +
 		'handheld:grid-rows-3 handheld:grid-cols-1 handheld:px-handheld-horizontal handheld:py-16 handheld:gap-y-16'}
 	id="selection"
 >
-	<CategoryCard title="WEB APPS" model="laptop" />
-	<CategoryCard title="GAMES" model="tree" />
-	<CategoryCard title="OTHER" model="other" />
+	<CategoryCard title="WEB APPS" model="laptop" fadeDelay={0} />
+	<CategoryCard title="GAMES" model="tree" fadeDelay={200} />
+	<CategoryCard title="OTHER" model="other" fadeDelay={400} />
 </section>
 
 <style>

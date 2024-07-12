@@ -25,9 +25,14 @@
 	}
 </script>
 
-<main class="w-full text-white pt-8">
+<main class="w-full text-white py-10">
 	<div style="--header: {headerHeight}" class="form-container w-full flex flex-col items-center">
-		<h1 class="mb-8">Contact me</h1>
+		<h1>Contact me</h1>
+		<p class="my-8 w-1/3">
+			Do you have a project, or maybe something else on your mind? Let me know and we can have a
+			chat about how <span class="marked-text">I might be able to help</span>. I would love to hear
+			from you!
+		</p>
 		<form class="flex flex-col items-center gap-10 w-2/3" on:submit|preventDefault={handleSubmit}>
 			<InputField label="Your name" bind:value={name} />
 			<InputField label="Preferred email" bind:value={email} />

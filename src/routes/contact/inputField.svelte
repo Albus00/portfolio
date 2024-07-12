@@ -9,7 +9,7 @@
 <div class={`${textarea ? `w-3/4` : `w-1/2`}`}>
 	<label for={inputId}>{label}</label>
 	{#if textarea}
-		<textarea class="h-40" bind:value id={inputId}></textarea>
+		<textarea class="h-44" bind:value id={inputId}></textarea>
 	{:else}
 		<input type="text" bind:value id={inputId} />
 	{/if}
@@ -18,10 +18,9 @@
 <style>
 	input,
 	textarea {
-		@apply block rounded-xl w-full;
+		@apply font-mono bg-dark-base px-4 py-3 block rounded-xl w-full;
 	}
-	input,
-	textarea {
-		@apply bg-light-base text-black px-4 py-3;
+	label {
+		@apply font-bold;
 	}
 </style>
