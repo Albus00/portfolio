@@ -10,7 +10,7 @@ export default {
       },
       colors: {
         'light-base': '#d7d7d7',
-        'dark-base': '#1d1d1d',
+        'dark-base': '#000',
         'light-dark': '#2d2d34',
         'dark-light': '#c1c1c1',
         'custom-yellow': '#f2d83e',
