@@ -19,12 +19,12 @@ h1 {
     font-family: "rotulo-variable",sans-serif;
     font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
     text-shadow: 2px 2px 10px rgba(20,20,20,0.3);
-    @apply text-8xl inline handheld:text-4xl;
+    @apply text-8xl inline laptop:text-7xl handheld:text-4xl;
   }
   .h1-variant {
     font-variation-settings: 'wdth' 70, 'wght' 750, 'slnt' -10;
     text-shadow: 2px 2px 2px #303030;
-    @apply inline text-custom-yellow text-9xl handheld:text-8xl;
+    @apply inline text-custom-yellow text-9xl laptop:text-8xl handheld:text-8xl;
   }
   .h1-project {
     font-size: 10rem;
@@ -78,6 +78,10 @@ h3 {
 .underline-effect:active {
   background-size: 100% 0.1em;
   background-position-x: 0%;
+}
+
+.marked-text {
+  @apply text-custom-yellow font-semibold;
 }
 
 .card-shadow {

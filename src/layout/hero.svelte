@@ -42,7 +42,7 @@
 
 <section class="h-screen relative z-20 bg-light-base" id="hero">
 	<div
-		class="absolute top-0 left-0 w-full bg-no-repeat -z-10 bg-[right_top_4rem] h-full handheld:hidden"
+		class="absolute top-0 left-0 w-full bg-no-repeat bg-contain -z-10 bg-[right_5rem_top_6rem] h-full handheld:hidden"
 		style="background-image: url({albinkjellberg});"
 	></div>
 	<div class="relative pt-[12%] px-horizontal w-3/4 handheld:pt-28 handheld:m-auto">
