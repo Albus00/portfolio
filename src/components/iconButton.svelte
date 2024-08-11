@@ -4,7 +4,7 @@
 	import getIcon from '$lib/hooks/getIcon';
 
 	export let icon: string;
-	export let size = 'md';
+	export let size = 'm';
 	export let onClickUrl = '';
 	export let onClickFunc = () => {};
 	export let style = '';

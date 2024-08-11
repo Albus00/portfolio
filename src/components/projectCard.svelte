@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import IconButton from './iconButton.svelte';
-
 	export let project;
+	export let order: number;
 
 	let footer: HTMLElement | null = null;
 
@@ -12,22 +10,23 @@
 		.replace(/ä/g, 'a')
 		.replace(/å/g, 'a')
 		.replace(/ /g, '-');
-
-	onMount(() => {
-		// get card footer
-		footer = document
-			.getElementById(projectId)
-			?.getElementsByClassName('project-card-footer')[0] as HTMLElement;
-	});
 </script>
 
-<div class="grid grid-cols-2 h-screen box-border">
-	<a id={projectId} href={`/${projectId}`}>
+<div
+	class="grid grid-cols-2 h-screen items-center {order % 2 == 1
+		? 'justify-items-end'
+		: 'justify-items-start'}"
+>
+	<a
+		class="w-5/6 transition-all hover:scale-105 {order % 2 == 1 ? 'order-1' : ''}"
+		id={projectId}
+		href={`/${projectId}`}
+	>
 		<img
-			class="h-3/4 aspect-square object-cover object-center"
+			class="aspect-square object-cover object-center"
 			src={`/projects/${projectId}.png`}
 			alt={project.name}
 		/>
 	</a>
-	<h2 class="h2-project">{project.name}</h2>
+	<h1>{project.name}</h1>
 </div>
