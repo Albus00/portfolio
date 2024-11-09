@@ -39,6 +39,7 @@
 	"dependencies": {
 		"@threlte/core": "^7.3.0",
 		"animate.css": "^4.1.1",
+		"colorthief": "^2.6.0",
 		"marked": "^13.0.1",
 		"svelte-markdown": "^0.4.1",
 		"svelte-vertical-timeline": "^1.0.2",

@@ -7,7 +7,10 @@
   font-weight: 400;
   font-style: normal;
 
-  @apply bg-base h-full;
+  @apply bg-base h-full w-full;
+}
+html, body, main {
+  @apply w-full
 }
 
 p {
@@ -18,7 +21,7 @@ p {
 h1 {
     font-family: "reflex-pro-variable",sans-serif;
     font-variation-settings: 'wdth' 100, 'wght' 400, 'ital' 0;
-    @apply text-[11rem] text-black laptop:text-9xl handheld:text-7xl uppercase
+    @apply text-[8rem] text-black text-center laptop:text-8xl handheld:text-7xl uppercase
   }
   .h1-project {
     font-size: 10rem;

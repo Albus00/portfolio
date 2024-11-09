@@ -12,7 +12,8 @@ export const projects = [
     url: 'https://skurkeriet2324.vercel.app/',
     github: 'https://github.com/albus00/skurkeriet',
     stack: [lib.next, lib.tailwind],
-    description: texts['skurkeriet']
+    description: texts['skurkeriet'],
+    customColor: '0,0,0'
   },
   {
     id: 'todo-tulip',

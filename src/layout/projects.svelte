@@ -12,7 +12,7 @@
 
 <section id="projects">
 	<ScrollingTitle title="Projects" nextTitle="" {sectionHeight} />
-	<div class="h-screen px-horizontal justify-center gap-y-12 grid">
+	<div class="h-screen px-horizontal flex-col w-full justify-center gap-y-12 grid">
 		{#each projects as project, index}
 			<ProjectCard order={index} {project} />
 		{/each}
