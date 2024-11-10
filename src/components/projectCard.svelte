@@ -18,13 +18,6 @@
 			parseInt(rgb.split(',')[2]) * 114) /
 		1000;
 
-	const projectId = project.name
-		.toLowerCase()
-		.replace(/ö/g, 'o')
-		.replace(/ä/g, 'a')
-		.replace(/å/g, 'a')
-		.replace(/ /g, '-');
-
 	const changeProject = () => {
 		document.documentElement.style.backgroundColor = `rgba(${rgb}, 0.5)`;
 		if (!title) return;
@@ -44,7 +37,7 @@
 
 		if (project.customColor) return;
 		const image = new Image();
-		image.src = `/projects/${projectId}.png`;
+		image.src = `/projects/${project.id}.png`;
 
 		image.onload = () => {
 			rgb = getAverageRGB(image);
@@ -71,31 +64,33 @@
 		<div class="h-full overflow-hidden aspect-square {order % 2 == 1 ? 'order-1' : ''}">
 			<img
 				class="aspect-square object-cover object-center rounded-xl"
-				src={`/projects/${projectId}.png`}
+				src={`/projects/${project.id}.png`}
 				alt={project.name}
 			/>
 		</div>
-		<div class="h-full flex-grow w-1/2 flex flex-col">
-			<h1>{project.name}</h1>
-			<p>{project.description['description']}</p>
-			<div class="flex flex-row gap-x-2 py-5">
-				{#each project.stack as tag}
-					<a
-						class="font-rotulo font-semibold px-5 py-1 rounded-xl hover:scale-105 transition-all {rgbBrightness <
-							125 && 'text-white'}"
-						style="background-color: rgb({rgb});"
-						href={tag.url}
-					>
-						{tag.name}
-					</a>
-				{/each}
+		<div class="h-full flex-grow w-1/2 flex flex-col justify-between">
+			<div>
+				<h1>{project.name}</h1>
+				<p class={rgbBrightness < 50 ? 'text-white' : ''}>{project.description['description']}</p>
+				<div class="flex flex-row gap-x-2 py-5">
+					{#each project.stack as tag}
+						<a
+							class="font-rotulo font-semibold px-5 py-1 rounded-xl hover:scale-105 transition-all {rgbBrightness <
+								125 && 'text-white'}"
+							style="background-color: rgba({rgb}, 0.3);"
+							href={tag.url}
+						>
+							{tag.name}
+						</a>
+					{/each}
+				</div>
 			</div>
 			<a
-				class="py-3 rounded-2xl font-rotulo font-semibold w-56 text-center text-4xl object-bottom {rgbBrightness <
+				class="py-3 rounded-2xl font-rotulo font-semibold text-center text-6xl shadow-xl hover:translate-x-2 hover:-translate-y-2 transition-all {rgbBrightness <
 					125 && 'text-white'}"
-				style="background-color: rgb({rgb});"
-				id={projectId}
-				href={`/projects/${projectId}`}>Read more</a
+				style="background-color: rgba({rgb}, 0.3);"
+				id={project.id}
+				href={`/projects/${project.id}`}>Read more</a
 			>
 		</div>
 	</div>

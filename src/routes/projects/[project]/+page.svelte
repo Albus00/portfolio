@@ -3,23 +3,74 @@
 	import ProjectText from './projectText.svelte';
 	import Attribute from './attribute.svelte';
 	import Extra from './extra/extra.svelte';
+	import { onMount } from 'svelte';
+	import { getAverageRGB } from '$lib/functions/imageColor';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
 
-	// Get shorthand url for displaying in on mobile
-	let mobileUrl = data.url.split('://')[1];
-	mobileUrl = mobileUrl.split('.')[0];
+	let rgb = data.customColor ? data.customColor : '255, 255, 255';
+	let rgbBrightness =
+		(parseInt(rgb.split(',')[0]) * 299 +
+			parseInt(rgb.split(',')[1]) * 587 +
+			parseInt(rgb.split(',')[2]) * 114) /
+		1000;
+
+	onMount(async () => {
+		if (data.customColor) return;
+		const image = new Image();
+		image.src = `/projects/${data.id}.png`;
+
+		image.onload = () => {
+			rgb = getAverageRGB(image);
+			rgbBrightness =
+				(parseInt(rgb.split(',')[0]) * 299 +
+					parseInt(rgb.split(',')[1]) * 587 +
+					parseInt(rgb.split(',')[2]) * 114) /
+				1000;
+		};
+	});
 </script>
 
-<main class="bg-black">
+<main
+	class="p-5"
+	style="background: linear-gradient(to bottom, rgba({rgb}, 0.5), rgba({rgb}, 0.8))"
+>
+	<h1 class="fixed top-12 left-12 text-[10rem] -z-10 h-screen">
+		{data.description.description}
+	</h1>
 	<div
-		style="background-image: url(/projects/{data.id}.png);"
-		class="project-background bg-center w-full h-screen absolute top-0"
+		class="shadow-xl backdrop-blur-md rounded-xl flex flex-col gap-7 p-8 items-center"
+		style="background-color: rgba({rgb}, 0.4);"
 	>
-		<div class="bg-black opacity-60 w-full h-full"></div>
+		<div class="flex justify-center">
+			<img src="/projects/{data.id}.png" alt={data.name} class="object-cover w-4/5 rounded-xl" />
+		</div>
+		<div class="w-4/5">
+			<h1 class={rgbBrightness < 30 ? 'text-white' : ''}>{data.name}</h1>
+			<div class="flex gap-4">
+				<IconButton
+					icon="github"
+					onClickUrl={data.github}
+					style={rgbBrightness < 30 ? 'filter: invert();' : ''}
+				/>
+				<a
+					href={data.url}
+					class="h-8 w-24 grid place-items-center reflex-pro font-bold text-xl rounded-full transition-all hover:scale-105 {rgbBrightness <
+					30
+						? 'bg-white'
+						: 'bg-black text-white'}"
+				>
+					DEMO
+				</a>
+			</div>
+			<div class="pt-8">
+				<p class={rgbBrightness < 30 ? 'text-white' : ''}>{data.description.scope}</p>
+				<p class={rgbBrightness < 30 ? 'text-white' : ''}>{data.description.description}</p>
+			</div>
+		</div>
 	</div>
-	<div class="absolute top-8 right-8 z-40 back-button handheld:hidden">
+	<!-- <div class="absolute top-8 right-8 z-40 back-button handheld:hidden">
 		<IconButton
 			icon="cross"
 			size="l"
@@ -40,7 +91,6 @@
 		</Attribute>
 		<Attribute title="URL">
 			<a href={data.url} class="pl-7 h2-link mobile:hidden">{data.url}</a>
-			<a href={data.url} class="pl-7 h2-link hidden mobile:block">{mobileUrl}</a>
 		</Attribute>
 		<Attribute title="MADE WITH">
 			<div class="flex flex-row flex-wrap gap-x-5 pl-7">
@@ -53,27 +103,26 @@
 	<section class="py-10 bot-section px-horizontal mobile:px-handheld-horizontal">
 		<ProjectText text={data.description} />
 		<Extra projectName={data.name} />
-	</section>
+	</section> -->
 </main>
 
 <style>
-	main {
-		color: white;
-	}
 	section {
 		min-height: 100vh;
 	}
 	h1 {
 		animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
-		animation-duration: 3s;
-		animation-delay: 1s;
+		animation-duration: 2s;
+		animation-delay: 0.5s;
 		animation-fill-mode: both; /* Hides the element until after the animation is complete */
+		@apply text-left font-bold;
 	}
 	.project-background {
 		animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
 		animation-duration: 4s;
 		animation-fill-mode: both; /* Hides the element until after the animation is complete */
 	}
+
 	.back-button {
 		animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
 		animation-duration: 1s;

@@ -16,7 +16,7 @@
 
 {#if onClickUrl !== ''}
 	<a
-		class={`bg-transparent cursor-pointer grid place-items-center`}
+		class={`bg-transparent cursor-pointer grid place-items-center w-max`}
 		href={onClickUrl}
 		{style}
 		target={targetBlank ? '_blank' : '_self'}
@@ -29,7 +29,7 @@
 		/>
 	</a>
 {:else}
-	<button class={`bg-transparent cursor-pointer`} on:click={onClickFunc} {style}>
+	<button class={`bg-transparent cursor-pointer w-max`} on:click={onClickFunc} {style}>
 		<img
 			class={`${size === 'sm' ? 'w-8' : 'w-32'} hover:scale-110 transition-all`}
 			src={svg}
