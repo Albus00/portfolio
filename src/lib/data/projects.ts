@@ -5,6 +5,15 @@ const tags = { 'school': 'school', 'personal': 'personal', 'work': 'work', 'stud
 
 export const projects = [
   {
+    id: 'archipelago',
+    name: 'Archipelago',
+    client: 'Linköpings University',
+    tags: [tags.school],
+    url: '',
+    github: 'https://github.com/sebastianlindgren00/archipelago',
+    stack: [lib.unity],
+    description: texts['archipelago']
+  }, {
     id: 'skurkeriet',
     name: 'Skurkeriet',
     client: 'Linköpings University',

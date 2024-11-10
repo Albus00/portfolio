@@ -1,4 +1,10 @@
 export const texts = {
+  'archipelago': {
+    "scope": 'Our scope for this game was to create a demo for a puzzle-horror game, with an AI enemy that hunts the player.',
+    "description": 'Archipelago is a demo for a puzzle-horror game, developed using Unity. The game features an AI enemy that is build with a custom coded behaviour tree. This behaviour results in a tense and immersive experience, where the player must solve puzzles and avoid the enemy to progress through the game.',
+    "outcome": 'Successfully delivered a responsive and visually appealing application, enhancing user engagement and content management efficiency.',
+    "problems": 'Improved content management and user interaction, providing a streamlined and efficient solution for managing digital assets.'
+  },
   'todo-tulip': {
     "scope": 'Development of a robust task management application.',
     "description": 'ToDo Tulip is a web-based task management tool built using Svelte and TypeScript. It allows users to create, edit, and delete tasks, providing a seamless and intuitive user experience.',
