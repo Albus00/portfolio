@@ -3,16 +3,35 @@
 	import ProjectCard from '$components/projectCard.svelte';
 	import { onMount } from 'svelte';
 	import ScrollingTitle from '$components/scrollingTitle.svelte';
+	import IntersectionObserver from 'svelte-intersection-observer';
 
 	let sectionHeight = 0;
+	let title: HTMLElement | null = null;
 	onMount(() => {
 		sectionHeight = window.innerHeight * (projects.length + 3);
+		title = document.getElementById('projects-title');
 	});
+
+	let projectNode: HTMLElement | null = null;
+	const changeProject = () => {
+		document.documentElement.style.backgroundColor = `#F2F2F2`;
+		if (!title) return;
+		title.classList.add('animate__fadeOut');
+		setTimeout(() => {
+			if (!title) return;
+			title.style.color = '#F24822';
+			title.innerHTML = 'Projects';
+			title.classList.remove('animate__fadeOut');
+			title.classList.add('animate__fadeIn');
+		}, 200);
+	};
 </script>
 
+<IntersectionObserver element={projectNode} on:intersect={() => changeProject()} threshold={0.5} />
 <section id="projects">
+	<div bind:this={projectNode}></div>
 	<ScrollingTitle title="Projects" nextTitle="" {sectionHeight} />
-	<div class="h-screen px-horizontal flex-col w-full justify-center gap-y-12 grid">
+	<div class="px-horizontal flex-col w-full justify-center gap-y-12 grid">
 		{#each projects as project, index}
 			<ProjectCard order={index} {project} />
 		{/each}

@@ -6,7 +6,7 @@
 	// import Timeline from '$layout/timeline.svelte';
 </script>
 
-<main>
+<main class="relative">
 	<Hero />
 	<About />
 	<Projects />

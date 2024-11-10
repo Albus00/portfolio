@@ -6,8 +6,9 @@
   font-family: "open-sans", sans-serif;
   font-weight: 400;
   font-style: normal;
+  transition: background-color 0.6s;
 
-  @apply bg-base h-full w-full;
+  @apply bg-base w-full;
 }
 html, body, main {
   @apply w-full

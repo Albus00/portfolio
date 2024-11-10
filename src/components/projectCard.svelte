@@ -2,11 +2,14 @@
 	import { onMount } from 'svelte';
 	import { getAverageRGB } from '$lib/functions/imageColor';
 	import Button from './button.svelte';
+	import IntersectionObserver from 'svelte-intersection-observer';
 
 	export let project;
 	export let order: number;
 
 	let footer: HTMLElement | null = null;
+	let projectNode: HTMLElement | null = null;
+	let title: HTMLElement | null = null;
 
 	let rgb = project.customColor ? project.customColor : '255, 255, 255';
 	let rgbBrightness =
@@ -22,7 +25,23 @@
 		.replace(/å/g, 'a')
 		.replace(/ /g, '-');
 
+	const changeProject = () => {
+		document.documentElement.style.backgroundColor = `rgba(${rgb}, 0.5)`;
+		if (!title) return;
+		title.classList.add('animate__fadeOut');
+		setTimeout(() => {
+			if (!title) return;
+			title.style.color = rgbBrightness > 200 ? '#000' : `rgb(${rgb})`;
+			title.innerHTML = project.name;
+			title.classList.remove('animate__fadeOut');
+			title.classList.add('animate__fadeIn');
+		}, 200);
+	};
+
 	onMount(async () => {
+		// Get the section title
+		title = document.getElementById('projects-title');
+
 		if (project.customColor) return;
 		const image = new Image();
 		image.src = `/projects/${projectId}.png`;
@@ -38,38 +57,46 @@
 	});
 </script>
 
-<div
-	class="flex flex-row gap-x-6 h-[500px] w-full p-6 items-center shadow-xl backdrop-blur-md rounded-xl {order %
-		2 ==
-	1
-		? 'justify-items-end'
-		: 'justify-items-start'}"
-	style="background-color: rgba({rgb}, 0.4);"
->
-	<div class="h-full overflow-hidden aspect-square {order % 2 == 1 ? 'order-1' : ''}">
-		<img
-			class="aspect-square object-cover object-center rounded-xl"
-			src={`/projects/${projectId}.png`}
-			alt={project.name}
-		/>
-	</div>
-	<div class="h-full flex-grow w-1/2 flex flex-col">
-		<h1>{project.name}</h1>
-		<a class="w-5/6 transition-all hover:scale-105 p-5" id={projectId} href={`/${projectId}`}> </a>
-		<p>{project.description['description']}</p>
-		<div class="flex flex-row gap-x-2">
-			{#each project.stack as tag}
-				<a
-					class="font-rotulo font-semibold px-4 py-1 rounded-xl hover:scale-105 transition-all {rgbBrightness >
-					200
-						? 'text-black'
-						: 'text-white'}"
-					style="background-color: rgb({rgb});"
-					href={tag.url}
-				>
-					{tag.name}
-				</a>
-			{/each}
+<IntersectionObserver element={projectNode} on:intersect={() => changeProject()} threshold={0.5} />
+<div class="h-screen">
+	<div
+		bind:this={projectNode}
+		class="flex flex-row gap-x-6 h-3/4 w-full p-6 items-center shadow-xl backdrop-blur-md rounded-xl {order %
+			2 ==
+		1
+			? 'justify-items-end'
+			: 'justify-items-start'}"
+		style="background-color: rgba({rgb}, 0.4);"
+	>
+		<div class="h-full overflow-hidden aspect-square {order % 2 == 1 ? 'order-1' : ''}">
+			<img
+				class="aspect-square object-cover object-center rounded-xl"
+				src={`/projects/${projectId}.png`}
+				alt={project.name}
+			/>
+		</div>
+		<div class="h-full flex-grow w-1/2 flex flex-col">
+			<h1>{project.name}</h1>
+			<p>{project.description['description']}</p>
+			<div class="flex flex-row gap-x-2 py-5">
+				{#each project.stack as tag}
+					<a
+						class="font-rotulo font-semibold px-5 py-1 rounded-xl hover:scale-105 transition-all {rgbBrightness <
+							125 && 'text-white'}"
+						style="background-color: rgb({rgb});"
+						href={tag.url}
+					>
+						{tag.name}
+					</a>
+				{/each}
+			</div>
+			<a
+				class="py-3 rounded-2xl font-rotulo font-semibold w-56 text-center text-4xl object-bottom {rgbBrightness <
+					125 && 'text-white'}"
+				style="background-color: rgb({rgb});"
+				id={projectId}
+				href={`/projects/${projectId}`}>Read more</a
+			>
 		</div>
 	</div>
 </div>
