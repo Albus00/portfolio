@@ -18,7 +18,7 @@
 <style>
 	input,
 	textarea {
-		@apply font-mono bg-dark-base px-4 py-3 block rounded-xl w-full;
+		@apply font-mono px-4 py-3 block rounded-xl w-full;
 	}
 	label {
 		@apply font-bold;

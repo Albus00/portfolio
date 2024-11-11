@@ -107,29 +107,11 @@
 </main>
 
 <style>
-	section {
-		min-height: 100vh;
-	}
 	h1 {
 		animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
 		animation-duration: 2s;
 		animation-delay: 0.5s;
 		animation-fill-mode: both; /* Hides the element until after the animation is complete */
 		@apply text-left font-bold;
-	}
-	.project-background {
-		animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
-		animation-duration: 4s;
-		animation-fill-mode: both; /* Hides the element until after the animation is complete */
-	}
-
-	.back-button {
-		animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
-		animation-duration: 1s;
-		animation-delay: 5s;
-		animation-fill-mode: both; /* Hides the element until after the animation is complete */
-	}
-	.bot-section {
-		background-color: black;
 	}
 </style>

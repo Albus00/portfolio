@@ -37,15 +37,15 @@
 			<InputField label="Your name" bind:value={name} />
 			<InputField label="Preferred email" bind:value={email} />
 			<InputField label="A message" bind:value={message} textarea={true} />
-			<Button text="SEND!" type="submit" color={true} />
+			<Button text="SEND!" type="submit" />
 		</form>
 	</div>
 </main>
 
 <style>
-	button {
+	/* button {
 		@apply bg-custom-yellow text-black p-4 rounded-xl;
-	}
+	} */
 	.form-container {
 		min-height: calc(100vh - var(--header) * 1px);
 		margin-top: calc(var(--header) * 1px);
