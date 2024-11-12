@@ -5,6 +5,7 @@
 	import Extra from './extra/extra.svelte';
 	import { onMount } from 'svelte';
 	import { getAverageRGB } from '$lib/functions/imageColor';
+	import videojs from 'video.js';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
@@ -44,7 +45,10 @@
 		style="background-color: rgba({rgb}, 0.4);"
 	>
 		<div class="flex justify-center">
-			<img src="/projects/{data.id}.png" alt={data.name} class="object-cover w-4/5 rounded-xl" />
+			<!-- <img src="/projects/{data.id}.png" alt={data.name} class="object-cover w-4/5 rounded-xl" /> -->
+			<videojs id="vid1" class="video-js">
+				<source src="/projects/videos{data.id}.mp4" />
+			</videojs>
 		</div>
 		<div class="w-4/5">
 			<h1 class={rgbBrightness < 30 ? 'text-white' : ''}>{data.name}</h1>
