@@ -12,7 +12,8 @@ export const projects = [
     url: '',
     github: 'https://github.com/sebastianlindgren00/archipelago',
     stack: [lib.unity],
-    description: texts['archipelago']
+    description: texts['archipelago'],
+    hasVideo: true
   }, {
     id: 'skurkeriet',
     name: 'Skurkeriet',

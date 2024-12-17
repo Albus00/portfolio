@@ -5,7 +5,7 @@
 	import Extra from './extra/extra.svelte';
 	import { onMount } from 'svelte';
 	import { getAverageRGB } from '$lib/functions/imageColor';
-	import videojs from 'video.js';
+	import { Video, Carousel } from 'flowbite-svelte';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
@@ -45,10 +45,19 @@
 		style="background-color: rgba({rgb}, 0.4);"
 	>
 		<div class="flex justify-center">
+			{#if data.hasVideo != null && data.hasVideo != false}
+				<Video
+					src="/projects/videos/{data.id}.mp4"
+					class="object-cover w-5/6 rounded-xl"
+					autoplay
+					controls
+					muted
+					trackSrc="flowbite.mp4"
+				/>
+			{:else}
+				<img src="/projects/{data.id}.png" alt={data.name} class="object-cover w-5/6 rounded-xl" />
+			{/if}
 			<!-- <img src="/projects/{data.id}.png" alt={data.name} class="object-cover w-4/5 rounded-xl" /> -->
-			<videojs id="vid1" class="video-js">
-				<source src="/projects/videos{data.id}.mp4" />
-			</videojs>
 		</div>
 		<div class="w-4/5">
 			<h1 class={rgbBrightness < 30 ? 'text-white' : ''}>{data.name}</h1>
