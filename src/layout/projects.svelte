@@ -1,14 +1,16 @@
 <script lang="ts">
-	import { projects } from '$lib/data/projects';
 	import ProjectCard from '$components/projectCard.svelte';
 	import { onMount } from 'svelte';
 	import ScrollingTitle from '$components/scrollingTitle.svelte';
 	import IntersectionObserver from 'svelte-intersection-observer';
 
+	// Import data from load function
+	export let data;
+	let projects = data.projects ?? [];
+
 	let sectionHeight = 0;
 	let title: HTMLElement | null = null;
 	onMount(() => {
-		sectionHeight = window.innerHeight * (projects.length + 3);
 		title = document.getElementById('projects-title');
 	});
 
@@ -32,6 +34,11 @@
 	<div bind:this={projectNode}></div>
 	<ScrollingTitle title="Projects" nextTitle="" {sectionHeight} />
 	<div class="px-horizontal flex-col w-full justify-center gap-y-12 grid">
+		{#if projects.length === 0}
+			<div class="flex justify-center items-center h-96">
+				<p class="text-2xl">No projects to show</p>
+			</div>
+		{/if}
 		{#each projects as project, index}
 			<ProjectCard order={index} {project} />
 		{/each}

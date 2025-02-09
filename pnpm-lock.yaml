@@ -26,6 +26,9 @@ importers:
       plyr:
         specifier: ^3.7.8
         version: 3.7.8
+      pocketbase:
+        specifier: ^0.25.1
+        version: 0.25.1
       svelte-markdown:
         specifier: ^0.4.1
         version: 0.4.1(svelte@4.2.18)
@@ -1408,6 +1411,9 @@ packages:
 
   plyr@3.7.8:
     resolution: {integrity: sha512-yG/EHDobwbB/uP+4Bm6eUpJ93f8xxHjjk2dYcD1Oqpe1EcuQl5tzzw9Oq+uVAzd2lkM11qZfydSiyIpiB8pgdA==}
+
+  pocketbase@0.25.1:
+    resolution: {integrity: sha512-2IH0KLI/qMNR/E17C7BGWX2FxW7Tead+igLHOWZ45P56v/NyVT18Jnmddeft+3qWWGL1Hog2F8bc4orWV/+Fcg==}
 
   postcss-import@15.1.0:
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
@@ -3126,6 +3132,8 @@ snapshots:
       loadjs: 4.3.0
       rangetouch: 2.0.1
       url-polyfill: 1.1.12
+
+  pocketbase@0.25.1: {}
 
   postcss-import@15.1.0(postcss@8.4.38):
     dependencies:
