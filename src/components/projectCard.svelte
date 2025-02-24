@@ -3,9 +3,12 @@
 	import { getAverageRGB } from '$lib/functions/imageColor';
 	import Button from './button.svelte';
 	import IntersectionObserver from 'svelte-intersection-observer';
+	import type { Project } from '$lib/types';
 
-	export let project;
+	export let project: Project;
 	export let order: number;
+
+	// console.log(project);
 
 	let footer: HTMLElement | null = null;
 	let projectNode: HTMLElement | null = null;
@@ -71,7 +74,7 @@
 		<div class="h-full flex-grow w-1/2 flex flex-col justify-between">
 			<div>
 				<h1>{project.name}</h1>
-				<p class={rgbBrightness < 50 ? 'text-white' : ''}>{project.description['description']}</p>
+				<p class={rgbBrightness < 50 ? 'text-white' : ''}>{project.description.short}</p>
 				<div class="flex flex-row gap-x-2 py-5">
 					{#each project.stack as tag}
 						<a

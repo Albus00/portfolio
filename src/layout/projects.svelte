@@ -3,10 +3,10 @@
 	import { onMount } from 'svelte';
 	import ScrollingTitle from '$components/scrollingTitle.svelte';
 	import IntersectionObserver from 'svelte-intersection-observer';
+	import type { Project } from '$lib/types';
 
 	// Import data from load function
-	export let data;
-	let projects = data.projects ?? [];
+	export let projects: Project[] = [];
 
 	let sectionHeight = 0;
 	let title: HTMLElement | null = null;

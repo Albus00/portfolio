@@ -12,4 +12,6 @@ export interface Project {
   demoUrl?: string;
   images: string[];
   video?: string;
+  stack: { id: string, name: string, url: string }[];
+  customColor?: string;
 }
