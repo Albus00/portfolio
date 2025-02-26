@@ -40,7 +40,7 @@
 
 		if (project.customColor) return;
 		const image = new Image();
-		image.src = `/projects/${project.id}.png`;
+		image.src = project.images[0];
 
 		image.onload = () => {
 			rgb = getAverageRGB(image);
@@ -67,7 +67,7 @@
 		<div class="h-full overflow-hidden aspect-square {order % 2 == 1 ? 'order-1' : ''}">
 			<img
 				class="aspect-square object-cover object-center rounded-xl"
-				src={`/projects/${project.id}.png`}
+				src={project.images[0]}
 				alt={project.name}
 			/>
 		</div>

@@ -18,7 +18,7 @@ export const getAverageRGB = (img: HTMLImageElement): string => {
   try {
     data = context.getImageData(0, 0, width, height);
   } catch (e) {
-      /* security error, img on diff domain */alert('x');
+      /* security error, img on diff domain */alert('image is on a different domain, cannot read! (Check CORS)');
     return defaultRGB;
   }
 

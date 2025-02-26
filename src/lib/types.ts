@@ -11,7 +11,7 @@ export interface Project {
   repositoryUrl?: string;
   demoUrl?: string;
   images: string[];
-  video?: string;
+  video?: string | null;
   stack: { id: string, name: string, url: string }[];
   customColor?: string;
 }

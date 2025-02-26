@@ -10,7 +10,7 @@
 
 	export let data;
 
-	console.log(data);
+	console.log('DATA:', data);
 
 	let project: Project | null = null;
 	let rgb = '255, 255, 255';
@@ -29,7 +29,7 @@
 			rgb = project.customColor;
 		} else {
 			const image = new Image();
-			image.src = `/projects/${project.id}.png`;
+			image.src = project.images[0];
 			image.onload = () => {
 				rgb = getAverageRGB(image);
 			};
@@ -67,7 +67,7 @@
 			<div class="flex justify-center">
 				{#if project.video != null && project.video != ''}
 					<Video
-						src="/projects/videos/{project.id}.mp4"
+						src="/projectMedia/videos/{project.id}.mp4"
 						class="object-cover w-5/6 rounded-xl"
 						autoplay
 						controls
@@ -75,11 +75,7 @@
 						trackSrc="flowbite.mp4"
 					/>
 				{:else}
-					<img
-						src="/projects/{project.id}.png"
-						alt={project.name}
-						class="object-cover w-5/6 rounded-xl"
-					/>
+					<img src={project.images[0]} alt={project.name} class="object-cover w-5/6 rounded-xl" />
 				{/if}
 			</div>
 			<div class="w-4/5">
