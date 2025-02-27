@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getAverageRGB } from '$lib/functions/imageColor';
 	import Button from './button.svelte';
 	import IntersectionObserver from 'svelte-intersection-observer';
 	import type { Project } from '$lib/types';
@@ -38,18 +37,18 @@
 		// Get the section title
 		title = document.getElementById('projects-title');
 
-		if (project.customColor) return;
-		const image = new Image();
-		image.src = project.images[0];
+		// if (project.customColor) return;
+		// const image = new Image();
+		// image.src = project.images[0];
 
-		image.onload = () => {
-			rgb = getAverageRGB(image);
-			rgbBrightness =
-				(parseInt(rgb.split(',')[0]) * 299 +
-					parseInt(rgb.split(',')[1]) * 587 +
-					parseInt(rgb.split(',')[2]) * 114) /
-				1000;
-		};
+		// image.onload = () => {
+		// 	rgb = getAverageRGB(image);
+		// rgbBrightness =
+		// 	(parseInt(rgb.split(',')[0]) * 299 +
+		// 		parseInt(rgb.split(',')[1]) * 587 +
+		// 		parseInt(rgb.split(',')[2]) * 114) /
+		// 	1000;
+		// };
 	});
 </script>
 
