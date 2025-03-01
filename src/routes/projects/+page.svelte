@@ -18,8 +18,8 @@
 	class={'px-2horizontal bg-black py-12 justify-center gap-x-horizontal gap-y-12 grid grid-cols-2 ' +
 		'handheld:px-handheld-horizontal handheld:grid-cols-1'}
 >
-	{#each data.projects as project}
-		<ProjectCard category={data.category} {project} />
+	{#each data.projects as project, index}
+		<ProjectCard {project} order={index + 1} />
 	{/each}
 </main>
 

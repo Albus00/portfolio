@@ -48,3 +48,10 @@ export const hexToRgb = (hex: string): string => {
   const b = bigint & 255;
   return `${r}, ${g}, ${b}`;
 };
+
+export const getBrightness = (rgb: string): number => {
+  return (parseInt(rgb.split(',')[0]) * 299 +
+    parseInt(rgb.split(',')[1]) * 587 +
+    parseInt(rgb.split(',')[2]) * 114) /
+    1000;
+};

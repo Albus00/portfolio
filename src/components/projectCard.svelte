@@ -3,22 +3,19 @@
 	import Button from './button.svelte';
 	import IntersectionObserver from 'svelte-intersection-observer';
 	import type { Project } from '$lib/types';
+	import { getBrightness } from '$lib/functions/color';
+	import ProjectTag from './projectTag.svelte';
 
 	export let project: Project;
 	export let order: number;
 
 	// console.log(project);
 
-	let footer: HTMLElement | null = null;
 	let projectNode: HTMLElement | null = null;
 	let title: HTMLElement | null = null;
 
 	let rgb = project.customColor ? project.customColor : '255, 255, 255';
-	let rgbBrightness =
-		(parseInt(rgb.split(',')[0]) * 299 +
-			parseInt(rgb.split(',')[1]) * 587 +
-			parseInt(rgb.split(',')[2]) * 114) /
-		1000;
+	let rgbBrightness = getBrightness(rgb);
 
 	const changeProject = () => {
 		document.documentElement.style.backgroundColor = `rgba(${rgb}, 0.5)`;
@@ -36,19 +33,6 @@
 	onMount(async () => {
 		// Get the section title
 		title = document.getElementById('projects-title');
-
-		// if (project.customColor) return;
-		// const image = new Image();
-		// image.src = project.images[0];
-
-		// image.onload = () => {
-		// 	rgb = getAverageRGB(image);
-		// rgbBrightness =
-		// 	(parseInt(rgb.split(',')[0]) * 299 +
-		// 		parseInt(rgb.split(',')[1]) * 587 +
-		// 		parseInt(rgb.split(',')[2]) * 114) /
-		// 	1000;
-		// };
 	});
 </script>
 
@@ -72,23 +56,16 @@
 		</div>
 		<div class="h-full flex-grow w-1/2 flex flex-col justify-between">
 			<div>
-				<h1>{project.name}</h1>
+				<h1 class={rgbBrightness < 50 ? 'text-white' : ''}>{project.name}</h1>
 				<p class={rgbBrightness < 50 ? 'text-white' : ''}>{project.description.short}</p>
 				<div class="flex flex-row gap-x-2 py-5">
 					{#each project.stack as tag}
-						<a
-							class="font-rotulo font-semibold px-5 py-1 rounded-xl hover:scale-105 transition-all {rgbBrightness <
-								125 && 'text-white'}"
-							style="background-color: rgba({rgb}, 0.3);"
-							href={tag.url}
-						>
-							{tag.name}
-						</a>
+						<ProjectTag {tag} {rgb} {rgbBrightness} />
 					{/each}
 				</div>
 			</div>
 			<a
-				class="py-3 rounded-2xl font-rotulo font-semibold text-center text-6xl shadow-xl hover:translate-x-2 hover:-translate-y-2 transition-all {rgbBrightness <
+				class="py-3 rounded-2xl font-rotulo font-semibold text-center text-6xl shadow-xl hover:shadow-2xl transition-all {rgbBrightness <
 					125 && 'text-white'}"
 				style="background-color: rgba({rgb}, 0.3);"
 				id={project.id}
