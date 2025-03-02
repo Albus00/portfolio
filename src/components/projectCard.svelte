@@ -48,7 +48,7 @@
 		</div>
 		<div class="h-full flex-grow w-1/2 flex flex-col justify-between">
 			<div>
-				<h1 class={rgbBrightness < 50 ? 'text-white' : ''}>{project.name}</h1>
+				<h1 class={'header1 ' + (rgbBrightness < 50 ? 'text-white' : '')}>{project.name}</h1>
 				<p class={rgbBrightness < 50 ? 'text-white' : ''}>{project.description.short}</p>
 				<div class="flex flex-row gap-x-2 py-5">
 					{#each project.stack as tag}

@@ -88,7 +88,7 @@
 							{/each}
 						</div>
 					</div>
-					<div class={`pt-5 ${rgbBrightness < 30 && 'invert'}`}>
+					<div class={`pt-5 project-content ${rgbBrightness < 30 && 'invert'}`}>
 						<div class="mb-10">
 							<h1 class="inline">{project.name}</h1>
 							<p class="text-xl inline">{project.description.short.replace(project.name, '')}</p>
@@ -102,17 +102,14 @@
 {/if}
 
 <style>
-	:global(h1) {
-		all: unse;
+	// TODO: Fix local styling
+	.project-content p,
+	ul {
+		@apply text-xl mb-4 handheld:text-xl;
+	}
+	.project-content h1 {
+		all: unset;
 		font-family: 'reflex-pro-variable', sans-serif;
-		@apply text-left mt-4 text-5xl font-bold handheld:text-2xl;
-	}
-
-	:global(p) {
-		@apply text-xl mb-4 handheld:text-xl;
-	}
-
-	:global(ul) {
-		@apply text-xl mb-4 handheld:text-xl;
+		@apply text-left mt-4 text-5xl font-bold handheld:text-2xl text-white;
 	}
 </style>
