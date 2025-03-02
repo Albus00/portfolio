@@ -15,6 +15,8 @@
 	</div>
 </section>
 
+<ScrollingTitle nextTitle="Projects" />
+
 <style>
 	p {
 		@apply text-6xl handheld:text-5xl;

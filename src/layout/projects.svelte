@@ -4,32 +4,25 @@
 	import ScrollingTitle from '$components/scrollingTitle.svelte';
 	import IntersectionObserver from 'svelte-intersection-observer';
 	import type { Project } from '$lib/types';
+	import { changeProject } from '$lib/functions/visuals';
 
 	// Import data from load function
 	export let projects: Project[] = [];
 
 	let sectionHeight = 0;
-	let title: HTMLElement | null = null;
+	let titleElement: HTMLElement | null = null;
 	onMount(() => {
-		title = document.getElementById('projects-title');
+		titleElement = document.getElementById('projects-title');
 	});
 
 	let projectNode: HTMLElement | null = null;
-	const changeProject = () => {
-		document.documentElement.style.backgroundColor = `#F2F2F2`;
-		if (!title) return;
-		title.classList.add('animate__fadeOut');
-		setTimeout(() => {
-			if (!title) return;
-			title.style.color = '#F24822';
-			title.innerHTML = 'Projects';
-			title.classList.remove('animate__fadeOut');
-			title.classList.add('animate__fadeIn');
-		}, 200);
-	};
 </script>
 
-<IntersectionObserver element={projectNode} on:intersect={() => changeProject()} threshold={0.5} />
+<IntersectionObserver
+	element={projectNode}
+	on:intersect={() => changeProject(titleElement, 'Projects', '242, 72, 34', 0, true)}
+	threshold={0}
+/>
 <section id="projects">
 	<div bind:this={projectNode}></div>
 	<ScrollingTitle title="Projects" nextTitle="" {sectionHeight} />

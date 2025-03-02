@@ -4,7 +4,7 @@
 	import { lockTitle, unlockTitle } from '$lib/functions/titleManager';
 
 	export let title: string = '';
-	export let nextTitle: string;
+	export let nextTitle: string = '';
 	export let sectionHeight: number = 500;
 
 	let id = title.toLowerCase().replace(/ /g, '-') + '-title';
@@ -23,9 +23,10 @@
 					startScroll = window.scrollY;
 				}
 				const scrollPosition = window.scrollY - startScroll;
-				const opacity = 1 - (scrollPosition - sectionHeight / 2) / window.innerHeight;
+				const opacity = (sectionHeight - scrollPosition) / sectionHeight;
 				title.style.opacity = opacity.toString();
 			}
+			console.log('');
 		});
 	});
 </script>

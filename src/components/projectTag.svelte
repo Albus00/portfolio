@@ -17,7 +17,6 @@
 </a>
 
 <style>
-	button,
 	a {
 		font-family: 'reflex-pro-variable', sans-serif;
 		font-variation-settings:

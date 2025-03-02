@@ -5,41 +5,30 @@
 	import type { Project } from '$lib/types';
 	import { getBrightness } from '$lib/functions/color';
 	import ProjectTag from './projectTag.svelte';
+	import { changeProject } from '$lib/functions/visuals';
 
 	export let project: Project;
 	export let order: number;
 
-	// console.log(project);
-
 	let projectNode: HTMLElement | null = null;
-	let title: HTMLElement | null = null;
+	let titleElement: HTMLElement | null = null;
 
 	let rgb = project.customColor ? project.customColor : '255, 255, 255';
 	let rgbBrightness = getBrightness(rgb);
 
-	const changeProject = () => {
-		document.documentElement.style.backgroundColor = `rgba(${rgb}, 0.5)`;
-		if (!title) return;
-		title.classList.add('animate__fadeOut');
-		setTimeout(() => {
-			if (!title) return;
-			title.style.color = rgbBrightness > 200 ? '#000' : `rgb(${rgb})`;
-			title.innerHTML = project.name;
-			title.classList.remove('animate__fadeOut');
-			title.classList.add('animate__fadeIn');
-		}, 200);
-	};
-
 	onMount(async () => {
 		// Get the section title
-		title = document.getElementById('projects-title');
+		titleElement = document.getElementById('projects-title');
 	});
 </script>
 
-<IntersectionObserver element={projectNode} on:intersect={() => changeProject()} threshold={0.5} />
+<IntersectionObserver
+	element={projectNode}
+	on:intersect={() => changeProject(titleElement, project.name, rgb, rgbBrightness)}
+	threshold={0.2}
+/>
 <div class="h-screen">
 	<div
-		bind:this={projectNode}
 		class="flex flex-row gap-x-6 h-3/4 w-full p-6 items-center shadow-xl backdrop-blur-md rounded-xl {order %
 			2 ==
 		1
@@ -47,7 +36,10 @@
 			: 'justify-items-start'}"
 		style="background-color: rgba({rgb}, 0.4);"
 	>
-		<div class="h-full overflow-hidden aspect-square {order % 2 == 1 ? 'order-1' : ''}">
+		<div
+			bind:this={projectNode}
+			class="h-full overflow-hidden aspect-square {order % 2 == 1 ? 'order-1' : ''}"
+		>
 			<img
 				class="aspect-square object-cover object-center rounded-xl"
 				src={project.images[0]}
