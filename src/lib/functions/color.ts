@@ -55,3 +55,11 @@ export const getBrightness = (rgb: string): number => {
     parseInt(rgb.split(',')[2]) * 114) /
     1000;
 };
+
+export const getTextColor = (rgbBrightness: number): string => {
+  return checkBrightnessThreshold(rgbBrightness) ? 'text-white' : 'text-black';
+}
+
+export const checkBrightnessThreshold = (rgbBrightness: number): boolean => {
+  return rgbBrightness < 125;
+}

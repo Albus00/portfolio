@@ -14,4 +14,10 @@ export interface Project {
   video?: string | null;
   stack: { id: string, name: string, url: string }[];
   customColor?: string;
+  info: string;
+}
+
+export interface ProjectInfo {
+  item: string;
+  text: string;
 }

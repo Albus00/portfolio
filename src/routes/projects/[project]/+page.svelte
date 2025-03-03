@@ -2,21 +2,21 @@
 	import { onMount } from 'svelte';
 	import { Video } from 'flowbite-svelte';
 	import ProjectTag from '$components/projectTag.svelte';
-	import type { Project } from '$lib/types';
-	import { getBrightness } from '$lib/functions/color';
+	import type { Project, ProjectInfo } from '$lib/types';
+	import { checkBrightnessThreshold, getBrightness, getTextColor } from '$lib/functions/color';
 
 	export let data;
 
 	const project: Project | null = data.project;
 	const projectColor = project?.customColor ?? '0, 0, 0';
 	const rgbBrightness = getBrightness(projectColor);
-	let activeIndex = 0; // 0 = Media, 1 = Info
+	let activeIndex = 1; // 0 = Media, 1 = Info
 
 	// Mouse drag variables
 	let startX = 0;
 	let isDragging = false;
 	const SNAP_THRESHOLD = 100;
-	let translateX = `translateX(calc(-88% * ${activeIndex}));`;
+	let translateX = `translateX(calc(-80% * ${activeIndex}));`;
 
 	// Desktop mouse drag support
 	function handleMouseDown(event: MouseEvent) {
@@ -41,6 +41,18 @@
 
 	function handleMouseUp() {
 		isDragging = false;
+	}
+
+	function interoperateInfo(): ProjectInfo[] {
+		const info = project?.info;
+		if (!info) return [];
+
+		const elements = info.split(', ').map((element) => element.split(': '));
+
+		return elements.map((entry) => ({
+			item: entry[0],
+			text: entry[1] as string
+		}));
 	}
 </script>
 
@@ -84,57 +96,55 @@
 			>
 				<div
 					class={'flex flex-col justify-between rounded-xl p-8 text-center w-3/4 h-5/6 border border-opacity-40 ' +
-						(rgbBrightness < 125 ? 'border-white' : 'border-black')}
+						(checkBrightnessThreshold(rgbBrightness) ? 'border-white' : 'border-black')}
 				>
-					<div class="flex flex-row justify-between">
+					<div class="relative flex flex-row justify-between h-full">
 						<div>
-							<h1
-								class={'text-9xl font-bold mb-4 text-left ' +
-									(rgbBrightness < 125 ? 'text-white' : '')}
-							>
+							<h1 class={'text-9xl font-bold mb-4 text-left ' + getTextColor(rgbBrightness)}>
 								{project.name}
 							</h1>
-							<div
-								class={'text-left w-1/2 font-semibold ' + (rgbBrightness < 125 ? 'text-white' : '')}
-							>
+							<div class={'text-left w-1/2 font-semibold ' + getTextColor(rgbBrightness)}>
 								{project.description.long}
 							</div>
 						</div>
-						<!-- TODO: Move this with pos absolute -->
 						<div
-							class="h-full w-[1200px] rounded-xl p-5"
+							class="absolute top-0 right-0 w-[350px] h-full rounded-xl p-5 flex flex-col justify-between"
 							style={`background-color: rgba(${projectColor}, 0.3);`}
 						>
-							<h2
-								class={'text-5xl font-bold mb-4 text-left ' +
-									(rgbBrightness < 125 ? 'text-white' : '')}
-							>
-								STACK
-							</h2>
-							<div class="flex flex-row gap-3">
-								{#each project.stack as tag}
-									<ProjectTag {tag} rgb={projectColor} {rgbBrightness} />
-								{/each}
+							<div>
+								<h2 class={'text-4xl font-bold mb-4 text-left ' + getTextColor(rgbBrightness)}>
+									Project Info
+								</h2>
+								<div class={'flex flex-col gap-2'}>
+									{#each interoperateInfo() as info}
+										<div class="flex flex-row">
+											<p class={'font-semibold mr-1 ' + getTextColor(rgbBrightness)}>
+												{info.item}:
+											</p>
+											<p class={'text-left ' + getTextColor(rgbBrightness)}>{info.text}</p>
+										</div>
+									{/each}
+								</div>
+							</div>
+							<div class="flex flex-col gap-3">
+								{#if project.demoUrl}
+									<ProjectTag
+										tag={{ name: 'DEMO', url: project.demoUrl }}
+										rgb={projectColor}
+										{rgbBrightness}
+										isLarge={true}
+									/>
+								{/if}
+								{#if project.repositoryUrl}
+									<ProjectTag
+										tag={{ name: 'REPOSITORY', url: project.repositoryUrl }}
+										rgb={projectColor}
+										{rgbBrightness}
+										isLarge={true}
+									/>
+								{/if}
 							</div>
 						</div>
-					</div>
-					<div class="flex flex-wrap gap-3">
-						{#if project.demoUrl}
-							<ProjectTag
-								tag={{ name: 'DEMO', url: project.demoUrl }}
-								rgb={projectColor}
-								{rgbBrightness}
-								isLarge={true}
-							/>
-						{/if}
-						{#if project.repositoryUrl}
-							<ProjectTag
-								tag={{ name: 'REPOSITORY', url: project.repositoryUrl }}
-								rgb={projectColor}
-								{rgbBrightness}
-								isLarge={true}
-							/>
-						{/if}
 					</div>
 				</div>
 			</section>

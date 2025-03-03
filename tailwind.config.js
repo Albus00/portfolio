@@ -24,13 +24,13 @@ export default {
       borderRadius: {
         'img': '2rem',
       },
-      screens: {
-        desktop: { 'min': '1225px' },
-        laptop: { 'max': '1600px' },
-        handheld: { 'max': '1024px' },
-        mobile: { 'max': '750px' },
-        thin: { 'max': '340px' }
-      },
+      // screens: {
+      //   desktop: { 'min': '1225px' },
+      //   laptop: { 'max': '1600px' },
+      //   handheld: { 'max': '1024px' },
+      //   mobile: { 'max': '750px' },
+      //   thin: { 'max': '340px' }
+      // },
     },
   },
   plugins: [],

@@ -22,7 +22,8 @@ export const getProjects = async (): Promise<Project[]> => {
       images: record.images?.map((fileName: string) => getMediaUrl(record, fileName)) || [],
       video: record.video ? getMediaUrl(record, record.video) : null,
       stack: record.expand?.stack || [],
-      customColor: record.custom_color ? hexToRgb(record.custom_color) : ''
+      customColor: record.custom_color ? hexToRgb(record.custom_color) : '',
+      info: record.info
     }));
   } catch (error) {
     console.error('Error fetching projects from PocketBase:', error);
@@ -49,7 +50,8 @@ export const getProjectById = async (id: string): Promise<Project | null> => {
       images: record.images?.map((fileName: string) => getMediaUrl(record, fileName)) || [],
       video: record.video ? getMediaUrl(record, record.video) : null,
       stack: record.expand?.stack || [],
-      customColor: record.custom_color ? hexToRgb(record.custom_color) : ''
+      customColor: record.custom_color ? hexToRgb(record.custom_color) : '',
+      info: record.info
     };
   } catch (error) {
     console.error(`Error fetching project with id ${id} from PocketBase:`, error);
