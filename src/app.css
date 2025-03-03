@@ -49,6 +49,16 @@ h3 {
   @apply  text-3xl inline;
 }
 
+.project-content p,
+	ul {
+		@apply text-xl mb-4 handheld:text-xl;
+	}
+.project-content h1 {
+  all: unset;
+  font-family: 'reflex-pro-variable', sans-serif;
+  @apply text-left mt-4 text-5xl font-bold handheld:text-2xl uppercase;
+}
+
 .reflex-pro {
   font-family: "reflex-pro-variable",sans-serif;
   font-variation-settings: 'wdth' 100, 'wght' 400, 'ital' 0;

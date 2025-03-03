@@ -29,6 +29,9 @@ importers:
       pocketbase:
         specifier: ^0.25.1
         version: 0.25.1
+      svelte-gestures:
+        specifier: ^5.1.3
+        version: 5.1.3
       svelte-markdown:
         specifier: ^0.4.1
         version: 0.4.1(svelte@4.2.18)
@@ -1666,6 +1669,9 @@ packages:
     peerDependenciesMeta:
       svelte:
         optional: true
+
+  svelte-gestures@5.1.3:
+    resolution: {integrity: sha512-ELOlzuH9E4+S1biCCTfusRlvzFpnqRPlljEqayoBTu5STH42u0kTT45D1m3Py3E9UmIyZTgrSLw6Fus/fh75Dw==}
 
   svelte-hmr@0.16.0:
     resolution: {integrity: sha512-Gyc7cOS3VJzLlfj7wKS0ZnzDVdv3Pn2IuVeJPk9m2skfhcu5bq3wtIZyQGggr7/Iim5rH5cncyQft/kRLupcnA==}
@@ -3420,6 +3426,8 @@ snapshots:
       postcss-scss: 4.0.9(postcss@8.4.38)
     optionalDependencies:
       svelte: 4.2.18
+
+  svelte-gestures@5.1.3: {}
 
   svelte-hmr@0.16.0(svelte@4.2.18):
     dependencies:

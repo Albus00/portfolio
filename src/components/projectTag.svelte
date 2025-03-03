@@ -8,8 +8,8 @@
 </script>
 
 <a
-	class="flex items-center font-rotulo font-semibold px-5 rounded-xl hover:scale-105 transition-all {style} {rgbBrightness <
-		125 && 'text-white'}"
+	class="flex items-center font-rotulo font-semibold px-8 rounded-xl hover:scale-105 hover:shadow-md hover:border-none transition-all border border-opacity-40 {style} {rgbBrightness <
+		125 && 'text-white border-white'}"
 	style="background-color: rgba({rgb}, 0.3);"
 	href={tag.url}
 >
