@@ -15,7 +15,7 @@ html, body, main {
 }
 
 p {
-  @apply text-black;
+  @apply text-black text-sm;
 }
 
 /* https://fonts.adobe.com/fonts/rotulo-variable?vf-font-size=100&vf-font=RotuloVariable-CompressedThin&vf-axes=slnt,0,wght,700,wdth,50 */
@@ -45,8 +45,14 @@ h2 {
   }
 
 h3 {
-  line-height: 0.2;
-  @apply  text-3xl inline;
+  font-family: "reflex-pro-variable",sans-serif;
+  font-variation-settings: 'wdth' 100, 'wght' 400, 'ital' 0;
+  @apply text-5xl sm:text-6xl md:text-8xl projectMin:text-9xl font-bold mb-4 text-left uppercase;
+}
+h4 {
+  font-family: "reflex-pro-variable",sans-serif;
+  font-variation-settings: 'wdth' 100, 'wght' 400, 'ital' 0;
+  @apply text-4xl font-bold mb-4 text-left uppercase;
 }
 
 .project-content p,

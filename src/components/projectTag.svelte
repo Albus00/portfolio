@@ -7,7 +7,7 @@
 	export let isLarge: boolean = false;
 
 	const style = isLarge
-		? `text-2xl h-[4.2rem] border border-opacity-40 ${checkBrightnessThreshold(rgbBrightness) ? 'border-white' : ''}`
+		? `text-2xl h-12 border border-opacity-40 md:h-16 w-full sm:w-2/3 md:w-full ${checkBrightnessThreshold(rgbBrightness) ? 'border-white' : ''}`
 		: 'text-md h-8';
 </script>
 

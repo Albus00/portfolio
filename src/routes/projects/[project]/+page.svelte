@@ -10,15 +10,18 @@
 	const project: Project | null = data.project;
 	const projectColor = project?.customColor ?? '0, 0, 0';
 	const rgbBrightness = getBrightness(projectColor);
-	let activeIndex = 1; // 0 = Media, 1 = Info
+	let activeIndex = 0; // 0 = Media, 1 = Info
 
 	// Mouse drag variables
 	let startX = 0;
 	let isDragging = false;
 	const SNAP_THRESHOLD = 100;
-	let translateX = `translateX(calc(-80% * ${activeIndex}));`;
+	const SMALL_SCREEN_THRESHOLD = 768; // https://tailwindcss.com/docs/responsive-design
+	let translateX = '';
+	let descSlideOffset = '';
+	let screenWidth: number = 1024;
 
-	// Desktop mouse drag support
+	// Event handlers for mouse
 	function handleMouseDown(event: MouseEvent) {
 		startX = event.clientX;
 		isDragging = true;
@@ -26,22 +29,43 @@
 
 	function handleMouseMove(event: MouseEvent) {
 		if (!isDragging) return;
-		const diff = event.clientX - startX;
-
-		if (diff > SNAP_THRESHOLD && activeIndex === 1) {
-			translateX = 'translateX(calc(-80% * 0));';
-			activeIndex = 0;
-			isDragging = false;
-		} else if (diff < -SNAP_THRESHOLD && activeIndex === 0) {
-			translateX = 'translateX(calc(-80% * 1));';
-			activeIndex = 1;
-			isDragging = false;
-		}
+		handleDrag(event.clientX);
 	}
 
 	function handleMouseUp() {
 		isDragging = false;
 	}
+
+	// Event handlers for touch
+	function handleTouchStart(event: TouchEvent) {
+		startX = event.touches[0].clientX; // Get the first touch point
+		isDragging = true;
+	}
+
+	function handleTouchMove(event: TouchEvent) {
+		if (!isDragging) return;
+		handleDrag(event.touches[0].clientX);
+	}
+
+	function handleTouchEnd() {
+		isDragging = false;
+	}
+
+	// Shared logic for mouse and touch dragging
+	function handleDrag(currentX: number) {
+		const diff = currentX - startX;
+		if (Math.abs(diff) > SNAP_THRESHOLD) {
+			activeIndex = diff > 0 ? 0 : 1;
+			translateX = getTranslateX(activeIndex, screenWidth);
+			isDragging = false;
+		}
+	}
+
+	const getTranslateX = (index: number, screenWidth: number) => {
+		return screenWidth < SMALL_SCREEN_THRESHOLD
+			? `translateX(calc(-95% * ${index}));`
+			: `translateX(calc(-80% * ${index}));`;
+	};
 
 	function interoperateInfo(): ProjectInfo[] {
 		const info = project?.info;
@@ -54,6 +78,11 @@
 			text: entry[1] as string
 		}));
 	}
+
+	onMount(() => {
+		screenWidth = window.innerWidth;
+		descSlideOffset = screenWidth < SMALL_SCREEN_THRESHOLD ? 'translateX(-5%)' : 'translateX(-20%)';
+	});
 </script>
 
 {#if project}
@@ -68,6 +97,9 @@
 			on:mousemove={handleMouseMove}
 			on:mouseup={handleMouseUp}
 			on:mouseleave={handleMouseUp}
+			on:touchstart={handleTouchStart}
+			on:touchmove={handleTouchMove}
+			on:touchend={handleTouchEnd}
 			role="presentation"
 		>
 			<!-- Media Slide -->
@@ -75,7 +107,7 @@
 				{#if project.video}
 					<Video
 						src="/projectMedia/videos/{project.id}.mp4"
-						class="object-cover w-3/4 h-5/6 rounded-xl"
+						class="object-cover w-11/12 md:w-3/4 h-5/6 rounded-xl"
 						autoplay
 						controls
 						muted
@@ -84,37 +116,39 @@
 					<img
 						src={project.images[0]}
 						alt={project.name}
-						class="object-cover w-3/4 h-5/6 rounded-xl"
+						class="object-cover w-11/12 md:w-3/4 h-5/6 rounded-xl"
 					/>
 				{/if}
 			</section>
 
-			<!-- Info Slide -->
+			<!-- Description Slide -->
 			<section
+				id="project-description"
 				class="flex justify-center items-center min-w-full h-screen"
-				style={`transform: translateX(calc(-20%));`}
+				style={`transform: ${descSlideOffset};`}
 			>
 				<div
-					class={'flex flex-col justify-between rounded-xl p-8 text-center w-3/4 h-5/6 border border-opacity-40 ' +
+					class={'flex flex-col justify-between rounded-xl p-4 md:p-8 text-center w-11/12 md:w-3/4 h-5/6 border border-opacity-40 ' +
 						(checkBrightnessThreshold(rgbBrightness) ? 'border-white' : 'border-black')}
 				>
-					<div class="relative flex flex-row justify-between h-full">
+					<div class="relative flex flex-col justify-between projectMin:justify-start h-full">
 						<div>
-							<h1 class={'text-9xl font-bold mb-4 text-left ' + getTextColor(rgbBrightness)}>
+							<h3 class={getTextColor(rgbBrightness)}>
 								{project.name}
-							</h1>
-							<div class={'text-left w-1/2 font-semibold ' + getTextColor(rgbBrightness)}>
+							</h3>
+							<p
+								class={'text-left w-full md:w-4/5 projectMin:w-1/2 font-semibold pb-8 ' +
+									getTextColor(rgbBrightness)}
+							>
 								{project.description.long}
-							</div>
+							</p>
 						</div>
 						<div
-							class="absolute top-0 right-0 w-[350px] h-full rounded-xl p-5 flex flex-col justify-between"
+							class="projectMin:absolute top-0 right-0 w-full md:w-1/2 projectMin:w-[350px] projectMin:h-full rounded-xl p-5 flex flex-col justify-between"
 							style={`background-color: rgba(${projectColor}, 0.3);`}
 						>
-							<div>
-								<h2 class={'text-4xl font-bold mb-4 text-left ' + getTextColor(rgbBrightness)}>
-									Project Info
-								</h2>
+							<div class="mb-5">
+								<h4 class={getTextColor(rgbBrightness)}>Project Info</h4>
 								<div class={'flex flex-col gap-2'}>
 									{#each interoperateInfo() as info}
 										<div class="flex flex-row">

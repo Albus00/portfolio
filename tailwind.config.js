@@ -29,7 +29,8 @@ export default {
         laptop: { 'max': '1600px' },
         handheld: { 'max': '1024px' },
         mobile: { 'max': '750px' },
-        thin: { 'max': '340px' }
+        thin: { 'max': '340px' },
+        projectMin: { 'min': '1600px' },
       },
     },
   },
