@@ -10,10 +10,7 @@
 	const project: Project | null = data.project;
 	const projectColor = project?.customColor ?? '0, 0, 0';
 	const rgbBrightness = getBrightness(projectColor);
-	let activeIndex = 1; // 0 = Media, 1 = Info
-
-	let mediaWidth = 0;
-	let mediaHeight = 0;
+	let activeIndex = 0; // 0 = Media, 1 = Info
 
 	// Mouse drag variables
 	let startX = 0;
@@ -45,15 +42,6 @@
 	function handleMouseUp() {
 		isDragging = false;
 	}
-
-	onMount(() => {
-		const mediaElement = document.querySelector('video') || document.querySelector('img');
-
-		if (mediaElement) {
-			mediaWidth = mediaElement.width;
-			mediaHeight = mediaElement.height;
-		}
-	});
 </script>
 
 {#if project}
@@ -112,8 +100,9 @@
 								{project.description.long}
 							</div>
 						</div>
+						<!-- TODO: Move this with pos absolute -->
 						<div
-							class="h-full w-2/5 rounded-xl p-5"
+							class="h-full w-[1200px] rounded-xl p-5"
 							style={`background-color: rgba(${projectColor}, 0.3);`}
 						>
 							<h2
@@ -122,7 +111,7 @@
 							>
 								STACK
 							</h2>
-							<div class="flex flex-row gap-3 justify-center">
+							<div class="flex flex-row gap-3">
 								{#each project.stack as tag}
 									<ProjectTag {tag} rgb={projectColor} {rgbBrightness} />
 								{/each}
