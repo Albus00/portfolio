@@ -9,7 +9,7 @@
 	let projects = data.projects ?? [];
 </script>
 
-<main class="relative">
+<main class="relative pb-24 sm:pb-0">
 	<Hero />
 	<About />
 	<Projects {projects} />
