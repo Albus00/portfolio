@@ -33,9 +33,9 @@
 
 {#if title !== ''}
 	<IntersectionObserver element={lockNode} on:intersect={() => lockTitle(id)} threshold={0} />
-	<div class="h-screen">
+	<div class="h-screen -z-10">
 		<h2
-			class="px-horizontal -z-10 transition-opacity animate__animated animate__fast text-nowrap"
+			class="p-8 lg:px-horizontal transition-opacity animate__animated animate__fast text-nowrap"
 			{id}
 		>
 			{title}

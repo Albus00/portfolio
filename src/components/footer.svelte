@@ -3,7 +3,7 @@
 </script>
 
 <footer
-	class="fixed bottom-0 left-0 w-full px-horizontal pb-4 flex flex-row justify-between items-center font-bold"
+	class="fixed bottom-0 left-0 w-full px-8 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center font-bold"
 >
 	<div>
 		<p>Available for new projects</p>
@@ -20,6 +20,6 @@
 			'wdth' 100,
 			'wght' 400,
 			'ital' 0;
-		@apply text-2xl uppercase;
+		@apply text-xl md:text-2xl uppercase;
 	}
 </style>

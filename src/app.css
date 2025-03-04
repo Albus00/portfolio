@@ -11,7 +11,7 @@
   @apply bg-base w-full;
 }
 html, body, main {
-  @apply w-full
+  @apply w-screen overflow-x-hidden;
 }
 
 p {
@@ -22,27 +22,26 @@ p {
 h1 {
     font-family: "reflex-pro-variable",sans-serif;
     font-variation-settings: 'wdth' 100, 'wght' 400, 'ital' 0;
-    @apply text-[8rem] text-black text-center laptop:text-8xl handheld:text-7xl uppercase
+    @apply text-6xl sm:text-8xl lg:text-[8rem] 2xl:text-[9rem] text-black text-center uppercase
   }
-  .h1-project {
+  /* .h1-project {
     font-size: 10rem;
     font-variation-settings: 'wdth' 70, 'wght' 750, 'slnt' 0;
     text-shadow: none;
     @apply handheld:text-7xl
-  }
+  } */
 
 h2 {
-  font-size: 16rem;
   font-family: "reflex-pro-variable",sans-serif;
   font-variation-settings: 'wdth' 100, 'wght' 400, 'ital' 0;
-  @apply text-accent uppercase;
+  @apply text-5xl font-bold xl:font-normal md:text-[10rem] xl:text-[16rem] text-accent uppercase;
 }
-  .h2-link {
+  /* .h2-link {
     font-family: "rotulo-variable",sans-serif;
     font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
 
     @apply text-gray-400 text-6xl w-fit handheld:text-4xl underline-effect;
-  }
+  } */
 
 h3 {
   font-family: "reflex-pro-variable",sans-serif;
@@ -55,7 +54,7 @@ h4 {
   @apply text-4xl font-bold mb-4 text-left uppercase;
 }
 
-.project-content p,
+/* .project-content p,
 	ul {
 		@apply text-xl mb-4 handheld:text-xl;
 	}
@@ -63,7 +62,7 @@ h4 {
   all: unset;
   font-family: 'reflex-pro-variable', sans-serif;
   @apply text-left mt-4 text-5xl font-bold handheld:text-2xl uppercase;
-}
+} */
 
 .reflex-pro {
   font-family: "reflex-pro-variable",sans-serif;

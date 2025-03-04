@@ -1,7 +1,6 @@
 <script>
 	import '../app.css';
 	import 'animate.css';
-	import Header from '$components/header.svelte';
 
 	import { page } from '$app/stores';
 	import Footer from '$components/footer.svelte';
@@ -13,9 +12,6 @@
 <svelte:head>
 	<title>Albin Kjellberg</title>
 </svelte:head>
-{#if $page.data.url === undefined}
-	<!-- <Header {title} /> -->
-{/if}
 <slot />
 {#if $page.url.pathname === '/'}
 	<Footer />

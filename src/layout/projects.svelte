@@ -26,7 +26,7 @@
 <section id="projects">
 	<div bind:this={projectNode}></div>
 	<ScrollingTitle title="Projects" nextTitle="" {sectionHeight} />
-	<div class="px-horizontal flex-col w-full justify-center gap-y-12 grid">
+	<div class="px-4 xl:px-horizontal flex-col w-full justify-center gap-y-12 grid">
 		{#if projects.length === 0}
 			<div class="flex justify-center items-center h-96">
 				<p class="text-2xl">No projects to show</p>

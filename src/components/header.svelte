@@ -2,9 +2,7 @@
 	import IconButton from './iconButton.svelte';
 </script>
 
-<header
-	class="absolute top-0 left-0 w-full py-4 z-50 bg-dark-base text-white px-horizontal handheld:px-handheld-horizontal"
->
+<header class="w-full py-4 z-50 bg-dark-base text-white">
 	<div class="flex flex-row gap-4">
 		<IconButton
 			icon={'github'}

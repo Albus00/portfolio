@@ -82,6 +82,9 @@
 	onMount(() => {
 		screenWidth = window.innerWidth;
 		descSlideOffset = screenWidth < SMALL_SCREEN_THRESHOLD ? 'translateX(-5%)' : 'translateX(-20%)';
+
+		// Set the background color for mobile devices to avoid white edges
+		document.documentElement.style.backgroundColor = `rgba(${projectColor}, 0.8)`;
 	});
 </script>
 
@@ -109,8 +112,8 @@
 						src="/projectMedia/videos/{project.id}.mp4"
 						class="object-cover w-11/12 md:w-3/4 h-5/6 rounded-xl"
 						autoplay
-						controls
 						muted
+						controls
 					/>
 				{:else}
 					<img
