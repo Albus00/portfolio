@@ -25,19 +25,22 @@
 	}
 </script>
 
-<main class="w-full text-white py-10">
+<main class="w-full py-10">
 	<div style="--header: {headerHeight}" class="form-container w-full flex flex-col items-center">
 		<h1>Contact me</h1>
-		<p class="my-8 w-1/3">
+		<p class="my-10 w-full md:w-1/2 px-8">
 			Do you have a project, or maybe something else on your mind? Let me know and we can have a
 			chat about how <span class="marked-text">I might be able to help</span>. I would love to hear
 			from you!
 		</p>
-		<form class="flex flex-col items-center gap-10 w-2/3" on:submit|preventDefault={handleSubmit}>
+		<form
+			class="flex flex-col items-center gap-10 px-10 w-full md:w-2/3"
+			on:submit|preventDefault={handleSubmit}
+		>
 			<InputField label="Your name" bind:value={name} />
 			<InputField label="Preferred email" bind:value={email} />
 			<InputField label="A message" bind:value={message} textarea={true} />
-			<Button text="SEND!" type="submit" />
+			<Button text="SEND!" type="submit" isFilled />
 		</form>
 	</div>
 </main>

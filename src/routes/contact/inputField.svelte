@@ -6,7 +6,7 @@
 	const inputId = `${label.toLowerCase()}-input`;
 </script>
 
-<div class={`${textarea ? `w-3/4` : `w-1/2`}`}>
+<div class={`${textarea ? `w-full lg:w-3/4` : `w-full lg:w-3/4 xl:w-1/2`}`}>
 	<label for={inputId}>{label}</label>
 	{#if textarea}
 		<textarea class="h-44" bind:value id={inputId}></textarea>
@@ -18,9 +18,9 @@
 <style>
 	input,
 	textarea {
-		@apply font-mono px-4 py-3 block rounded-xl w-full;
+		@apply font-mono py-3 px-4 block rounded-xl w-full;
 	}
 	label {
-		@apply font-bold;
+		@apply text-lg font-semibold;
 	}
 </style>

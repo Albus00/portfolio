@@ -132,24 +132,23 @@
 						(checkBrightnessThreshold(rgbBrightness) ? 'border-white' : 'border-black')}
 				>
 					<div class="relative flex flex-col justify-between projectMin:justify-start h-full">
-						<div>
+						<div class="pb-8">
 							<h3 class={getTextColor(rgbBrightness)}>
 								{project.name}
 							</h3>
-							<p
-								class={'text-left w-full md:w-4/5 projectMin:w-1/2 font-semibold pb-8 ' +
-									getTextColor(rgbBrightness)}
-							>
-								{project.description.long}
-							</p>
+							<div class="w-full md:w-4/5 projectMin:w-1/2">
+								<p class={getTextColor(rgbBrightness)}>
+									{project.description.long}
+								</p>
+							</div>
 						</div>
 						<div
-							class="projectMin:absolute top-0 right-0 w-full md:w-1/2 projectMin:w-[350px] projectMin:h-full rounded-xl p-5 flex flex-col justify-between"
+							class="projectMin:absolute top-0 right-0 w-full md:w-1/2 projectMin:w-[350px] projectMin:h-full rounded-xl p-4 flex flex-col justify-between"
 							style={`background-color: rgba(${projectColor}, 0.3);`}
 						>
 							<div class="mb-5">
 								<h4 class={getTextColor(rgbBrightness)}>Project Info</h4>
-								<div class={'flex flex-col gap-2'}>
+								<div class={'flex flex-col gap-1'}>
 									{#each interoperateInfo() as info}
 										<div class="flex flex-row">
 											<p class={'font-semibold mr-1 ' + getTextColor(rgbBrightness)}>
@@ -185,3 +184,9 @@
 		</section>
 	</main>
 {/if}
+
+<style>
+	p {
+		@apply text-left text-sm;
+	}
+</style>

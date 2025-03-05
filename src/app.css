@@ -68,7 +68,7 @@ h4 {
 }
 
 .marked-text {
-  @apply text-custom-yellow font-semibold;
+  @apply text-accent font-semibold;
 }
 
 .card-shadow {

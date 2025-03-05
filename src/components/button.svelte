@@ -3,8 +3,9 @@
 	export let href: string = '';
 	export let target: string = '_self';
 	export let type: string = 'link';
+	export let isFilled: boolean = false;
 
-	const buttonClass = `font-bold text-2xl hover:scale-110 transition-all text-accent`;
+	const buttonClass = `font-bold text-2xl hover:scale-110 transition-all ${isFilled ? 'bg-accent text-white py-2 px-8 rounded-xl' : 'text-accent'}`;
 </script>
 
 {#if type === 'link'}
