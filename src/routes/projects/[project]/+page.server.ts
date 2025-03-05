@@ -7,11 +7,9 @@ export const load: PageServerLoad = async ({ params }) => {
     return { project: null };
   }
   const projectId: string = params.project;
-  console.log('projectId:', projectId);
 
   try {
     const project = await getProjectById(projectId);
-    console.log('project:', project);
 
     return { project: project };
   } catch (error) {

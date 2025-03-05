@@ -33,11 +33,7 @@ export const getProjects = async (): Promise<Project[]> => {
 
 export const getProjectById = async (id: string): Promise<Project | null> => {
   try {
-    console.log('id:', id);
-
     const record = await pb.collection('projects').getOne(id, { expand: 'stack' });
-
-    console.log('record:', record);
 
     return {
       id: record.id,

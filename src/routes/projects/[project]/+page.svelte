@@ -89,10 +89,7 @@
 </script>
 
 {#if project}
-	<main
-		class="min-h-screen w-screen overflow-hidden flex items-center justify-center"
-		style="background-color: rgba({projectColor}, 0.8);"
-	>
+	<main class="min-h-screen w-screen overflow-hidden flex items-center justify-center">
 		<section
 			class="flex w-full h-full transition-transform duration-300"
 			style={`transform: ${translateX}`}

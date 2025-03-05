@@ -1,8 +1,5 @@
 <script lang="ts">
 	import ScrollingTitle from '$components/scrollingTitle.svelte';
-	import { lockTitle, unlockTitle } from '$lib/functions/titleManager';
-	import { onMount } from 'svelte';
-	import IntersectionObserver from 'svelte-intersection-observer';
 </script>
 
 <section class="grid items-center" id="about">
@@ -19,6 +16,6 @@
 
 <style>
 	p {
-		@apply text-2xl lg:text-6xl;
+		@apply lg:text-6xl;
 	}
 </style>

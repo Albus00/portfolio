@@ -15,7 +15,7 @@ html, body, main {
 }
 
 p {
-  @apply text-black text-sm;
+  @apply text-black text-2xl;
 }
 
 /* https://fonts.adobe.com/fonts/rotulo-variable?vf-font-size=100&vf-font=RotuloVariable-CompressedThin&vf-axes=slnt,0,wght,700,wdth,50 */
@@ -24,24 +24,12 @@ h1 {
     font-variation-settings: 'wdth' 100, 'wght' 400, 'ital' 0;
     @apply text-6xl sm:text-8xl lg:text-[8rem] 2xl:text-[9rem] text-black text-center uppercase
   }
-  /* .h1-project {
-    font-size: 10rem;
-    font-variation-settings: 'wdth' 70, 'wght' 750, 'slnt' 0;
-    text-shadow: none;
-    @apply handheld:text-7xl
-  } */
 
 h2 {
   font-family: "reflex-pro-variable",sans-serif;
   font-variation-settings: 'wdth' 100, 'wght' 400, 'ital' 0;
   @apply text-5xl font-bold xl:font-normal md:text-[10rem] xl:text-[16rem] text-accent uppercase;
 }
-  /* .h2-link {
-    font-family: "rotulo-variable",sans-serif;
-    font-variation-settings: 'wdth' 70, 'wght' 600, 'slnt' 0;
-
-    @apply text-gray-400 text-6xl w-fit handheld:text-4xl underline-effect;
-  } */
 
 h3 {
   font-family: "reflex-pro-variable",sans-serif;
@@ -53,16 +41,6 @@ h4 {
   font-variation-settings: 'wdth' 100, 'wght' 400, 'ital' 0;
   @apply text-4xl font-bold mb-4 text-left uppercase;
 }
-
-/* .project-content p,
-	ul {
-		@apply text-xl mb-4 handheld:text-xl;
-	}
-.project-content h1 {
-  all: unset;
-  font-family: 'reflex-pro-variable', sans-serif;
-  @apply text-left mt-4 text-5xl font-bold handheld:text-2xl uppercase;
-} */
 
 .reflex-pro {
   font-family: "reflex-pro-variable",sans-serif;
