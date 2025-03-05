@@ -1,4 +1,5 @@
 <script>
+	import Footer from '$components/footer.svelte';
 	import About from '$layout/about.svelte';
 	import Contact from '$layout/contact.svelte';
 	import Hero from '$layout/hero.svelte';
@@ -7,12 +8,15 @@
 
 	export let data;
 	let projects = data.projects ?? [];
+	const lastProjectColor =
+		projects.length > 0 ? projects[projects.length - 1].customColor : '200,200,200';
 </script>
 
-<main class="relative pb-24 sm:pb-0">
+<main class="relative pb-36 sm:pb-0">
 	<Hero />
 	<About />
 	<Projects {projects} />
 	<!-- <Timeline /> -->
 	<!-- <Contact /> -->
 </main>
+<Footer {lastProjectColor} />

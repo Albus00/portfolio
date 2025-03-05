@@ -11,8 +11,10 @@
 
 	let sectionHeight = 0;
 	let titleElement: HTMLElement | null = null;
+	let windowWidth = 1000; // Used for changing the threshold of the IntersectionObserver in ProjectCard
 	onMount(() => {
 		titleElement = document.getElementById('projects-title');
+		windowWidth = window.innerWidth;
 	});
 
 	let projectNode: HTMLElement | null = null;
@@ -33,7 +35,7 @@
 			</div>
 		{/if}
 		{#each projects as project, index}
-			<ProjectCard order={index} {project} />
+			<ProjectCard order={index} {project} {titleElement} {windowWidth} />
 		{/each}
 	</div>
 </section>

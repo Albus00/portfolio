@@ -1,6 +1,9 @@
+export const MD_SCREEN_THRESHOLD = 768; // https://tailwindcss.com/docs/responsive-design
+export const LG_SCREEN_THRESHOLD = 1024; // https://tailwindcss.com/docs/responsive-design
+export const isMidScreen = (windowWidth: number) => windowWidth >= MD_SCREEN_THRESHOLD;
+export const isLargeScreen = (windowWidth: number) => windowWidth >= LG_SCREEN_THRESHOLD;
+
 export const changeProject = (titleElement: HTMLElement | null, projectName: string, projectColor: string, colorBrightness: number, isReset: boolean = false) => {
-
-
   if (!titleElement) return;
   if (titleElement.innerHTML === projectName) return;
   console.log(titleElement.innerHTML, projectName);

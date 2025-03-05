@@ -4,7 +4,7 @@
 	import ProjectTag from '$components/projectTag.svelte';
 	import type { Project, ProjectInfo } from '$lib/types';
 	import { checkBrightnessThreshold, getBrightness, getTextColor } from '$lib/functions/color';
-
+	import { isMidScreen } from '$lib/functions/visuals.js';
 	export let data;
 
 	const project: Project | null = data.project;
@@ -16,7 +16,6 @@
 	let startX = 0;
 	let isDragging = false;
 	const SNAP_THRESHOLD = 100;
-	const SMALL_SCREEN_THRESHOLD = 768; // https://tailwindcss.com/docs/responsive-design
 	let translateX = '';
 	let descSlideOffset = '';
 	let screenWidth: number = 1024;
@@ -62,11 +61,10 @@
 	}
 
 	const getTranslateX = (index: number, screenWidth: number) => {
-		return screenWidth < SMALL_SCREEN_THRESHOLD
+		return isMidScreen(screenWidth)
 			? `translateX(calc(-95% * ${index}));`
 			: `translateX(calc(-80% * ${index}));`;
 	};
-
 	function interoperateInfo(): ProjectInfo[] {
 		const info = project?.info;
 		if (!info) return [];
@@ -81,15 +79,14 @@
 
 	onMount(() => {
 		screenWidth = window.innerWidth;
-		descSlideOffset = screenWidth < SMALL_SCREEN_THRESHOLD ? 'translateX(-5%)' : 'translateX(-20%)';
+		descSlideOffset = isMidScreen(screenWidth) ? 'translateX(-5%)' : 'translateX(-20%)';
 
-		// Set the background color for mobile devices to avoid white edges
-		document.documentElement.style.backgroundColor = `rgba(${projectColor}, 0.8)`;
+		// Set the background Element.style.backgroundColor = `rgba(${projectColor}, 0.8)`;
 	});
 </script>
 
 {#if project}
-	<main class="min-h-screen w-screen overflow-hidden flex items-center justify-center">
+	<main class="min-h-screen w-full overflow-hidden flex items-center justify-center">
 		<section
 			class="flex w-full h-full transition-transform duration-300"
 			style={`transform: ${translateX}`}

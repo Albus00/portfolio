@@ -5,29 +5,24 @@
 	import type { Project } from '$lib/types';
 	import { getBrightness, getTextColor } from '$lib/functions/color';
 	import ProjectTag from './projectTag.svelte';
-	import { changeProject } from '$lib/functions/visuals';
-
+	import { changeProject, isMidScreen } from '$lib/functions/visuals';
 	export let project: Project;
 	export let order: number;
+	export let titleElement: HTMLElement | null = null;
+	export let windowWidth: number;
 
 	let projectNode: HTMLElement | null = null;
-	let titleElement: HTMLElement | null = null;
 
 	let rgb = project.customColor ? project.customColor : '255, 255, 255';
 	let rgbBrightness = getBrightness(rgb);
-
-	onMount(async () => {
-		// Get the section title
-		titleElement = document.getElementById('projects-title');
-	});
 </script>
 
 <IntersectionObserver
 	element={projectNode}
 	on:intersect={() => changeProject(titleElement, project.name, rgb, rgbBrightness)}
-	threshold={0.2}
+	threshold={isMidScreen(windowWidth) ? 1.0 : 0.2}
 />
-<div class="h-screen w-screen lg:w-auto px-4">
+<div class="h-screen w-full lg:w-auto px-4 z-30">
 	<div
 		class="flex flex-col lg:flex-row gap-y-8 gap-x-6 h-full sm:h-5/6 lg:h-3/4 w-full p-2 lg:p-6 items-center shadow-xl backdrop-blur-md rounded-xl {order %
 			2 ==

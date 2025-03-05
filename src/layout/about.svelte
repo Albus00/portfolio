@@ -4,7 +4,7 @@
 
 <section class="grid items-center" id="about">
 	<ScrollingTitle title="About" nextTitle="Projects" />
-	<div class="h-[50vh] lg:h-screen px-8 lg:px-horizontal">
+	<div class="h-screen px-8 lg:px-horizontal">
 		<p class="w-full lg:w-3/4">
 			Hi! My name is Albin. A 5th Year Student in M.Sc Media Technology and Engineering.<br /><br />
 			I create web apps and games
