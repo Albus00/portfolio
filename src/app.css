@@ -11,7 +11,7 @@
   @apply bg-base w-full;
 }
 html, body, main {
-  @apply w-screen overflow-x-hidden;
+  @apply w-full overflow-x-hidden;
 }
 
 p {

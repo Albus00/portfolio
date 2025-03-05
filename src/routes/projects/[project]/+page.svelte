@@ -61,7 +61,7 @@
 	}
 
 	const getTranslateX = (index: number, screenWidth: number) => {
-		return isMidScreen(screenWidth)
+		return !isMidScreen(screenWidth)
 			? `translateX(calc(-95% * ${index}));`
 			: `translateX(calc(-80% * ${index}));`;
 	};
@@ -79,14 +79,15 @@
 
 	onMount(() => {
 		screenWidth = window.innerWidth;
-		descSlideOffset = isMidScreen(screenWidth) ? 'translateX(-5%)' : 'translateX(-20%)';
+		descSlideOffset = !isMidScreen(screenWidth) ? 'translateX(-5%)' : 'translateX(-20%)';
 
-		// Set the background Element.style.backgroundColor = `rgba(${projectColor}, 0.8)`;
+		// Set the background color of the page to the project color
+		document.documentElement.style.backgroundColor = `rgba(${projectColor}, 0.8)`;
 	});
 </script>
 
 {#if project}
-	<main class="min-h-screen w-full overflow-hidden flex items-center justify-center">
+	<main class="min-h-full w-full overflow-hidden flex items-center justify-center">
 		<section
 			class="flex w-full h-full transition-transform duration-300"
 			style={`transform: ${translateX}`}
