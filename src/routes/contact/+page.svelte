@@ -63,7 +63,7 @@
 				Something went wrong. Please try again later or reach out to me on my email.
 			</p>
 			<div class="flex flex-col items-center gap-5">
-				<Button text="SEND AN EMAIL" href="mailto:albin.kjellberg2000@gmail.com" isFilled />
+				<Button text="SEND AN EMAIL" href="mailto:hello@kjellbergalbin.se" isFilled />
 				<Button text="GO BACK" href="/" />
 			</div>
 		{/if}

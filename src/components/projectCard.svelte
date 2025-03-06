@@ -22,7 +22,7 @@
 	on:intersect={() => changeProject(titleElement, project.name, rgb, rgbBrightness)}
 	threshold={isMidScreen(windowWidth) ? 1.0 : 0.2}
 />
-<div class="h-screen w-full lg:w-auto px-4 z-30">
+<div class="lg:h-screen w-full lg:w-auto px-4 z-30">
 	<div
 		class="flex flex-col lg:flex-row gap-y-8 gap-x-6 h-full sm:h-5/6 lg:h-3/4 w-full p-2 lg:p-6 items-center shadow-xl backdrop-blur-md rounded-xl {order %
 			2 ==
@@ -41,7 +41,7 @@
 				alt={project.name}
 			/>
 		</div>
-		<div class="h-full w-full lg:w-3/4 xl:1/2 flex flex-col justify-between">
+		<div class="h-full w-full px-2 lg:px-0 lg:w-3/4 xl:1/2 flex flex-col justify-between">
 			<div>
 				<h1 class={' ' + getTextColor(rgbBrightness)}>{project.name}</h1>
 				<p class={' ' + getTextColor(rgbBrightness)}>{project.description.short}</p>
@@ -52,7 +52,7 @@
 				</div>
 			</div>
 			<a
-				class="py-2 lg:py-3 rounded-2xl font-rotulo font-semibold text-center text-3xl lg:text-6xl shadow-xl hover:shadow-2xl transition-all {getTextColor(
+				class="py-2 lg:py-3 mt-4 lg:mt-0 rounded-2xl font-rotulo font-semibold text-center text-3xl lg:text-6xl shadow-xl hover:shadow-2xl transition-all {getTextColor(
 					rgbBrightness
 				)}"
 				style="background-color: rgba({rgb}, 0.3);"

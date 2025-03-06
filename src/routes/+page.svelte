@@ -1,7 +1,6 @@
 <script>
 	import Footer from '$components/footer.svelte';
 	import About from '$layout/about.svelte';
-	import Contact from '$layout/contact.svelte';
 	import Hero from '$layout/hero.svelte';
 	import Projects from '$layout/projects.svelte';
 	// import Timeline from '$layout/timeline.svelte';
@@ -17,6 +16,5 @@
 	<About />
 	<Projects {projects} />
 	<!-- <Timeline /> -->
-	<!-- <Contact /> -->
 </main>
 <Footer {lastProjectColor} />

@@ -14,11 +14,31 @@ export const POST: RequestHandler = async ({ request }) => {
     }
 
     const response = await resend.emails.send({
-      from: 'webpage@kjellbergalbin.se', // Use a verified sender domain
-      to: 'albin.kjellberg2000@gmail.com',   // Your receiving email
-      subject: `New Contact Form Message from ${name}`,
+      from: "Contact <onboarding@resend.dev>",
+      to: "hello@kjellbergalbin.se",
+      subject: `New Contact Form Submission from ${name}`,
       replyTo: email,
-      text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`
+      text: `You have received a new message from your website contact form.
+    
+    Name: ${name}
+    Email: ${email}
+    
+    Message:
+    ${message}
+    
+    ---
+    This email was automatically generated. Please do not reply to this address.`,
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <h2 style="color: #0056b3;">New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> <a href="mailto:${email}" style="color: #0056b3;">${email}</a></p>
+          <p><strong>Message:</strong></p>
+          <p style="background: #f4f4f4; padding: 10px; border-radius: 5px;">${message}</p>
+          <hr>
+          <p style="font-size: 0.9em; color: #666;">This email was automatically generated. Please do not reply.</p>
+        </div>
+      `
     });
 
     return json({ success: true, response });

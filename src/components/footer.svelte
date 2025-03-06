@@ -5,7 +5,7 @@
 
 	export let lastProjectColor: string = '200,200,200';
 
-	const CARD_OFFSET = 20;
+	const CARD_OFFSET = 40;
 	let isBottom = false;
 	let windowWidth = 1000;
 	const cardClass = 'shadow-xl lg:shadow-none backdrop-blur-md lg:backdrop-blur-0 rounded-xl';
@@ -36,7 +36,7 @@
 		<div>
 			<p>Available for new projects</p>
 		</div>
-		<div class="grid items-center">
+		<div class="flex items-start">
 			<Button text="Contact me" href="/contact" />
 		</div>
 	</div>
