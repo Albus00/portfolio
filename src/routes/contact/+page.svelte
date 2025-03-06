@@ -12,6 +12,7 @@
 
 	async function handleSubmit() {
 		try {
+			// TODO: Add email validation
 			const res = await fetch('/api/contact', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
