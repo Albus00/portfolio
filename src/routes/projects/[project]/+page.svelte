@@ -159,46 +159,49 @@
 								</p>
 							</div>
 						</div>
-						<div
-							class="projectMin:absolute top-0 right-0 w-full md:w-1/2 projectMin:w-[350px] projectMin:h-full rounded-xl p-4 flex flex-col justify-between"
-							style={`background-color: rgba(${projectColor}, 0.3);`}
-						>
-							<div class="mb-5">
-								<h4 class={getTextColor(rgbBrightness)}>Project Info</h4>
-								<div class={'flex flex-col gap-1'}>
-									{#each interoperateInfo() as info}
-										<div class="flex flex-row">
-											<p class={'font-semibold mr-1 ' + getTextColor(rgbBrightness)}>
-												{info.item}:
-											</p>
-											<p class={'text-left ' + getTextColor(rgbBrightness)}>{info.text}</p>
-										</div>
-									{/each}
+						<div class="pb-5">
+							<!-- Extra div for overflow y padding at the bottom :( -->
+							<div
+								class="projectMin:absolute top-0 right-0 w-full md:w-1/2 projectMin:w-[350px] projectMin:h-full rounded-xl p-4 flex flex-col justify-between"
+								style={`background-color: rgba(${projectColor}, 0.3);`}
+							>
+								<div class="mb-5">
+									<h4 class={getTextColor(rgbBrightness)}>Project Info</h4>
+									<div class={'flex flex-col gap-1'}>
+										{#each interoperateInfo() as info}
+											<div class="flex flex-row">
+												<p class={'font-semibold mr-1 ' + getTextColor(rgbBrightness)}>
+													{info.item}:
+												</p>
+												<p class={'text-left ' + getTextColor(rgbBrightness)}>{info.text}</p>
+											</div>
+										{/each}
+									</div>
 								</div>
-							</div>
-							<div class="flex flex-col gap-3">
-								{#if project.demoUrl}
+								<div class="flex flex-col gap-3">
+									{#if project.demoUrl}
+										<ProjectTag
+											tag={{ name: 'DEMO', url: project.demoUrl }}
+											rgb={projectColor}
+											{rgbBrightness}
+											isLarge={true}
+										/>
+									{/if}
 									<ProjectTag
-										tag={{ name: 'DEMO', url: project.demoUrl }}
+										tag={{ name: 'GALLERY', url: `${project.id}/gallery` }}
 										rgb={projectColor}
 										{rgbBrightness}
 										isLarge={true}
 									/>
-								{/if}
-								<ProjectTag
-									tag={{ name: 'GALLERY', url: `${project.id}/gallery` }}
-									rgb={projectColor}
-									{rgbBrightness}
-									isLarge={true}
-								/>
-								{#if project.repositoryUrl}
-									<ProjectTag
-										tag={{ name: 'REPOSITORY', url: project.repositoryUrl }}
-										rgb={projectColor}
-										{rgbBrightness}
-										isLarge={true}
-									/>
-								{/if}
+									{#if project.repositoryUrl}
+										<ProjectTag
+											tag={{ name: 'REPOSITORY', url: project.repositoryUrl }}
+											rgb={projectColor}
+											{rgbBrightness}
+											isLarge={true}
+										/>
+									{/if}
+								</div>
 							</div>
 						</div>
 					</div>
