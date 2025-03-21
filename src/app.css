@@ -79,3 +79,12 @@ h4 {
 			0 0.9px 1.5px hsla(0, 0%, 0%, 0.045),
 			0 3.5px 6px hsla(0, 0%, 0%, 0.09);
 }
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

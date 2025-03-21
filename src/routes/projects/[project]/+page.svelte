@@ -89,6 +89,13 @@
 
 		// Set the background color of the page to the project color
 		document.documentElement.style.backgroundColor = `rgba(${projectColor}, 0.8)`;
+
+		const img = document.querySelector('img');
+		if (img != null) {
+			img.ondragstart = () => {
+				return false;
+			};
+		}
 	});
 </script>
 
@@ -120,12 +127,12 @@
 					<img
 						src={project.image}
 						alt={project.name}
-						class="w-auto md:max-w-[75%] max-w-[91.666667%] h-full max-h-full rounded-xl object-cover object-center hidden md:block"
+						class="w-auto max-w-[75%] h-full max-h-full rounded-xl object-cover object-center hidden md:block"
 					/>
 					<img
 						src={project.mobileImage}
 						alt={project.name}
-						class="w-auto md:max-w-[75%] max-w-[91.666667%] h-full max-h-full rounded-xl object-cover object-center md:hidden"
+						class="w-full max-w-[91.666667%] h-full rounded-xl object-cover object-center md:hidden"
 					/>
 				{/if}
 			</section>
@@ -133,12 +140,12 @@
 			<!-- Description Slide -->
 			<section
 				id="project-description"
-				class="flex justify-center items-center min-w-full h-screen"
+				class="flex justify-center items-center min-w-full h-screen unselectable"
 				style={`transform: ${descSlideOffset};`}
 				role="presentation"
 			>
 				<div
-					class={'flex flex-col justify-between rounded-xl p-4 md:p-8 text-center w-11/12 md:w-3/4 h-5/6 border border-opacity-40 ' +
+					class={'flex flex-col justify-between rounded-xl p-4 md:p-8 text-center w-11/12 md:w-3/4 h-5/6 border border-opacity-40 overflow-y-auto ' +
 						(checkBrightnessThreshold(rgbBrightness) ? 'border-white' : 'border-black')}
 				>
 					<div class="relative flex flex-col justify-between projectMin:justify-start h-full">
