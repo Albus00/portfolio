@@ -22,9 +22,9 @@
 	on:intersect={() => changeProject(titleElement, project.name, rgb, rgbBrightness)}
 	threshold={isMidScreen(windowWidth) ? 1.0 : 0.2}
 />
-<div class="lg:h-screen w-full lg:w-auto px-4 z-30">
+<div class="lg:h-screen w-full lg:w-auto px-4">
 	<div
-		class="flex flex-col lg:flex-row gap-y-8 gap-x-6 h-full sm:h-5/6 lg:h-3/4 w-full p-2 lg:p-6 items-center shadow-xl backdrop-blur-md rounded-xl {order %
+		class="flex flex-col lg:flex-row gap-y-8 gap-x-6 h-full sm:h-5/6 lg:h-3/4 w-full p-2 lg:p-6 items-center shadow-xl z-30 backdrop-blur-md rounded-xl {order %
 			2 ==
 			1 && 'lg:justify-items-end'}"
 		style="background-color: rgba({rgb}, 0.4);"

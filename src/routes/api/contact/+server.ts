@@ -14,9 +14,9 @@ export const POST: RequestHandler = async ({ request }) => {
     }
 
     const response = await resend.emails.send({
-      from: "Contact <onboarding@resend.dev>",
-      // to: "hello@kjellbergalbin.se",
-      to: "albin.kjellberg2000@gmail.com",
+      from: "Contact <portfolio@kjellbergalbin.se>",
+      to: "hello@kjellbergalbin.se",
+      // to: "albin.kjellberg2000@gmail.com",
       subject: `New Contact Form Submission from ${name}`,
       replyTo: email,
       text: `You have received a new message from your website contact form.
