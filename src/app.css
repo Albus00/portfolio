@@ -88,3 +88,24 @@ h4 {
   -ms-user-select: none;
   user-select: none;
 }
+
+.awards-cards {
+  column-count: 4;
+  column-gap: 1em;
+
+}
+
+.award-card__wrapper {
+  background-color: #eee;
+  display: inline-block;
+  margin: 0 0 1em;
+  width: 100%;
+}
+
+
+@media only screen and (max-width: 480px) {
+.awards-cards {
+  column-count: 3;
+  column-gap: 1em;
+}
+}

@@ -58,4 +58,12 @@ export const getProjectById = async (id: string): Promise<Project | null> => {
   }
 };
 
+export const getProjectGallery = async (id: string): Promise<{ images: string[], projectColor: string }> => {
+  const record = await pb.collection('projects').getOne(id);
+  return {
+    images: record.images?.map((fileName: string) => getMediaUrl(record, fileName)) || [],
+    projectColor: record.custom_color ? hexToRgb(record.custom_color) : ''
+  }
+}
+
 const getMediaUrl = (record: RecordModel, fileName: string) => pb.files.getURL(record, fileName);

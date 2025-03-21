@@ -185,6 +185,12 @@
 										isLarge={true}
 									/>
 								{/if}
+								<ProjectTag
+									tag={{ name: 'GALLERY', url: `${project.id}/gallery` }}
+									rgb={projectColor}
+									{rgbBrightness}
+									isLarge={true}
+								/>
 								{#if project.repositoryUrl}
 									<ProjectTag
 										tag={{ name: 'REPOSITORY', url: project.repositoryUrl }}
