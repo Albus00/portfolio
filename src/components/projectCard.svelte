@@ -37,7 +37,7 @@
 		>
 			<img
 				class="aspect-square sm:aspect-auto lg:aspect-square lg:h-full object-cover object-center rounded-xl"
-				src={project.images[0]}
+				src={project.mobileImage}
 				alt={project.name}
 			/>
 		</div>

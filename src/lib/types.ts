@@ -10,7 +10,8 @@ export interface Project {
   technologies: string[];
   repositoryUrl?: string;
   demoUrl?: string;
-  images: string[];
+  image: string;
+  mobileImage: string;
   video?: string | null;
   stack: { id: string, name: string, url: string }[];
   customColor?: string;

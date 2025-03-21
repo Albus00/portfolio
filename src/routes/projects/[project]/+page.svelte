@@ -77,6 +77,12 @@
 		}));
 	}
 
+	const goToSlide = (index: number) => {
+		if (index === activeIndex) return;
+		activeIndex = index;
+		translateX = getTranslateX(activeIndex, screenWidth);
+	};
+
 	onMount(() => {
 		screenWidth = window.innerWidth;
 		descSlideOffset = !isMidScreen(screenWidth) ? 'translateX(-5%)' : 'translateX(-20%)';
@@ -112,9 +118,14 @@
 					/>
 				{:else}
 					<img
-						src={project.images[0]}
+						src={project.image}
 						alt={project.name}
-						class="w-auto md:max-w-[75%] max-w-[91.666667%] h-full max-h-full rounded-xl object-cover object-center"
+						class="w-auto md:max-w-[75%] max-w-[91.666667%] h-full max-h-full rounded-xl object-cover object-center hidden md:block"
+					/>
+					<img
+						src={project.mobileImage}
+						alt={project.name}
+						class="w-auto md:max-w-[75%] max-w-[91.666667%] h-full max-h-full rounded-xl object-cover object-center md:hidden"
 					/>
 				{/if}
 			</section>
@@ -124,6 +135,7 @@
 				id="project-description"
 				class="flex justify-center items-center min-w-full h-screen"
 				style={`transform: ${descSlideOffset};`}
+				role="presentation"
 			>
 				<div
 					class={'flex flex-col justify-between rounded-xl p-4 md:p-8 text-center w-11/12 md:w-3/4 h-5/6 border border-opacity-40 ' +
