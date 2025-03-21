@@ -89,7 +89,7 @@
 {#if project}
 	<main class="min-h-full w-full overflow-hidden flex items-center justify-center">
 		<section
-			class="flex w-full h-full transition-transform duration-300"
+			class="flex w-full transition-transform duration-300 h-screen items-center"
 			style={`transform: ${translateX}`}
 			on:mousedown={handleMouseDown}
 			on:mousemove={handleMouseMove}
@@ -101,11 +101,11 @@
 			role="presentation"
 		>
 			<!-- Media Slide -->
-			<section class="flex justify-center items-center min-w-[100%] h-screen">
+			<section class="flex justify-center items-center min-w-[100%] h-5/6">
 				{#if project.video}
 					<Video
 						src="/projectMedia/videos/{project.id}.mp4"
-						class="object-cover w-11/12 md:w-3/4 h-5/6 rounded-xl"
+						class="w-11/12 md:w-3/4 h-full rounded-xl object-cover object-center"
 						autoplay
 						muted
 						controls
@@ -114,7 +114,7 @@
 					<img
 						src={project.images[0]}
 						alt={project.name}
-						class="object-cover w-11/12 md:w-3/4 h-5/6 rounded-xl"
+						class="w-auto md:max-w-[75%] max-w-[91.666667%] h-full max-h-full rounded-xl object-cover object-center"
 					/>
 				{/if}
 			</section>
