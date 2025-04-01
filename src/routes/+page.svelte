@@ -11,7 +11,7 @@
 		projects.length > 0 ? projects[projects.length - 1].customColor : '200,200,200';
 </script>
 
-<main class="relative pb-36 sm:pb-0">
+<main class="relative pb-36">
 	<Hero />
 	<About />
 	<Projects {projects} />

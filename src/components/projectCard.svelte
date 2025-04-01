@@ -24,28 +24,30 @@
 />
 <div class="lg:h-screen w-full lg:w-auto px-4">
 	<div
-		class="flex flex-col lg:flex-row gap-y-8 gap-x-6 h-full sm:h-5/6 lg:h-3/4 w-full p-2 lg:p-6 items-center shadow-xl z-30 backdrop-blur-md rounded-xl {order %
+		class="flex flex-col lg:flex-row gap-y-8 gap-x-6 h-full w-full p-2 lg:p-6 items-center shadow-xl z-30 backdrop-blur-md rounded-xl {order %
 			2 ==
 			1 && 'lg:justify-items-end'}"
 		style="background-color: rgba({rgb}, 0.4);"
 	>
 		<div
 			bind:this={projectNode}
-			class="overflow-clip w-full xl:aspect-square xl:w-1/2 lg:h-full rounded-xl {order % 2 == 1
+			class="overflow-clip w-full xl:w-1/2 lg:h-full rounded-xl max-h-full sm:max-h-[70%] lg:max-h-full max-w-full sm:max-w-[70%] lg:max-w-full {order %
+				2 ==
+			1
 				? 'lg:order-1'
 				: ''}"
 		>
 			<img
-				class="aspect-square sm:aspect-auto lg:aspect-square lg:h-full object-cover object-center rounded-xl"
+				class="aspect-square lg:aspect-square lg:h-full object-cover object-center rounded-xl"
 				src={project.mobileImage}
 				alt={project.name}
 			/>
 		</div>
-		<div class="h-full w-full px-2 lg:px-0 lg:w-3/4 xl:1/2 flex flex-col justify-between">
+		<div class="h-full w-full px-2 lg:px-0 lg:w-3/4 xl:w-1/2 flex flex-col justify-between">
 			<div>
 				<h1 class={' ' + getTextColor(rgbBrightness)}>{project.name}</h1>
 				<p class={' ' + getTextColor(rgbBrightness)}>{project.description.short}</p>
-				<div class="hidden lg:flex flex-row gap-x-2 py-5">
+				<div class="hidden lg:flex flex-row gap-2 py-5 flex-wrap">
 					{#each project.stack as tag}
 						<ProjectTag {tag} {rgb} {rgbBrightness} />
 					{/each}

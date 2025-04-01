@@ -25,6 +25,7 @@ export default {
         'img': '2rem',
       },
       screens: {
+        xxl: { 'max': '1600px' },
         desktop: { 'min': '1225px' },
         laptop: { 'max': '1600px' },
         handheld: { 'max': '1024px' },

@@ -11,6 +11,7 @@
 	const projectColor = project?.customColor ?? '0, 0, 0';
 	const rgbBrightness = getBrightness(projectColor);
 	let activeIndex = 0; // 0 = Media, 1 = Info
+	let descriptionDiv: HTMLElement | null = null;
 
 	// Mouse drag variables
 	let startX = 0;
@@ -62,7 +63,7 @@
 
 	const getTranslateX = (index: number, screenWidth: number) => {
 		return !isMidScreen(screenWidth)
-			? `translateX(calc(-95% * ${index}));`
+			? `translateX(calc(-94% * ${index}));`
 			: `translateX(calc(-80% * ${index}));`;
 	};
 	function interoperateInfo(): ProjectInfo[] {
@@ -85,7 +86,27 @@
 
 	onMount(() => {
 		screenWidth = window.innerWidth;
-		descSlideOffset = !isMidScreen(screenWidth) ? 'translateX(-5%)' : 'translateX(-20%)';
+		descSlideOffset = !isMidScreen(screenWidth) ? 'translateX(-6%)' : 'translateX(-20%)';
+
+		window.addEventListener('wheel', function (event) {
+			if (event.deltaY < 0) {
+				// Scrolling up
+				const isOverflowing =
+					descriptionDiv && descriptionDiv.scrollHeight > descriptionDiv.clientHeight;
+
+				if (isOverflowing) {
+					return;
+				}
+				if (activeIndex === 1) {
+					goToSlide(0);
+				}
+			} else if (event.deltaY > 0) {
+				// Scrolling down
+				if (activeIndex === 0) {
+					goToSlide(1);
+				}
+			}
+		});
 
 		// Set the background color of the page to the project color
 		document.documentElement.style.backgroundColor = `rgba(${projectColor}, 0.8)`;
@@ -114,7 +135,7 @@
 			role="presentation"
 		>
 			<!-- Media Slide -->
-			<section class="flex justify-center items-center min-w-[100%] h-5/6">
+			<section class="flex justify-center items-center min-w-[100%] h-5/6" role="presentation">
 				{#if project.video}
 					<Video
 						src="/projectMedia/videos/{project.id}.mp4"
@@ -148,7 +169,10 @@
 					class={'flex flex-col justify-between rounded-xl p-4 md:p-8 text-center w-11/12 md:w-3/4 h-5/6 border border-opacity-40 overflow-y-auto ' +
 						(checkBrightnessThreshold(rgbBrightness) ? 'border-white' : 'border-black')}
 				>
-					<div class="relative flex flex-col justify-between projectMin:justify-start h-full">
+					<div
+						class="relative flex flex-col justify-between projectMin:justify-start h-full"
+						bind:this={descriptionDiv}
+					>
 						<div class="pb-8">
 							<h3 class={getTextColor(rgbBrightness)}>
 								{project.name}

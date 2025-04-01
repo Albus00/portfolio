@@ -26,6 +26,7 @@
 
 <footer
 	class={'fixed bottom-0 left-0 w-full p-8 flex flex-col md:flex-row justify-between items-start md:items-center font-bold'}
+	style="pointer-events: none;"
 >
 	<div
 		class={'w-full p-3 transition-all ' + (isBottom ? cardClass : '')}
