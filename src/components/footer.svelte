@@ -37,7 +37,7 @@
 		<div>
 			<p>Available for new projects</p>
 		</div>
-		<div class="flex items-start">
+		<div class="flex items-start" style="pointer-events: all;">
 			<Button text="Contact me" href="/contact" />
 		</div>
 	</div>
